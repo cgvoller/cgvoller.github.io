@@ -1,0 +1,650 @@
+---
+title: "Bayesian Response-Adaptive Randomisation with Group Sequential Designs"
+author: "Corey Voller"
+date: 04/29/2025
+date-format: long
+bibliography: bibliography.bib
+toc: true
+toc-title: "Outline"
+categories: [Meetings]
+image: "github_resized.png"
+format: 
+  revealjs:
+    embed-resources: true
+    code-line-numbers: true
+    icons: true
+    footer: "CV Supervisor Meeting 29th April 2025"
+    transition: fade
+    theme: [default, custom.scss]
+    slide-number: true
+    crossrefs-hover: true
+    chalkboard: false
+    logo: "logo.png"
+    title-slide-attributes:
+      data-background-image: "background.png"
+      data-background-size: contain
+editor: visual
+---
+
+## Objectives
+
+-   Feedback on the slides/presentation
+-   Bayesian/Frequentist stopping boundary
+-   Explanation of differences using different priors
+-   Next steps
+
+## APTS Durham {auto-animate="true"}
+
+![](Great-Hall-at-meal-time.jpg)
+
+## APTS Durham {.unlisted auto-animate="true"}
+
+::::: columns
+::: {.column width="50%"}
+-   [**Use** version control (Git)]{.new-point}
+:::
+
+::: {.column width="50%"}
+![](Great-Hall-at-meal-time.jpg)
+:::
+:::::
+
+## APTS Durham {.unlisted auto-animate="true"}
+
+::::: columns
+::: {.column width="50%"}
+-   [Attend lots of seminars]{.new-point}
+-   **Use** version control (Git)
+:::
+
+::: {.column width="50%"}
+![](Great-Hall-at-meal-time.jpg)
+:::
+:::::
+
+## APTS Durham {.unlisted auto-animate="true"}
+
+::::: columns
+::: {.column width="50%"}
+-   [**Read** the latest and first paper on a topic]{.new-point}
+-   **Attend** lots of seminars
+-   **Use** version control (Git)
+:::
+
+::: {.column width="50%"}
+![](Great-Hall-at-meal-time.jpg)
+:::
+:::::
+
+## APTS Durham {.unlisted auto-animate="true"}
+
+::::: columns
+::: {.column width="50%"}
+-   [Get the simplest case working]{.new-point}
+-   **Read** the latest and first paper on a topic
+-   **Attend** lots of seminars
+-   **Use** version control (Git)
+:::
+
+::: {.column width="50%"}
+![](Great-Hall-at-meal-time.jpg)
+:::
+:::::
+
+## APTS Durham {.unlisted}
+
+::::: columns
+::: {.column width="50%"}
+-   **Get** the simplest case working <i class="fas fa-arrow-right"></i> [**Otherwise, go back to the drawing board**]{.new-point}
+-   **Read** the latest and first paper on a topic
+-   **Attend** lots of seminars
+-   **Use** version control (Git)
+:::
+
+::: {.column width="50%"}
+![](Great-Hall-at-meal-time.jpg)
+:::
+:::::
+
+# Presentation of results
+
+:::::: {style="font-size: 80%;"}
+::::: columns
+::: {.column width="35%"}
+-   Change from plots of $\theta$ to plots of ratios.
+-   Include plots which overlay frequentist and priors using pooled with facet for each analysis.
+    -   Do the same for the group based approach
+:::
+
+::: {.column width="65%"}
+![](tabone_pooled_kernal.png){width="80%" fig-align="center"}
+:::
+:::::
+::::::
+
+## Stopping Boundary
+
+<video id="stopping-video" src="BoundAnim.mp4" controls autoplay loop muted style="max-width: 100%; margin-top: 1rem;">
+
+Your browser does not support the video tag.
+
+</video>
+
+<script>
+  Reveal.on('slidechanged', function(event) {
+    var video = document.getElementById('stopping-video');
+    if (event.currentSlide === event.previousSlide) {
+      video.play();  // Ensure video plays when returning to slide
+    }
+  });
+</script>
+
+## Stopping Boundary {.unlisted auto-animate="true"}
+
+## Stopping Boundary {.unlisted auto-animate="true"}
+
+::::: columns
+::: {.column width="50%"}
+-   Bayesian stopping rule
+:::
+
+::: {.column width="50%"}
+:::
+:::::
+
+## Stopping Boundary {.unlisted auto-animate="true"}
+
+::::: columns
+::: {.column width="50%"}
+-   Bayesian stopping rule
+:::
+
+::: {.column width="50%"}
+-   Bayesian allocation ratio **only**
+:::
+:::::
+
+## Stopping Boundary {.unlisted auto-animate="true"}
+
+::::: columns
+::: {.column width="50%"}
+-   Bayesian stopping rule
+:::
+
+::: {.column width="50%"}
+-   Bayesian allocation ratio **only**
+:::
+:::::
+
+![](bayesfreq.png){width="60%" fig-align="center"}
+
+## Stopping Boundary {.unlisted auto-animate="true"}
+
+:::::: columns
+::: {.column width="50%"}
+![Irving John Good (1916 - 2009)](IJGood.jpg){fig-align="center" width="80%"}
+:::
+
+:::: {.column width="50%"}
+::: {style="font-size: 80%;"}
+> The subjectivist (i.e. Bayesian) states his judgements, whereas the objectivist sweeps them under the carpet by calling assumptions knowledge, and he basks in the glorious objectivity of science.
+:::
+::::
+::::::
+
+## Stopping Boundary {.unlisted auto-animate="true"}
+
+:::::: columns
+::: {.column width="50%"}
+![Irving John Good (1916 - 2009)](IJGood.jpg){fig-align="center" width="80%"}
+:::
+
+:::: {.column width="50%"}
+::: {style="font-size: 80%;"}
+> The subjectivist (i.e. Bayesian) states his judgements, whereas the objectivist sweeps them under the carpet by calling assumptions knowledge, and he basks in the glorious objectivity of science.
+:::
+::::
+::::::
+
+::: incremental
+-   What assumptions do we want to make?
+-   Interpretability
+-   Option 3
+-   Time constraint
+:::
+
+# Prior on individual treatments vs treatment effect directly
+
+## Maximum likelihood estimate
+
+## Maximum likelihood estimate {.unlisted auto-animate="true"}
+
+::: {style="font-size: 80%;"}
+Generate data from group j using independent normal distributions with mean $\mu_j$ and a known common variance $\sigma^2$.
+
+$$
+X_{i,j} \sim N(\mu_j, \sigma^2)
+$$
+
+where $j=1,2$ and $i=1,\ldots,n_j$.
+:::
+
+## Maximum likelihood estimate {.unlisted auto-animate="true"}
+
+::: {style="font-size: 80%;"}
+Generate data from group j using independent normal distributions with mean $\mu_j$ and a known common variance $\sigma^2$.
+
+$$
+X_{i,j} \sim N(\mu_j, \sigma^2)
+$$
+
+where $j=1,2$ and $i=1,\ldots,n_j$.
+
+Using pooled data over groups, we get the following expression for our estimate of the treatment effect $\theta$ at analysis $k$
+
+$$
+\hat{\theta}_{p,K} = \frac{\sum_{k=1}^{K}\bar{X}_1^k n_1^k}{\sum_{k=1}^{K}n_1^k} - \frac{\sum_{k=1}^{K}\bar{X}_2^k n_2^k}{\sum_{k=1}^{K}n_2^k}
+$$
+:::
+
+## Maximum likelihood estimate {.unlisted auto-animate="true"}
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: "|45|46|48|49|50"
+simulate_RAR <- function(N, K, mu_1, mu_2, sigma, I_theta_fix,delta) {
+  # Ratio, estimates of mu, theta
+  muhat_1 <- muhat_2 <- ratio <- numeric(K)
+  theta_hat <- rep(NA, K)
+  # data from trial
+  x_1 <- x_2 <- numeric(0)
+  # Information
+  I1 <- I2 <- numeric(K)
+  # Number of patients per arm
+  n1 <- n2 <- n1.new <- n2.new <- w <- numeric(K)
+  S1 <- N1 <- S2 <- N2 <- 0
+  for (k in 1:K) {
+    if (k == 1) {
+      # Initial equal allocation
+      ratio[k] <- 1
+      # Enroll 20 patients when N = 100, K=5
+      n1.new[k] <- n2.new[k] <- N / K
+      n1[k] <- n2[k] <- N / K
+    } else {
+      # Define ratio based on formula with previous estimate of theta
+      ratio[k] <-  a ** (theta_hat[k - 1]/ (2 * delta))
+      # Patients in N1
+      n1[k] <- (k / 5) * (sigma ^ 2) * I_theta_fix * (1 + ratio[k])
+      # Patient in N2
+      n2[k] <- (k / 5) * (sigma ^ 2) * I_theta_fix * (1 + (1 / ratio[k]))
+      # Difference in patients from previous
+      n1.new[k] <- n1[k] - n1[k - 1]
+      n2.new[k] <- n2[k] - n2[k - 1]
+      if(n1.new[k]<=0){
+        n1[k]= n1[k - 1]+0.00001
+        n1.new[k] = n1[k] - n1[k - 1]
+        #n2[k] = (((k/5)*I_theta_fix)^(-1)-1/(n2/sigma^2))^(-1)
+        n2[k] = (k*n1[k]*sigma^2*I_theta_fix)/(5*n1[k]-k*sigma^2*I_theta_fix)
+        n2.new[k] = n2[k]-n2[k-1]
+      }
+      if(n2.new[k]<=0){
+        n2[k]= n2[k - 1]+0.00001
+        n2.new[k] = n2[k] - n2[k - 1]
+        #n1[k] = (((k/5)*I_theta_fix)^(-1)-1/(n2[k]/sigma^2))^(-1)
+        n1[k] = (k*n2[k]*sigma^2*I_theta_fix)/(5*n2[k]-k*sigma^2*I_theta_fix)
+        n1.new[k] = n1[k]-n1[k-1]
+      }
+    }
+    #Sample once from normal distribution
+    x_1[k] <- rnorm(1, mu_1, sqrt(sigma^2/n1.new[k]))
+    x_2[k] <- rnorm(1, mu_2, sqrt(sigma^2/n2.new[k]))
+    
+    muhat_1[k] <- sum(n1.new[1:k] * x_1[1:k]) / sum(n1.new)
+    muhat_2[k] <- sum(n2.new[1:k] * x_2[1:k]) / sum(n2.new)
+    theta_hat[k] <- muhat_1[k] - muhat_2[k]
+  }
+  return(list(n1 = n1, n2 = n2, theta_hat = theta_hat))
+}
+
+```
+
+## Maximum likelihood estimate {.unlisted auto-animate="true"}
+
+```{r,echo=FALSE}
+library(gt)
+
+
+gt_table <- readRDS("tables/freq_tb1.rds")
+gt_table
+
+```
+
+## Prior on individual $\mu$'s
+
+## Prior on individual $\mu$'s {.unlisted auto-animate="true"}
+
+![](DAGind_prior.svg){fig-align="center" width="80%"}
+
+## Prior on individual $\mu$'s {.unlisted auto-animate="true"}
+
+::: {style="font-size: 70%;"}
+Suppose the responses of patients from treatment group j are iid normals
+
+$$
+X_{i,j}|\mu_j,\tau \sim N(\mu_j, \tau^{-1})
+$$
+:::
+
+## Prior on individual $\mu$'s {.unlisted auto-animate="true"}
+
+::: {style="font-size: 70%;"}
+Suppose the responses of patients from treatment group j are iid normals
+
+$$
+X_{i,j}|\mu_j,\tau \sim N(\mu_j, \tau^{-1})
+$$
+
+With priors on $\mu$ for each treatment j
+
+$$
+\mu_j \sim N(\mu_{0,j}, \tau_{0,j}^{-1})
+$$
+:::
+
+## Prior on individual $\mu$'s {.unlisted auto-animate="true"}
+
+::: {style="font-size: 70%;"}
+Suppose the responses of patients from treatment group j are iid normals
+
+$$
+X_{i,j}|\mu_j,\tau \sim N(\mu_j, \tau^{-1})
+$$
+
+With priors on $\mu$ for each treatment j
+
+$$
+\mu_j \sim N(\mu_{0,j}, \tau_{0,j}^{-1})
+$$
+
+Then the posterior $\theta|\bar{x}_1^k,\bar{x}_2^k$ has mean
+
+$$
+\frac{\tau_{0,1}\mu_{0,1}+\sum_{i=1}^{k} n_1^i \tau \mu_1^k}{\tau_{0,1}+\sum_{i=1}^k n_1^i \tau} - \frac{\tau_{0,2}\mu_{0,2}+\sum_{i=1}^{k} n_2^i \tau \mu_2^k}{\tau_{0,2}+\sum_{i=1}^k n_2^i \tau}
+$$
+:::
+
+## Prior on individual $\mu$'s {.unlisted auto-animate="true"}
+
+::: {style="font-size: 70%;"}
+Suppose the responses of patients from treatment group j are iid normals
+
+$$
+X_{i,j}|\mu_j,\tau \sim N(\mu_j, \tau^{-1})
+$$
+
+With priors on $\mu$ for each treatment j
+
+$$
+\mu_j \sim N(\mu_{0,j}, \tau_{0,j}^{-1})
+$$
+
+Then the posterior $\theta|\bar{x}_1^k,\bar{x}_2^k$ has mean
+
+$$
+\frac{\tau_{0,1}\mu_{0,1}+\sum_{i=1}^{k} n_1^i \tau \mu_1^k}{\tau_{0,1}+\sum_{i=1}^k n_1^i \tau} - \frac{\tau_{0,2}\mu_{0,2}+\sum_{i=1}^{k} n_2^i \tau \mu_2^k}{\tau_{0,2}+\sum_{i=1}^k n_2^i \tau}
+$$
+
+and variance
+
+$$
+1/(\tau_{0,1}+\sum_{i=1}^k n_1^i \tau) + 1/(\tau_{0,2}+\sum_{i=1}^k n_2^i \tau)
+$$
+:::
+
+## Prior on individual $\mu$'s {.unlisted auto-animate="true"}
+
+::: {style="font-size: 70%;"}
+Suppose the responses of patients from treatment group j are iid normals
+
+$$
+X_{i,j}|\mu_j,\tau \sim N(\mu_j, \tau^{-1})
+$$
+
+With priors on $\mu$ for each treatment j
+
+$$
+\mu_j \sim N(\mu_{0,j}, \tau_{0,j}^{-1})
+$$
+
+Then the posterior $\theta|\bar{x}_1^k,\bar{x}_2^k$ has mean
+
+$$
+\frac{\color{gray}{\tau_{0,1}\mu_{0,1}+}\sum_{i=1}^{k} n_1^i \tau \mu_1^k}{\color{gray}{\tau_{0,1}}+\sum_{i=1}^k n_1^i \tau}
+-
+\frac{\color{gray}{\tau_{0,2}\mu_{0,2}+}\sum_{i=1}^{k} n_2^i \tau \mu_2^k}{\color{gray}{\tau_{0,2}}+\sum_{i=1}^k n_2^i \tau}
+$$
+
+and variance
+
+$$
+1/(\tau_{0,1}+\sum_{i=1}^k n_1^i \tau) + 1/(\tau_{0,2}+\sum_{i=1}^k n_2^i \tau)
+$$
+:::
+
+## Prior on individual $\mu$'s {.unlisted auto-animate="true"}
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: "|8|22|23|34-41|43-50|52"
+
+posterior_mean <- function(prior_mean, prior_tau, data, tau, n,k) {
+  result <- tryCatch({
+    # Check if the lengths of n and data are compatible
+    if (length(n) != length(data)) {
+      stop("Length of n and data must be the same. Found n of length ", length(n), " and data of length ", length(data))
+    }
+    # Calculate post mean
+    posterior_mean_result <- ((prior_tau) * prior_mean + sum(n * (tau) * (data))) / (sum(n* tau) + prior_tau)
+    return(posterior_mean_result)
+    
+  }, error = function(e) {
+    # Catch the error and return a message
+    cat("Error in posterior_mean (K=):",k, e$message, "\n")
+    cat("n: ",paste(n),"\n")
+    cat("data: ",paste(data),"\n")
+    return(NA)  # Return NA or any default value in case of error
+  })
+  
+  return(result)
+}
+
+x_1[k] <- rnorm(1, mean = mu_1, sd = sqrt(sigma ^ 2 / n1.new[k]))
+x_2[k] <- rnorm(1, mean = mu_2, sd =  sqrt(sigma ^ 2 / n2.new[k]))
+
+# Posterior variances
+tau_n1[k] <- posterior_tau(prior_tau = tau_01,
+                           tau = tau,
+                           n = n1.new[1:k])
+
+tau_n2[k] <- posterior_tau(prior_tau = tau_02,
+                           tau = tau,
+                           n = n2.new[1:k])
+# Posterior means
+mu_n1[k] <- posterior_mean(
+  prior_mean = mu_01,
+  n = n1.new[1:k],
+  tau = tau,
+  prior_tau = tau_01,
+  data = x_1[1:k],
+  k = k
+)
+
+mu_n2[k] <- posterior_mean(
+  prior_mean = mu_02,
+  n = n2.new[1:k],
+  tau = tau,
+  prior_tau = tau_02,
+  data = x_2[1:k],
+  k = k
+)
+
+theta_hat[k] <- mu_n1[k] - mu_n2[k]
+
+```
+
+## Prior on individual $\mu$'s {.unlisted auto-animate="true"}
+
+```{r,echo=FALSE}
+library(gt)
+
+
+gt_table2 <- readRDS("tables/Bayes_tb1pool_ESS_wtotal.rds")
+gt_table2
+
+```
+
+## Priors on $\theta$
+
+::: {style="font-size: 80%;"}
+Now suppose there are priors directly on $\theta$
+
+$$
+\theta \sim N(\theta_0,\tau_{0,\theta})
+$$
+:::
+
+## Priors on $\theta$ {.unlisted auto-animate="true"}
+
+::: {style="font-size: 80%;"}
+Now suppose there are priors directly on $\theta$
+
+$$
+\theta \sim N(\theta_0,\tau_{0,\theta})
+$$ And generate data,
+
+$$
+Y^k = \bar{X}_1^k - \bar{X}_2^k \sim N(\theta,\tau_y^{-1})
+$$
+
+Where
+
+$$
+\tau_y^k = (\sigma^2/n_1^k + \sigma^2/n_2^k)^{-1}
+$$
+:::
+
+## Priors on $\theta$ {.unlisted auto-animate="true"}
+
+::: {style="font-size: 80%;"}
+Then the posterior distribution $\theta|\bar{y}^k$ has mean
+
+$$
+ \frac{\theta_0\tau_{0,\theta}+\sum_{i=1}^k y^i\tau_y^i}{\tau_{0,\theta}+\sum_{i=1}^k \tau_y^i}
+$$
+
+and variance
+
+$$
+1/(\tau_{0,\theta}+\sum_{i=1}^k \tau_y^i)
+$$
+
+Where
+
+$$
+\tau_y = (\sigma^2/n_1^k + \sigma^2/n_2^k)^{-1}
+$$
+:::
+
+## Priors on $\theta$ {.unlisted auto-animate="true"}
+
+```{r,echo=FALSE}
+library(gt)
+
+gt_table3 <- readRDS("tables/Bayes_tb1plthetapr_ESSwtotal.rds")
+gt_table3
+
+```
+
+## Differences in using direct vs individual priors
+
+:::::: {style="font-size: 60%;"}
+::::: columns
+::: {.column width="50%"}
+-   Individual priors on $\mu$'s
+
+[Mean]{.underline}
+
+$$
+\frac{\tau_{0,1}\mu_{0,1}+\sum_{i=1}^{k} n_1^i \tau \mu_1^k}{\tau_{0,1}+\sum_{i=1}^k n_1^i \tau} - \frac{\tau_{0,2}\mu_{0,2}+\sum_{i=1}^{k} n_2^i \tau \mu_2^k}{\tau_{0,2}+\sum_{i=1}^k n_2^i \tau}
+$$ [Variance]{.underline}
+
+$$
+1/(\tau_{0,1}+\sum_{i=1}^k n_1^i \tau) + 1/(\tau_{0,2}+\sum_{i=1}^k n_2^i \tau)
+$$
+:::
+
+::: {.column width="50%"}
+-   Direct priors on $\theta$
+
+[Mean]{.underline}
+
+$$
+ \frac{\theta_0\tau_{0,\theta}+\sum_{i=1}^k y^i\tau_y^i}{\tau_{0,\theta}+\sum_{i=1}^k \tau_y^i}
+$$ [Variance]{.underline}
+
+$$
+1/(\tau_{0,\theta}+\sum_{i=1}^k \tau_y^i)
+$$
+
+Where
+
+$$
+\tau_y = (\sigma^2/n_1^k + \sigma^2/n_2^k)^{-1}
+$$
+:::
+:::::
+::::::
+
+## Differences in using direct vs individual priors {.unlisted auto-animate="true"}
+
+The posterior variance of $\theta$ when separate prior distributions are given is always smaller than that when only the prior distribution for $\theta$ is used.[^1]
+
+[^1]: @stallard_comparison_2020
+
+## Differences in using direct vs individual priors {.unlisted auto-animate="true"}
+
+-   Assess difference using idea of coupling
+-   Primarily interested in the vague prior case
+
+## Differences in using direct vs individual priors {.unlisted auto-animate="true"}
+
+![Distribution of theta_hat at each analysis K using individual priors for treatments and a prior for theta directly using coupling](distributions_plot_dir_hat.png){fig-align="center" width="100%"}
+
+## Differences in using direct vs individual priors {.unlisted auto-animate="true"}
+
+![Means and variances of theta_hat at each analysis K using individual priors for treatments and a prior for theta directly using coupling](combined_plot_dir_hat2.png){fig-align="center" width="100%"}
+
+# Conferences
+
+Three conference deadlines in May:
+
+::: incremental
+-   Samba Bath **2nd May 2025**
+-   RSS Rapid-fire talks Edinburgh **9th May 2025**
+-   Bayes Pharma Netherlands **15th May**
+:::
+
+<style>
+.new-point {
+  color: #0077b6; /* Nice blue for highlight */
+  font-weight: bold;
+  animation: fadeInHighlight 1s ease;
+}
+
+@keyframes fadeInHighlight {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+</style>

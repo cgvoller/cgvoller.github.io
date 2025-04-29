@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Corey Voller">
+<meta name="dcterms.date" content="2024-02-28">
+
+<title>Version Control with Git in R – Corey Voller</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4122062fe1e9b2b9700a110aabccf5e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-b97ce26c8b5e3bc1e6a349861c57f110.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<meta name="mermaid-theme" content="dark">
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<script src="../../site_libs/core-js-2.5.3/shim.min.js"></script>
+
+<script src="../../site_libs/react-18.2.0/react.min.js"></script>
+
+<script src="../../site_libs/react-18.2.0/react-dom.min.js"></script>
+
+<script src="../../site_libs/reactwidget-1.0.0/react-tools.js"></script>
+
+<script src="../../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+
+<link href="../../site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
+
+<script src="../../site_libs/reactable-binding-0.4.4/reactable.js"></script>
+
+
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../include/webex.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Corey Voller</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">?cvoller::about</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">Meetings()</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../misc.html"> 
+<span class="menu-text">miscellaneous()</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cgvoller/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/corey-v-027bb0198"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Version Control with Git in R</h1>
+            <p class="subtitle lead">Introduction to using version control in RStudio with Git</p>
+                                <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">Git</div>
+                <div class="quarto-category">Version Control</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Corey Voller </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 28, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-the-need-for-version-control" id="toc-introduction-the-need-for-version-control" class="nav-link active" data-scroll-target="#introduction-the-need-for-version-control"><span class="header-section-number">1</span> Introduction: The need for version control</a></li>
+  <li><a href="#things-you-need-to-get-started" id="toc-things-you-need-to-get-started" class="nav-link" data-scroll-target="#things-you-need-to-get-started"><span class="header-section-number">2</span> Things you need to get started</a></li>
+  <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git"><span class="header-section-number">3</span> Git</a>
+  <ul class="collapse">
+  <li><a href="#huh-git-github-git-desktop-git-bash-and-other-guis-explained" id="toc-huh-git-github-git-desktop-git-bash-and-other-guis-explained" class="nav-link" data-scroll-target="#huh-git-github-git-desktop-git-bash-and-other-guis-explained"><span class="header-section-number">3.1</span> Huh? Git, GitHub, Git Desktop, Git Bash and other GUI’s explained</a></li>
+  <li><a href="#summary-of-basic-git-commands" id="toc-summary-of-basic-git-commands" class="nav-link" data-scroll-target="#summary-of-basic-git-commands"><span class="header-section-number">3.2</span> Summary of basic Git Commands</a></li>
+  <li><a href="#more-detail" id="toc-more-detail" class="nav-link" data-scroll-target="#more-detail"><span class="header-section-number">3.3</span> More Detail:</a>
+  <ul class="collapse">
+  <li><a href="#init" id="toc-init" class="nav-link" data-scroll-target="#init"><span class="header-section-number">3.3.1</span> Init</a></li>
+  <li><a href="#add" id="toc-add" class="nav-link" data-scroll-target="#add"><span class="header-section-number">3.3.2</span> Add</a></li>
+  <li><a href="#commit" id="toc-commit" class="nav-link" data-scroll-target="#commit"><span class="header-section-number">3.3.3</span> Commit</a></li>
+  <li><a href="#push" id="toc-push" class="nav-link" data-scroll-target="#push"><span class="header-section-number">3.3.4</span> Push</a></li>
+  <li><a href="#clone" id="toc-clone" class="nav-link" data-scroll-target="#clone"><span class="header-section-number">3.3.5</span> Clone</a></li>
+  <li><a href="#branch" id="toc-branch" class="nav-link" data-scroll-target="#branch"><span class="header-section-number">3.3.6</span> Branch</a></li>
+  <li><a href="#checkout" id="toc-checkout" class="nav-link" data-scroll-target="#checkout"><span class="header-section-number">3.3.7</span> Checkout</a></li>
+  <li><a href="#restore" id="toc-restore" class="nav-link" data-scroll-target="#restore"><span class="header-section-number">3.3.8</span> Restore</a></li>
+  <li><a href="#merge" id="toc-merge" class="nav-link" data-scroll-target="#merge"><span class="header-section-number">3.3.9</span> Merge</a></li>
+  <li><a href="#fetch" id="toc-fetch" class="nav-link" data-scroll-target="#fetch"><span class="header-section-number">3.3.10</span> Fetch</a></li>
+  <li><a href="#pull" id="toc-pull" class="nav-link" data-scroll-target="#pull"><span class="header-section-number">3.3.11</span> Pull</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#using-git-in-rstudio" id="toc-using-git-in-rstudio" class="nav-link" data-scroll-target="#using-git-in-rstudio"><span class="header-section-number">4</span> Using git in RStudio</a>
+  <ul class="collapse">
+  <li><a href="#initialising-git-repository-through-rstudio" id="toc-initialising-git-repository-through-rstudio" class="nav-link" data-scroll-target="#initialising-git-repository-through-rstudio"><span class="header-section-number">4.1</span> Initialising git repository through RStudio</a></li>
+  <li><a href="#example-of-using-git-in-rstudio" id="toc-example-of-using-git-in-rstudio" class="nav-link" data-scroll-target="#example-of-using-git-in-rstudio"><span class="header-section-number">4.2</span> Example of using git in RStudio</a></li>
+  <li><a href="#how-do-i-view-user-name-email-settings-in-git" id="toc-how-do-i-view-user-name-email-settings-in-git" class="nav-link" data-scroll-target="#how-do-i-view-user-name-email-settings-in-git"><span class="header-section-number">4.3</span> How do I view user name / email / settings in git?</a></li>
+  <li><a href="#how-do-i-configure-user-name-email-in-git" id="toc-how-do-i-configure-user-name-email-in-git" class="nav-link" data-scroll-target="#how-do-i-configure-user-name-email-in-git"><span class="header-section-number">4.4</span> How do I configure user name / email in git?</a></li>
+  <li><a href="#how-do-i-see-the-number-of-commits-per-contributor-for-files" id="toc-how-do-i-see-the-number-of-commits-per-contributor-for-files" class="nav-link" data-scroll-target="#how-do-i-see-the-number-of-commits-per-contributor-for-files"><span class="header-section-number">4.5</span> How do I see the number of commits per contributor for files?</a></li>
+  <li><a href="#how-do-i-get-the-hash-and-details-of-the-current-commit" id="toc-how-do-i-get-the-hash-and-details-of-the-current-commit" class="nav-link" data-scroll-target="#how-do-i-get-the-hash-and-details-of-the-current-commit"><span class="header-section-number">4.6</span> How do I get the hash and details of the current commit?</a></li>
+  </ul></li>
+  <li><a href="#setting-up-your-r-project-and-libraries-with-git" id="toc-setting-up-your-r-project-and-libraries-with-git" class="nav-link" data-scroll-target="#setting-up-your-r-project-and-libraries-with-git"><span class="header-section-number">5</span> Setting up your R project and Libraries with git</a>
+  <ul class="collapse">
+  <li><a href="#initialise" id="toc-initialise" class="nav-link" data-scroll-target="#initialise"><span class="header-section-number">5.1</span> Initialise</a></li>
+  <li><a href="#subsequent-staging" id="toc-subsequent-staging" class="nav-link" data-scroll-target="#subsequent-staging"><span class="header-section-number">5.2</span> Subsequent staging</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="introduction-the-need-for-version-control" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction: The need for version control</h1>
+<p>A key requirement set out by regulators is to have a system which can modify, maintain, archive, retrieve and transmit clinical trial data. Furthermore, to ensure data integrity and reduce the risk of fraudulent activity, it is important to have an audit trail to document proof of events, procedures and that changes have been made by authorised users only. An audit trail allows for a time-stamped electronic record which can reconstruct a sequence of events. Showing the stages of modification and deletion of data. Now, even bodies such as the FDA do not seem to particularly care what software you conduct your work on as long as all your affairs are in order.</p>
+<div class="card text-white bg-secondary mb-3 callout callout-style-simple callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>“FDA does not require use of any specific software for statistical analyses, and statistical software is not explicitly discussed in Title 21 of the Code of Federal Regulations [e.g., in 21CFR part 11]. However, the software package(s) used for statistical analyses should be fully documented in the submission, including version and build identification.”</p>
+</div>
+</div>
+<p>Whilst SAS is still used by many (and I <em>really</em> did try to like it but…), increasingly R is being implemented in the world of clinical trials. Its freely available, open-source nature means that it not only reduces operational costs but sees continuous developments for new packages and documentation as an expanding community of people create innovative ideas. However, where SAS has an advantage is in their proven statistical functions/software which makes version controlling slightly easier than open-sourced R.</p>
+</section>
+<section id="things-you-need-to-get-started" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Things you need to get started</h1>
+<ul>
+<li><p>Git Download: <a href="https://git-scm.com/downloads">Git</a></p></li>
+<li><p>R download &amp; RStudio: <a href="https://posit.co/download/rstudio-desktop/">R/RStudio</a></p></li>
+</ul>
+</section>
+<section id="git" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Git</h1>
+<p>If you do not have it, install <a href="https://git-scm.com/">git</a>.</p>
+<section id="huh-git-github-git-desktop-git-bash-and-other-guis-explained" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="huh-git-github-git-desktop-git-bash-and-other-guis-explained"><span class="header-section-number">3.1</span> Huh? Git, GitHub, Git Desktop, Git Bash and other GUI’s explained</h2>
+<ul>
+<li><p>Git: This is the actual version control program itself.</p></li>
+<li><p>GitHub: A website where you can store your code and files, also known as a ‘repository’ or ‘repo’ for short. This can be a useful home for codes, where you can fork/clone repositories onto different machines easily as well as collaborate and create teams. A way of thinking about it is git creates a book. You can then place a copy of this book on a shelf in a library, aka GitHub.</p></li>
+<li><p>Git Desktop: A graphical user interface (GUI) for git/github. It is more beginner friendly than your cmd counterpart and you can simply drag and drop repo’s to add it to the desktop</p></li>
+<li><p>Git Bash: An interface with git functionality and unix commands. Unix shell is used in most linux distributions so if you’re using linux, using Git Bash might feel straight forward. It offers greater flexibility for more complicated procedures.</p></li>
+<li><p>Other: Git Kraken, Fork, Sublime merge are different GUI tools with their advantages and disadvantages…and pricey but worth researching and considering.</p></li>
+</ul>
+</section>
+<section id="summary-of-basic-git-commands" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="summary-of-basic-git-commands"><span class="header-section-number">3.2</span> Summary of basic Git Commands</h2>
+<div class="cell" data-tbl-cap="Quick summary of commands">
+<div class="cell-output-display">
+<div id="sgpeybvhqm" class=".gt_table" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sgpeybvhqm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#sgpeybvhqm thead, #sgpeybvhqm tbody, #sgpeybvhqm tfoot, #sgpeybvhqm tr, #sgpeybvhqm td, #sgpeybvhqm th {
+  border-style: none;
+}
+
+#sgpeybvhqm p {
+  margin: 0;
+  padding: 0;
+}
+
+#sgpeybvhqm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #2E3440;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#sgpeybvhqm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#sgpeybvhqm .gt_title {
+  color: #FFFFFF;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #2E3440;
+  border-bottom-width: 0;
+}
+
+#sgpeybvhqm .gt_subtitle {
+  color: #FFFFFF;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #2E3440;
+  border-top-width: 0;
+}
+
+#sgpeybvhqm .gt_heading {
+  background-color: #2E3440;
+  text-align: center;
+  border-bottom-color: #2E3440;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sgpeybvhqm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sgpeybvhqm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sgpeybvhqm .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #2E3440;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#sgpeybvhqm .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #2E3440;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#sgpeybvhqm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#sgpeybvhqm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#sgpeybvhqm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#sgpeybvhqm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#sgpeybvhqm .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #FFFFFF;
+  background-color: #2E3440;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#sgpeybvhqm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #FFFFFF;
+  background-color: #2E3440;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#sgpeybvhqm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#sgpeybvhqm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#sgpeybvhqm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#sgpeybvhqm .gt_stub {
+  color: #FFFFFF;
+  background-color: #2E3440;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgpeybvhqm .gt_stub_row_group {
+  color: #FFFFFF;
+  background-color: #2E3440;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#sgpeybvhqm .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#sgpeybvhqm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#sgpeybvhqm .gt_summary_row {
+  color: #FFFFFF;
+  background-color: #2E3440;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgpeybvhqm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#sgpeybvhqm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#sgpeybvhqm .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sgpeybvhqm .gt_grand_summary_row {
+  color: #FFFFFF;
+  background-color: #2E3440;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgpeybvhqm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#sgpeybvhqm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sgpeybvhqm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#sgpeybvhqm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sgpeybvhqm .gt_footnotes {
+  color: #FFFFFF;
+  background-color: #2E3440;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sgpeybvhqm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgpeybvhqm .gt_sourcenotes {
+  color: #FFFFFF;
+  background-color: #2E3440;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sgpeybvhqm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgpeybvhqm .gt_left {
+  text-align: left;
+}
+
+#sgpeybvhqm .gt_center {
+  text-align: center;
+}
+
+#sgpeybvhqm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#sgpeybvhqm .gt_font_normal {
+  font-weight: normal;
+}
+
+#sgpeybvhqm .gt_font_bold {
+  font-weight: bold;
+}
+
+#sgpeybvhqm .gt_font_italic {
+  font-style: italic;
+}
+
+#sgpeybvhqm .gt_super {
+  font-size: 65%;
+}
+
+#sgpeybvhqm .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#sgpeybvhqm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#sgpeybvhqm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#sgpeybvhqm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#sgpeybvhqm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#sgpeybvhqm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#sgpeybvhqm .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<div id="sgpeybvhqm" class="reactable html-widget " style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="sgpeybvhqm">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Git Command":["git init",". (dot)","*","git add","git commit -m \"\" ","git clone","git pull","git push","git branch","git merge","git restore","git log","git shortlog -n -s -- folder","git cat-file -p"],"Function":["Creates a new repository with all necessary files","Matches anything, can be used to add, delete, restore all files","Add all files in current working directory except those beginning with a . (dot)","add files","Snapshot currently stages changes, within the quotes it is good practice to put a clear/meaningful message","Point to an existing repo and make a copy in a new/different location","Combination of fetch and merge, pulls all changes from a remote repository into the current branch","Publish changes","Create a separate version of the main repository","Incorporate changes i.e. from a branch you've been working on","Restore one or more files","View the history of commits for a repository","Number of commits per contributor for a folder","Get details of a file, e.g. tree, parent, author,committer"]},"columns":[{"id":"Git Command","name":"Git Command","type":"character","style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["git init",". (dot)","*","git add","git commit -m \"\" ","git clone","git pull","git push","git branch","git merge","git restore","git log","git shortlog -n -s -- folder","git cat-file -p"],"html":true,"align":"left","headerStyle":{"font-weight":"normal"}},{"id":"Function","name":"Function","type":"character","style":"function(rowInfo, colInfo) {\nconst rowIndex = rowInfo.index + 1\n}","cell":["Creates a new repository with all necessary files","Matches anything, can be used to add, delete, restore all files","Add all files in current working directory except those beginning with a . (dot)","add files","Snapshot currently stages changes, within the quotes it is good practice to put a clear/meaningful message","Point to an existing repo and make a copy in a new/different location","Combination of fetch and merge, pulls all changes from a remote repository into the current branch","Publish changes","Create a separate version of the main repository","Incorporate changes i.e. from a branch you've been working on","Restore one or more files","View the history of commits for a repository","Number of commits per contributor for a folder","Get details of a file, e.g. tree, parent, author,committer"],"html":true,"align":"left","headerStyle":{"font-weight":"normal"}}],"searchable":true,"defaultPageSize":10,"showPageSizeOptions":false,"pageSizeOptions":[10,25,50,100],"paginationType":"numbers","showPagination":true,"showPageInfo":true,"minRows":1,"showSortable":true,"height":"auto","theme":{"color":"#bdc4ca","backgroundColor":"#2e3440","stripedColor":"rgba(128,128,128,0.05)","style":{"fontFamily":"system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"},"headerStyle":{"borderTopStyle":"solid","borderTopWidth":"2px","borderTopColor":"#D3D3D3","borderBottomStyle":"solid","borderBottomWidth":"2px","borderBottomColor":"#D3D3D3"}},"elementId":"sgpeybvhqm","dataKey":"4ae9ad48e6a2ebccf672b73c5d14d633"},"children":[]},"class":"reactR_markup"},"evals":["tag.attribs.columns.0.style","tag.attribs.columns.1.style"],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</section>
+<section id="more-detail" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="more-detail"><span class="header-section-number">3.3</span> More Detail:</h2>
+<section id="init" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="init"><span class="header-section-number">3.3.1</span> Init</h3>
+<p>Git init creates a repository in the current working directory. It is used when you’re starting a project that is not currently using git. Each project will have a .git folder in the root directory and the project repository. Git will begin to track all files using a Secure Hash Algorithm (SHA) and those files/folders which you do not want tracked will exist in the .gitignore file.</p>
+<p>In essence, you create an ‘empty’ book.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">gitGraph
+  commit id: "Initialise Project"
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="add" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="add"><span class="header-section-number">3.3.2</span> Add</h3>
+<p>Another eponymous function name. It is used for adding files. Since Git 2.0 there has been some changes:</p>
+<p><br></p>
+<div class="card text-white bg-secondary mb-3 callout callout-style-simple callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Git 2.0 Changes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="https://git.kernel.org/pub/scm/git/git.git/tree/Documentation/RelNotes/2.0.0.txt">Changes found here</a></p>
+<p>When “git add -u” and “git add -A” are run inside a subdirectory without specifying which paths to add on the command line, they operate on the entire tree for consistency with “git commit -a” and other commands (these commands used to operate only on the current subdirectory). Say “git add -u .” or “git add -A .” if you want to limit the operation to the current directory.</p>
+<p>“git add <path>” is the same as “git add -A <path>” now, so that “git add dir/” will notice paths you removed from the directory and record the removal. In older versions of Git, “git add <path>” used to ignore removals. You can say “git add –ignore-removal <path>” to add only added or modified paths in <path>, if you really want to.</path></path></path></path></path></p>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>git add <span class="sc">-</span>A <span class="co"># Stage all new, modified and deleted files</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>git add . <span class="co"># As of Git 2.0, git add . = git add -A</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>git add <span class="sc">-</span>u <span class="co"># Stage modified and deleted files</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>git add <span class="sc">--</span>ignore<span class="sc">-</span>removal <span class="co"># Stage new/modified files</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>git add .</code> will expand to the current directory whereas <code>git add *</code> triggers file globbing, expanding to all files and directories that do not start with a dot (I know…slightly confusing). Running <code>git add .</code> from a sub-folder will update the index for files in that folder and subfolders recursively whereas <code>git add .</code>/<code>git add-A</code> will add all files in the working tree.</p>
+<p>Following the book analogy, I can think of it as saying ‘I should start to include some pages I have written in this book’.</p>
+</section>
+<section id="commit" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="commit"><span class="header-section-number">3.3.3</span> Commit</h3>
+<p>Saves a snapshot of your repository. Git messages are a way to communicate the changes that have been made as well as <em>why</em>. You need to include sufficient information in your commit messages. There’s many passionate devs arguing the length of commit messages and despise the use of <code>-m</code>.</p>
+<p>There’s the viewpoint of the need for massive messages as a sign of you’re not committing enough, it should be succinct so that people don’t just gloss over it. On the other hand, if you’re taking over a new project, come back from a long holiday or just generally made significant changes whether that is adding a new feature/fixing a bug and needs a sufficient explanation of <em>what</em> and <em>why,</em> you’ll want longer messages.</p>
+<p>I lean towards advocating the longer, more detailed messages. I would rather be completely explicit and slightly overkill than to provide next to no detail.</p>
+<p><br></p>
+<p>There is a nice project for generating pretty changelogs <a href="https://github.com/frinyvonnick/gitmoji-changelog">here</a>.</p>
+<p><br></p>
+<p>For a few files you can use:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git add file file2 </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>git commit <span class="sc">-</span>m<span class="st">"Adding file and file2"</span> <span class="co"># Specify message for commit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Or for many:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>git add .</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>git commit <span class="sc">-</span>m<span class="st">"Multiple changes"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p>‘I’m content with what is written in the book for now, I’ll create a save point, logging what is done, signed with the date, time and author.’</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">gitGraph
+  commit id: "Initialise"
+  commit id: "Commit"
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="push" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="push"><span class="header-section-number">3.3.4</span> Push</h3>
+<p><code>git push</code> is commonly used when you’re using GitHub. You’ll want to commit your changes and then push/upload files from your local repository to GitHub.</p>
+<p>The book is looking pretty good, I’ll send the latest version to a librarian for safe keeping.</p>
+</section>
+<section id="clone" class="level3" data-number="3.3.5">
+<h3 data-number="3.3.5" class="anchored" data-anchor-id="clone"><span class="header-section-number">3.3.5</span> Clone</h3>
+<p><code>git clone</code> quite literally creates a local duplicate with everything from some specified repository.</p>
+<p>E.g. ‘I’ll ask the librarian for a copy of my book or get someone to send a copy from my study to my new location.’</p>
+</section>
+<section id="branch" class="level3" data-number="3.3.6">
+<h3 data-number="3.3.6" class="anchored" data-anchor-id="branch"><span class="header-section-number">3.3.6</span> Branch</h3>
+<p>If you do not want to risk impacting the main codebase, it can be a good idea to work from a branch if you are working on some new feature or bug. After working on a branch, you can then <code>merge</code> these changes back into main.</p>
+<p>I think I’ll create a separate copy of the book to write some chapters and make edits. Later, I might merge the two copies.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">gitGraph
+  commit id: "Initialise"
+  commit id: "Just"
+  commit id: "Keep"
+  commit id: "Committing"
+  commit id: "one more..."
+  branch feat
+  checkout feat
+  commit
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="checkout" class="level3" data-number="3.3.7">
+<h3 data-number="3.3.7" class="anchored" data-anchor-id="checkout"><span class="header-section-number">3.3.7</span> Checkout</h3>
+<p>Here I commit on my branch ‘feat’ and then use checkout to go back to main. I can then create another branch ‘bug’ from main, do some commits, and switch back to main again. The checkout function allows you to swap between the different branches.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">gitGraph
+  commit id: "Initialise"
+  commit id: "Just"
+  commit id: "Keep"
+  commit id: "Committing"
+  commit id: "one more..."
+  branch feat
+  checkout feat
+  commit
+  commit
+  checkout main
+  commit
+  branch bug
+  checkout bug
+  commit
+  commit
+  checkout main
+  commit
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>I want to swap between the different copies of this book I am working on.</p>
+</section>
+<section id="restore" class="level3" data-number="3.3.8">
+<h3 data-number="3.3.8" class="anchored" data-anchor-id="restore"><span class="header-section-number">3.3.8</span> Restore</h3>
+<p>This is a mess, I need to start from my last saved version. I’ll contact the library to get the last version of the book they have.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">gitGraph
+  commit id: "Initialise"
+  commit id: "Just"
+  commit id: "Keep"
+  commit id: "Committing"
+  commit id: "one more..."
+  branch feat
+  checkout feat
+  commit
+  commit
+  checkout main
+  commit
+  branch bug
+  checkout bug
+  commit
+  commit
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="merge" class="level3" data-number="3.3.9">
+<h3 data-number="3.3.9" class="anchored" data-anchor-id="merge"><span class="header-section-number">3.3.9</span> Merge</h3>
+<p>I want to incorporate my changes from this other book into my main book.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">gitGraph
+  commit id: "Initialise"
+  commit id: "Just"
+  commit id: "Keep"
+  commit id: "Committing"
+  commit id: "one more..."
+  branch feat
+  checkout feat
+  commit
+  commit
+  checkout main
+  commit
+  branch bug
+  checkout bug
+  commit
+  commit
+  checkout main
+  commit
+  merge bug
+  checkout feat
+  commit
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="fetch" class="level3" data-number="3.3.10">
+<h3 data-number="3.3.10" class="anchored" data-anchor-id="fetch"><span class="header-section-number">3.3.10</span> Fetch</h3>
+<p>I need to get my book with all branches, tags, commits, etc from the library into my study.</p>
+</section>
+<section id="pull" class="level3" data-number="3.3.11">
+<h3 data-number="3.3.11" class="anchored" data-anchor-id="pull"><span class="header-section-number">3.3.11</span> Pull</h3>
+<p>A combination of fetch and merge.</p>
+</section>
+</section>
+</section>
+<section id="using-git-in-rstudio" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Using git in RStudio</h1>
+<p>First, make sure that you have version control enabled and that R can find git.</p>
+<p>At the top of RStudio, go to Tools then global options. At the left-hand side towards the bottom there is Git/SVN. Click the tick-box ‘Enable version control interface for RStudio projects’. Under Git executable, make sure it has the correct location where git.exe is stored.</p>
+<p><video src="global_find_git.mp4" class="img-fluid" controls=""><a href="global_find_git.mp4">Video</a></video></p>
+<section id="initialising-git-repository-through-rstudio" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="initialising-git-repository-through-rstudio"><span class="header-section-number">4.1</span> Initialising git repository through RStudio</h2>
+<p><video src="version_control_rsui.mp4" class="img-fluid" controls=""><a href="version_control_rsui.mp4">Video</a></video></p>
+</section>
+<section id="example-of-using-git-in-rstudio" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="example-of-using-git-in-rstudio"><span class="header-section-number">4.2</span> Example of using git in RStudio</h2>
+<p>I have included below a small example using a few key commands from git:</p>
+<ul>
+<li><code>git init</code> initialise a git repository</li>
+<li><code>git config user.name</code> define the user name (you can also use <code>git config --local</code> to see details)</li>
+<li><code>git config user.email</code> define email</li>
+<li><code>git add .</code> add everything in the working directory</li>
+<li><code>git commit -m"Text"</code> git commit with message <code>Text</code></li>
+<li><code>git log</code> see the log produced from git (You can see the author, date/time, commits, etc.)</li>
+</ul>
+<p><video src="git_example.mp4" class="img-fluid" controls=""><a href="git_example.mp4">Video</a></video></p>
+</section>
+<section id="how-do-i-view-user-name-email-settings-in-git" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="how-do-i-view-user-name-email-settings-in-git"><span class="header-section-number">4.3</span> How do I view user name / email / settings in git?</h2>
+<p>Global Settings and Details:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global level settings (including details of user name/email)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Locally/Repository Settings and Details:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Local/Repository level settings (including details of user name/email)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>list <span class="sc">--</span>local </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="how-do-i-configure-user-name-email-in-git" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="how-do-i-configure-user-name-email-in-git"><span class="header-section-number">4.4</span> How do I configure user name / email in git?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change global user name</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.name <span class="st">"user_name"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Change global user email</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.email <span class="st">"user@email.com"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Change local user name</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>local user.name <span class="st">"user_name"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Change local user email</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>local user.email <span class="st">"user@email.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="how-do-i-see-the-number-of-commits-per-contributor-for-files" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="how-do-i-see-the-number-of-commits-per-contributor-for-files"><span class="header-section-number">4.5</span> How do I see the number of commits per contributor for files?</h2>
+<ul>
+<li>-s number of commits per contributor</li>
+<li>-n sort by number of commits descending</li>
+<li>– useful for commands such as log/checkout where you want to be clear whether you’re indicating a reference to a revision or a path</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>git shortlog <span class="sc">-</span>n <span class="sc">-</span>s <span class="sc">--</span> folder <span class="co"># </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/git show_auth.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="how-do-i-get-the-hash-and-details-of-the-current-commit" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="how-do-i-get-the-hash-and-details-of-the-current-commit"><span class="header-section-number">4.6</span> How do I get the hash and details of the current commit?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>git rev<span class="sc">-</span>parse HEAD</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>git rev<span class="sc">-</span>parse <span class="sc">--</span>short HEAD <span class="co"># Short version</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>git cat<span class="sc">-</span>file <span class="sc">-</span>p <span class="co"># Followed by the hash</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/git_commit_details.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img" width="816"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="setting-up-your-r-project-and-libraries-with-git" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Setting up your R project and Libraries with git</h1>
+<section id="initialise" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="initialise"><span class="header-section-number">5.1</span> Initialise</h2>
+<p>I should acknowledge, this is how to set up a project <strong>without</strong> using <a href="https://rstudio.github.io/renv/articles/renv.html">renv</a>. For those unfamiliar with <code>renv</code> it is a package used to create reproducible environments. You can take various snapshots of your project library, updating/staging the, with the ability to roll-back. I will do another post for <code>renv</code> at a later date.</p>
+<p>In RStudio, go to file, new project and create an R project file in the folder you wish to version control.</p>
+<p>Now, add an empty folder called ‘library’. The idea is, instead of using the packages installed on the machine, we will be pointing to this library folder for all our packages. This will give us more control over each project and avoid the issue of if I update this package on the local machine, affecting all the projects and potentially breaking them (which is very incredibly frustrating).</p>
+<p>To tell R to point to this library, create a new text file in the folder called ‘.Rprofile’. Within the text file add:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>(<span class="st">"library"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It should look something like this.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/rprof.PNG" class="img-fluid figure-img" width="745"></p>
+<figcaption>An example project folder with an rprofile pointing to the folder called library</figcaption>
+</figure>
+</div>
+<p>You may have to reload your Rproject for the profile to take effect in this next step. Next, install some packages. For example,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>packages <span class="ot">&lt;-</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"magrittr"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dplyr"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"tidyr"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ggplot2"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dplyr"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"lubridate"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RODBC"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data.table"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"stringr"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"grid"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"gridExtra"</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(packages[<span class="sc">!</span>(packages <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">"Package"</span>])]))</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(packages[<span class="sc">!</span>(packages <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">"Package"</span>])]</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">#lapply(packages, library, character.only = TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>These packages should now be in the library folder like so:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/library.PNG" class="img-fluid figure-img" width="745"></p>
+<figcaption>An example project folder with an rprofile pointing to the folder called library</figcaption>
+</figure>
+</div>
+<p>To initialise git for enabling version control and adding files/commit, in the terminal in RStudio type:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>git init <span class="co"># Initialise the project on the current working directory</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>git add <span class="sc">*</span> <span class="co"># Add all files in current working directory except those beginning with a . (dot)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional configuration for user.name and email</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>local user.name username</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>local user.email username<span class="sc">@</span>snailmail.com</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Commit with message</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>git commit <span class="sc">-</span>m<span class="st">"Initial DSMB Statistical Report XXXX"</span> <span class="co">#Change the text in quotes to whatever you like</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="subsequent-staging" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="subsequent-staging"><span class="header-section-number">5.2</span> Subsequent staging</h2>
+<p>If you are producing a DSMB, TSC, etc report and you set up your folders to be called ‘MM YYYY’. On the next iteration of the report, copy the folder and changing the name of the folder. Delete the .git and R project files. Next, follow the previous steps but with a new commit message:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>git init <span class="co"># Initialise the project on the current working directory</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>git add <span class="sc">*</span> <span class="co"># Add all files in current working directory except those beginning with a . (dot)</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Commit with message</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>git commit <span class="sc">-</span>m<span class="st">"Subsequent changes...DSMB Statistical Report XXXX"</span> <span class="co">#Change the text in quotes to whatever you like</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

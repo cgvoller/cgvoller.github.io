@@ -1,0 +1,479 @@
+---
+title: "Version Control with Git in R"
+subtitle: "Introduction to using version control in RStudio with Git"
+author: "Corey Voller"
+date: "2024-02-28"
+categories: [R, Git, Version Control]
+image: "github_resized.png"
+bibliography: references.bib
+toc: true
+toc-expand: 3
+number-sections: true
+---
+
+```{r,warning=FALSE,message=FALSE,echo=FALSE}
+library(tidyverse)
+library(gt)
+library(janitor)
+
+
+```
+
+# Introduction: The need for version control
+
+A key requirement set out by regulators is to have a system which can modify, maintain, archive, retrieve and transmit clinical trial data. Furthermore, to ensure data integrity and reduce the risk of fraudulent activity, it is important to have an audit trail to document proof of events, procedures and that changes have been made by authorised users only. An audit trail allows for a time-stamped electronic record which can reconstruct a sequence of events. Showing the stages of modification and deletion of data. Now, even bodies such as the FDA do not seem to particularly care what software you conduct your work on as long as all your affairs are in order.
+
+::: {.callout-important .card .text-white .bg-secondary .mb-3 appearance="minimal"}
+## Note
+
+"FDA does not require use of any specific software for statistical analyses, and statistical software is not explicitly discussed in Title 21 of the Code of Federal Regulations \[e.g., in 21CFR part 11\]. However, the software package(s) used for statistical analyses should be fully documented in the submission, including version and build identification."
+:::
+
+Whilst SAS is still used by many (and I *really* did try to like it but...), increasingly R is being implemented in the world of clinical trials. Its freely available, open-source nature means that it not only reduces operational costs but sees continuous developments for new packages and documentation as an expanding community of people create innovative ideas. However, where SAS has an advantage is in their proven statistical functions/software which makes version controlling slightly easier than open-sourced R.
+
+# Things you need to get started
+
+-   Git Download: [Git](https://git-scm.com/downloads)
+
+-   R download & RStudio: [R/RStudio](https://posit.co/download/rstudio-desktop/)
+
+# Git
+
+If you do not have it, install [git](https://git-scm.com/).
+
+## Huh? Git, GitHub, Git Desktop, Git Bash and other GUI's explained
+
+-   Git: This is the actual version control program itself.
+
+-   GitHub: A website where you can store your code and files, also known as a 'repository' or 'repo' for short. This can be a useful home for codes, where you can fork/clone repositories onto different machines easily as well as collaborate and create teams. A way of thinking about it is git creates a book. You can then place a copy of this book on a shelf in a library, aka GitHub.
+
+-   Git Desktop: A graphical user interface (GUI) for git/github. It is more beginner friendly than your cmd counterpart and you can simply drag and drop repo's to add it to the desktop
+
+-   Git Bash: An interface with git functionality and unix commands. Unix shell is used in most linux distributions so if you're using linux, using Git Bash might feel straight forward. It offers greater flexibility for more complicated procedures.
+
+-   Other: Git Kraken, Fork, Sublime merge are different GUI tools with their advantages and disadvantages...and pricey but worth researching and considering.
+
+## Summary of basic Git Commands
+
+```{r,echo=FALSE,eval=TRUE,warning=FALSE,message=FALSE}
+#| tbl-cap: "Quick summary of commands"
+
+
+df <- data.frame("Git Command"=c("git init",
+                                 ". (dot)",
+                                 "*",
+                                 "git add",
+                                 "git commit -m \"\" ",
+                                 "git clone",
+                                 "git pull",
+                                 "git push",
+                                 "git branch",
+                                 "git merge",
+                                 "git restore",
+                                 "git log",
+                                 "git shortlog -n -s -- folder",
+                                 "git cat-file -p"),
+                 "Function"=c(
+                   "Creates a new repository with all necessary files",
+                   "Matches anything, can be used to add, delete, restore all files",
+                   "Add all files in current working directory except those beginning with a . (dot)",
+                   "add files",
+                   "Snapshot currently stages changes, within the quotes it is good practice to put a clear/meaningful message",
+                   "Point to an existing repo and make a copy in a new/different location",
+                   "Combination of fetch and merge, pulls all changes from a remote repository into the current branch",
+                   "Publish changes",
+                   "Create a separate version of the main repository",
+                   "Incorporate changes i.e. from a branch you've been working on",
+                   "Restore one or more files",
+                   "View the history of commits for a repository",
+                   "Number of commits per contributor for a folder",
+                   "Get details of a file, e.g. tree, parent, author,committer"),
+                 check.names = F)
+
+df |> 
+  gt()|>
+  opt_interactive() |>
+  tab_options(
+    table.background.color = "#2e3440",
+    column_labels.font.size = px(10),
+    column_labels.font.weight = "bold",
+    table.font.color = "#bdc4ca",
+    table.font.size = px(12L),
+    ihtml.use_search=TRUE
+)
+
+```
+
+## More Detail:
+
+### Init
+
+Git init creates a repository in the current working directory. It is used when you're starting a project that is not currently using git. Each project will have a .git folder in the root directory and the project repository. Git will begin to track all files using a Secure Hash Algorithm (SHA) and those files/folders which you do not want tracked will exist in the .gitignore file.
+
+In essence, you create an 'empty' book.
+
+```{mermaid}
+gitGraph
+  commit id: "Initialise Project"
+
+```
+
+### Add
+
+Another eponymous function name. It is used for adding files. Since Git 2.0 there has been some changes:
+
+<br>
+
+::: {.callout-important .card .text-white .bg-secondary .mb-3 appearance="minimal"}
+### Git 2.0 Changes
+
+[Changes found here](https://git.kernel.org/pub/scm/git/git.git/tree/Documentation/RelNotes/2.0.0.txt)
+
+When "git add -u" and "git add -A" are run inside a subdirectory without specifying which paths to add on the command line, they operate on the entire tree for consistency with "git commit -a" and other commands (these commands used to operate only on the current subdirectory). Say "git add -u ." or "git add -A ." if you want to limit the operation to the current directory.
+
+"git add <path>" is the same as "git add -A <path>" now, so that "git add dir/" will notice paths you removed from the directory and record the removal. In older versions of Git, "git add <path>" used to ignore removals. You can say "git add --ignore-removal <path>" to add only added or modified paths in <path>, if you really want to.
+:::
+
+<br>
+
+```{r,eval=FALSE}
+
+git add -A # Stage all new, modified and deleted files
+git add . # As of Git 2.0, git add . = git add -A
+git add -u # Stage modified and deleted files
+git add --ignore-removal # Stage new/modified files
+
+```
+
+`git add .` will expand to the current directory whereas `git add *` triggers file globbing, expanding to all files and directories that do not start with a dot (I know...slightly confusing). Running `git add .` from a sub-folder will update the index for files in that folder and subfolders recursively whereas `git add .`/`git add-A` will add all files in the working tree.
+
+Following the book analogy, I can think of it as saying 'I should start to include some pages I have written in this book'.
+
+### Commit
+
+Saves a snapshot of your repository. Git messages are a way to communicate the changes that have been made as well as *why*. You need to include sufficient information in your commit messages. There's many passionate devs arguing the length of commit messages and despise the use of `-m`.
+
+There's the viewpoint of the need for massive messages as a sign of you're not committing enough, it should be succinct so that people don't just gloss over it. On the other hand, if you're taking over a new project, come back from a long holiday or just generally made significant changes whether that is adding a new feature/fixing a bug and needs a sufficient explanation of *what* and *why,* you'll want longer messages.
+
+I lean towards advocating the longer, more detailed messages. I would rather be completely explicit and slightly overkill than to provide next to no detail.
+
+<br>
+
+There is a nice project for generating pretty changelogs [here](https://github.com/frinyvonnick/gitmoji-changelog).
+
+<br>
+
+For a few files you can use:
+
+```{r,eval=FALSE}
+
+git add file file2 
+git commit -m"Adding file and file2" # Specify message for commit
+
+```
+
+Or for many:
+
+```{r,eval=FALSE}
+
+git add .
+git commit -m"Multiple changes"
+
+```
+
+<br>
+
+'I'm content with what is written in the book for now, I'll create a save point, logging what is done, signed with the date, time and author.'
+
+```{mermaid}
+gitGraph
+  commit id: "Initialise"
+  commit id: "Commit"
+
+```
+
+### Push
+
+`git push` is commonly used when you're using GitHub. You'll want to commit your changes and then push/upload files from your local repository to GitHub.
+
+The book is looking pretty good, I'll send the latest version to a librarian for safe keeping.
+
+### Clone
+
+`git clone` quite literally creates a local duplicate with everything from some specified repository.
+
+E.g. 'I'll ask the librarian for a copy of my book or get someone to send a copy from my study to my new location.'
+
+### Branch
+
+If you do not want to risk impacting the main codebase, it can be a good idea to work from a branch if you are working on some new feature or bug. After working on a branch, you can then `merge` these changes back into main.
+
+I think I'll create a separate copy of the book to write some chapters and make edits. Later, I might merge the two copies.
+
+```{mermaid}
+gitGraph
+  commit id: "Initialise"
+  commit id: "Just"
+  commit id: "Keep"
+  commit id: "Committing"
+  commit id: "one more..."
+  branch feat
+  checkout feat
+  commit
+
+```
+
+### Checkout
+
+Here I commit on my branch 'feat' and then use checkout to go back to main. I can then create another branch 'bug' from main, do some commits, and switch back to main again. The checkout function allows you to swap between the different branches.
+
+```{mermaid}
+
+gitGraph
+  commit id: "Initialise"
+  commit id: "Just"
+  commit id: "Keep"
+  commit id: "Committing"
+  commit id: "one more..."
+  branch feat
+  checkout feat
+  commit
+  commit
+  checkout main
+  commit
+  branch bug
+  checkout bug
+  commit
+  commit
+  checkout main
+  commit
+
+
+```
+
+I want to swap between the different copies of this book I am working on.
+
+### Restore
+
+This is a mess, I need to start from my last saved version. I'll contact the library to get the last version of the book they have.
+
+```{mermaid}
+gitGraph
+  commit id: "Initialise"
+  commit id: "Just"
+  commit id: "Keep"
+  commit id: "Committing"
+  commit id: "one more..."
+  branch feat
+  checkout feat
+  commit
+  commit
+  checkout main
+  commit
+  branch bug
+  checkout bug
+  commit
+  commit
+```
+
+### Merge
+
+I want to incorporate my changes from this other book into my main book.
+
+```{mermaid}
+gitGraph
+  commit id: "Initialise"
+  commit id: "Just"
+  commit id: "Keep"
+  commit id: "Committing"
+  commit id: "one more..."
+  branch feat
+  checkout feat
+  commit
+  commit
+  checkout main
+  commit
+  branch bug
+  checkout bug
+  commit
+  commit
+  checkout main
+  commit
+  merge bug
+  checkout feat
+  commit
+
+```
+
+### Fetch
+
+I need to get my book with all branches, tags, commits, etc from the library into my study.
+
+### Pull
+
+A combination of fetch and merge.
+
+# Using git in RStudio
+
+First, make sure that you have version control enabled and that R can find git.
+
+At the top of RStudio, go to Tools then global options. At the left-hand side towards the bottom there is Git/SVN. Click the tick-box 'Enable version control interface for RStudio projects'. Under Git executable, make sure it has the correct location where git.exe is stored.
+
+![](global_find_git.mp4)
+
+## Initialising git repository through RStudio
+
+![](version_control_rsui.mp4)
+
+## Example of using git in RStudio
+
+I have included below a small example using a few key commands from git:
+
+-   `git init` initialise a git repository
+-   `git config user.name` define the user name (you can also use `git config --local` to see details)
+-   `git config user.email` define email
+-   `git add .` add everything in the working directory
+-   `git commit -m"Text"` git commit with message `Text`
+-   `git log` see the log produced from git (You can see the author, date/time, commits, etc.)
+
+![](git_example.mp4)
+
+## How do I view user name / email / settings in git?
+
+Global Settings and Details:
+
+```{r,eval=FALSE}
+
+# Global level settings (including details of user name/email)
+git config --list
+```
+
+Locally/Repository Settings and Details:
+
+```{r,eval=FALSE}
+
+# Local/Repository level settings (including details of user name/email)
+git config --list --local 
+```
+
+## How do I configure user name / email in git?
+
+```{r,eval=FALSE}
+
+# Change global user name
+git config --global user.name "user_name"
+# Change global user email
+git config --global user.email "user@email.com"
+# Change local user name
+git config --local user.name "user_name"
+# Change local user email
+git config --local user.email "user@email.com"
+```
+
+## How do I see the number of commits per contributor for files?
+
+-   -s number of commits per contributor
+-   -n sort by number of commits descending
+-   -- useful for commands such as log/checkout where you want to be clear whether you're indicating a reference to a revision or a path
+
+```{r,eval=FALSE}
+
+git shortlog -n -s -- folder # 
+
+```
+
+![](imgs/git%20show_auth.PNG){fig-align="center"}
+
+## How do I get the hash and details of the current commit?
+
+```{r,eval=FALSE}
+
+git rev-parse HEAD
+git rev-parse --short HEAD # Short version
+git cat-file -p # Followed by the hash
+
+```
+
+![](imgs/git_commit_details.PNG){fig-align="center" width="816"}
+
+# Setting up your R project and Libraries with git
+
+## Initialise
+
+I should acknowledge, this is how to set up a project **without** using [renv](https://rstudio.github.io/renv/articles/renv.html). For those unfamiliar with `renv` it is a package used to create reproducible environments. You can take various snapshots of your project library, updating/staging the, with the ability to roll-back. I will do another post for `renv` at a later date.
+
+In RStudio, go to file, new project and create an R project file in the folder you wish to version control.
+
+Now, add an empty folder called 'library'. The idea is, instead of using the packages installed on the machine, we will be pointing to this library folder for all our packages. This will give us more control over each project and avoid the issue of if I update this package on the local machine, affecting all the projects and potentially breaking them (which is very incredibly frustrating).
+
+To tell R to point to this library, create a new text file in the folder called '.Rprofile'. Within the text file add:
+
+```{r,eval=FALSE}
+
+.libPaths("library")
+```
+
+It should look something like this.
+
+![An example project folder with an rprofile pointing to the folder called library](imgs/rprof.PNG){fig-align="center" width="745"}
+
+You may have to reload your Rproject for the profile to take effect in this next step. Next, install some packages. For example,
+
+```{r,eval=FALSE}
+
+packages <-
+  c(
+    "magrittr",
+    "dplyr",
+    "tidyr",
+    "ggplot2",
+    "dplyr",
+    "lubridate",
+    "RODBC",
+    "data.table",
+    "stringr",
+    "grid",
+    "gridExtra"
+  )
+
+if (length(packages[!(packages %in% installed.packages()[, "Package"])]))
+  install.packages(packages[!(packages %in% installed.packages()[, "Package"])]
+  )
+# Load packages
+#lapply(packages, library, character.only = TRUE)
+
+```
+
+These packages should now be in the library folder like so:
+
+![An example project folder with an rprofile pointing to the folder called library](imgs/library.PNG){fig-align="center" width="745"}
+
+To initialise git for enabling version control and adding files/commit, in the terminal in RStudio type:
+
+```{r,eval=FALSE}
+
+git init # Initialise the project on the current working directory
+git add * # Add all files in current working directory except those beginning with a . (dot)
+
+# Optional configuration for user.name and email
+git config --local user.name username
+git config --local user.email username@snailmail.com
+
+# Commit with message
+git commit -m"Initial DSMB Statistical Report XXXX" #Change the text in quotes to whatever you like
+
+```
+
+## Subsequent staging
+
+If you are producing a DSMB, TSC, etc report and you set up your folders to be called 'MM YYYY'. On the next iteration of the report, copy the folder and changing the name of the folder. Delete the .git and R project files. Next, follow the previous steps but with a new commit message:
+
+```{r,eval=FALSE}
+
+git init # Initialise the project on the current working directory
+git add * # Add all files in current working directory except those beginning with a . (dot)
+  
+# Commit with message
+git commit -m"Subsequent changes...DSMB Statistical Report XXXX" #Change the text in quotes to whatever you like
+
+```

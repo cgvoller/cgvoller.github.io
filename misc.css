@@ -1,0 +1,29 @@
+/* css styles background-color: #55595c; */
+.title {
+  color: white;
+}
+p {
+  text-align: justify
+}
+
+div.quarto-post .listing-categories .listing-category {
+  color: #FFFFFF;
+  background-color: #55595c;
+  border: solid 1px #000000;
+  border-radius: .25rem;
+  text-transform: uppercase;
+  font-size: .65em;
+  padding-left: .5em;
+  padding-right: .5em;
+  padding-top: .15em; 
+  padding-bottom: .15em;
+  cursor: pointer;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+
+
+.cell-output {
+  background-color: #272b30;
+  border-radius: 4px;
+}

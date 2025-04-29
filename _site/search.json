@@ -1,0 +1,310 @@
+[
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "meetings",
+    "section": "",
+    "text": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs\n\n\n\n\n\n\nMeetings\n\n\n\n\n\n\n\n\n\nApr 29, 2025\n\n\nCorey Voller\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nApr 29, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nApr 26, 2025\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "about{Corey}",
+    "section": "",
+    "text": "My name is Corey, I graduated from UCL with a Masters in Medical Statistics in 2021 and since been working as a Statistician in the UK. I enjoy searching for new topics outside of my day-job relating to statistics and programming in R although, I will occasionally use Python to create animated videos with a package called manim (if you’ve seen any 3Blue1Brown video’s on YouTube you will have seen this package implemented there.)\n\nThis blog will be focused primarily on statistics with an emphasis in medical applications although not exclusively. The aim is to push my statistical knowledge, searching for new methods and to catalogue these as often the things I stumble across become forgotten. A lot of my day job is spent looking at static outputs so where possible I will try to showcase interactive and alternative ways to display data (3-d plots, dynamic figures, tables, etc). The opinions and thoughts expressed here are my own and do not represent anyone else (i.e., employer).\n\n\n\n\n\n\n\n\n\n.quarto\nThis blog is currently written using quarto docs, an open-source publishing system (Think Rmarkdown on steroids, with added functionality e.g. ability to handle multiple languages) and html/css.\n\n\n.github\nIt is hosted using github pages (Although, I’ve heard good things about Netlify).\n\n\n.rversion\nAt the time of writing, I am using it within RStudio (R 4.3.1).\n\n\n.badprogrammer\n\n\n\n.pixel\nPixel images are created using aseprite.\n\n\n.names\nCorey"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code."
+  },
+  {
+    "objectID": "about.html#description",
+    "href": "about.html#description",
+    "title": "about{Corey}",
+    "section": "",
+    "text": "My name is Corey, I graduated from UCL with a Masters in Medical Statistics in 2021 and since been working as a Statistician in the UK. I enjoy searching for new topics outside of my day-job relating to statistics and programming in R although, I will occasionally use Python to create animated videos with a package called manim (if you’ve seen any 3Blue1Brown video’s on YouTube you will have seen this package implemented there.)\n\nThis blog will be focused primarily on statistics with an emphasis in medical applications although not exclusively. The aim is to push my statistical knowledge, searching for new methods and to catalogue these as often the things I stumble across become forgotten. A lot of my day job is spent looking at static outputs so where possible I will try to showcase interactive and alternative ways to display data (3-d plots, dynamic figures, tables, etc). The opinions and thoughts expressed here are my own and do not represent anyone else (i.e., employer).\n\n\n\n\n\n\n\n\n\n.quarto\nThis blog is currently written using quarto docs, an open-source publishing system (Think Rmarkdown on steroids, with added functionality e.g. ability to handle multiple languages) and html/css.\n\n\n.github\nIt is hosted using github pages (Although, I’ve heard good things about Netlify).\n\n\n.rversion\nAt the time of writing, I am using it within RStudio (R 4.3.1).\n\n\n.badprogrammer\n\n\n\n.pixel\nPixel images are created using aseprite.\n\n\n.names\nCorey"
+  },
+  {
+    "objectID": "about.html#arguments",
+    "href": "about.html#arguments",
+    "title": "about{Corey}",
+    "section": "",
+    "text": ".quarto\nThis blog is currently written using quarto docs, an open-source publishing system (Think Rmarkdown on steroids, with added functionality e.g. ability to handle multiple languages) and html/css.\n\n\n.github\nIt is hosted using github pages (Although, I’ve heard good things about Netlify).\n\n\n.rversion\nAt the time of writing, I am using it within RStudio (R 4.3.1).\n\n\n.badprogrammer\n\n\n\n.pixel\nPixel images are created using aseprite.\n\n\n.names\nCorey"
+  },
+  {
+    "objectID": "about.html#see-also",
+    "href": "about.html#see-also",
+    "title": "about{Corey}",
+    "section": "See Also",
+    "text": "See Also\nblog() for various posts on statistics and programming\n\n\n\n\n\n  A Bayesian is one who, vaguely expecting a horse, and catching a glimpse of a donkey, strongly believes he has seen a mule.\n  \n  \n\n\n\n  Sometimes a weakly informative prior is just a shit one."
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#objectives",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#objectives",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Objectives",
+    "text": "Objectives\n\nFeedback on the slides/presentation\nBayesian/Frequentist stopping boundary\nExplanation of differences using different priors\nNext steps"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "APTS Durham",
+    "text": "APTS Durham"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-1",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-1",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "APTS Durham",
+    "text": "APTS Durham\n\n\n\nUse version control (Git)"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-2",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-2",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "APTS Durham",
+    "text": "APTS Durham\n\n\n\nAttend lots of seminars\nUse version control (Git)"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-3",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-3",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "APTS Durham",
+    "text": "APTS Durham\n\n\n\nRead the latest and first paper on a topic\nAttend lots of seminars\nUse version control (Git)"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-4",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-4",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "APTS Durham",
+    "text": "APTS Durham\n\n\n\nGet the simplest case working\nRead the latest and first paper on a topic\nAttend lots of seminars\nUse version control (Git)"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-5",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-5",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "APTS Durham",
+    "text": "APTS Durham\n\n\n\nGet the simplest case working  Otherwise, go back to the drawing board\nRead the latest and first paper on a topic\nAttend lots of seminars\nUse version control (Git)"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Stopping Boundary",
+    "text": "Stopping Boundary\n\nYour browser does not support the video tag."
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-1",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-1",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Stopping Boundary",
+    "text": "Stopping Boundary"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-2",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-2",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Stopping Boundary",
+    "text": "Stopping Boundary\n\n\n\nBayesian stopping rule"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-3",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-3",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Stopping Boundary",
+    "text": "Stopping Boundary\n\n\n\nBayesian stopping rule\n\n\n\nBayesian allocation ratio only"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-4",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-4",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Stopping Boundary",
+    "text": "Stopping Boundary\n\n\n\nBayesian stopping rule\n\n\n\nBayesian allocation ratio only"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-5",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-5",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Stopping Boundary",
+    "text": "Stopping Boundary\n\n\n\n\n\nIrving John Good (1916 - 2009)\n\n\n\n\n\nThe subjectivist (i.e. Bayesian) states his judgements, whereas the objectivist sweeps them under the carpet by calling assumptions knowledge, and he basks in the glorious objectivity of science."
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-6",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-6",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Stopping Boundary",
+    "text": "Stopping Boundary\n\n\n\n\n\nIrving John Good (1916 - 2009)\n\n\n\n\n\nThe subjectivist (i.e. Bayesian) states his judgements, whereas the objectivist sweeps them under the carpet by calling assumptions knowledge, and he basks in the glorious objectivity of science.\n\n\n\n\n\nWhat assumptions do we want to make?\nInterpretability\nOption 3\nTime constraint"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Maximum likelihood estimate",
+    "text": "Maximum likelihood estimate"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-1",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-1",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Maximum likelihood estimate",
+    "text": "Maximum likelihood estimate\n\nGenerate data from group j using independent normal distributions with mean \\(\\mu_j\\) and a known common variance \\(\\sigma^2\\).\n\\[\nX_{i,j} \\sim N(\\mu_j, \\sigma^2)\n\\]\nwhere \\(j=1,2\\) and \\(i=1,\\ldots,n_j\\)."
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-2",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-2",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Maximum likelihood estimate",
+    "text": "Maximum likelihood estimate\n\nGenerate data from group j using independent normal distributions with mean \\(\\mu_j\\) and a known common variance \\(\\sigma^2\\).\n\\[\nX_{i,j} \\sim N(\\mu_j, \\sigma^2)\n\\]\nwhere \\(j=1,2\\) and \\(i=1,\\ldots,n_j\\).\nUsing pooled data over groups, we get the following expression for our estimate of the treatment effect \\(\\theta\\) at analysis \\(k\\)\n\\[\n\\hat{\\theta}_{p,K} = \\frac{\\sum_{k=1}^{K}\\bar{X}_1^k n_1^k}{\\sum_{k=1}^{K}n_1^k} - \\frac{\\sum_{k=1}^{K}\\bar{X}_2^k n_2^k}{\\sum_{k=1}^{K}n_2^k}\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-3",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-3",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Maximum likelihood estimate",
+    "text": "Maximum likelihood estimate\n\nsimulate_RAR &lt;- function(N, K, mu_1, mu_2, sigma, I_theta_fix,delta) {\n  # Ratio, estimates of mu, theta\n  muhat_1 &lt;- muhat_2 &lt;- ratio &lt;- numeric(K)\n  theta_hat &lt;- rep(NA, K)\n  # data from trial\n  x_1 &lt;- x_2 &lt;- numeric(0)\n  # Information\n  I1 &lt;- I2 &lt;- numeric(K)\n  # Number of patients per arm\n  n1 &lt;- n2 &lt;- n1.new &lt;- n2.new &lt;- w &lt;- numeric(K)\n  S1 &lt;- N1 &lt;- S2 &lt;- N2 &lt;- 0\n  for (k in 1:K) {\n    if (k == 1) {\n      # Initial equal allocation\n      ratio[k] &lt;- 1\n      # Enroll 20 patients when N = 100, K=5\n      n1.new[k] &lt;- n2.new[k] &lt;- N / K\n      n1[k] &lt;- n2[k] &lt;- N / K\n    } else {\n      # Define ratio based on formula with previous estimate of theta\n      ratio[k] &lt;-  a ** (theta_hat[k - 1]/ (2 * delta))\n      # Patients in N1\n      n1[k] &lt;- (k / 5) * (sigma ^ 2) * I_theta_fix * (1 + ratio[k])\n      # Patient in N2\n      n2[k] &lt;- (k / 5) * (sigma ^ 2) * I_theta_fix * (1 + (1 / ratio[k]))\n      # Difference in patients from previous\n      n1.new[k] &lt;- n1[k] - n1[k - 1]\n      n2.new[k] &lt;- n2[k] - n2[k - 1]\n      if(n1.new[k]&lt;=0){\n        n1[k]= n1[k - 1]+0.00001\n        n1.new[k] = n1[k] - n1[k - 1]\n        #n2[k] = (((k/5)*I_theta_fix)^(-1)-1/(n2/sigma^2))^(-1)\n        n2[k] = (k*n1[k]*sigma^2*I_theta_fix)/(5*n1[k]-k*sigma^2*I_theta_fix)\n        n2.new[k] = n2[k]-n2[k-1]\n      }\n      if(n2.new[k]&lt;=0){\n        n2[k]= n2[k - 1]+0.00001\n        n2.new[k] = n2[k] - n2[k - 1]\n        #n1[k] = (((k/5)*I_theta_fix)^(-1)-1/(n2[k]/sigma^2))^(-1)\n        n1[k] = (k*n2[k]*sigma^2*I_theta_fix)/(5*n2[k]-k*sigma^2*I_theta_fix)\n        n1.new[k] = n1[k]-n1[k-1]\n      }\n    }\n    #Sample once from normal distribution\n    x_1[k] &lt;- rnorm(1, mu_1, sqrt(sigma^2/n1.new[k]))\n    x_2[k] &lt;- rnorm(1, mu_2, sqrt(sigma^2/n2.new[k]))\n    \n    muhat_1[k] &lt;- sum(n1.new[1:k] * x_1[1:k]) / sum(n1.new)\n    muhat_2[k] &lt;- sum(n2.new[1:k] * x_2[1:k]) / sum(n2.new)\n    theta_hat[k] &lt;- muhat_1[k] - muhat_2[k]\n  }\n  return(list(n1 = n1, n2 = n2, theta_hat = theta_hat))\n}"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-4",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-4",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Maximum likelihood estimate",
+    "text": "Maximum likelihood estimate\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDesigns with no early stopping\n\n\n𝜃\n\nTarget\n\n\nRAR Using Pooled θ\n\n\nRAR Using Grouped θ\n\n\n\nEN1\nEN2\ntotal\nEN1\nEN2\ntotal\nEN1\nEN2\ntotal\n\n\n\n\n-½𝛿\n85.4\n120.7\n206.1\n86.4 (0)\n122.8 (0)\n209.2\n90 (0)\n120.1 (0)\n210.1\n\n\n0𝛿\n100\n100\n200\n101.4 (0)\n101.5 (0)\n202.9\n102.5 (0)\n102.5 (0)\n205\n\n\n½𝛿\n120.7\n85.4\n206.1\n122.8 (0)\n86.4 (0)\n209.2\n120.1 (0)\n90 (0)\n210.1\n\n\n1𝛿\n150\n75\n225\n153 (0)\n75.7 (0)\n228.7\n145 (0)\n81.2 (0)\n226.2\n\n\n3/2𝛿\n191.4\n67.7\n259.1\n195.8 (0)\n68.2 (0)\n263.9\n180.1 (0)\n75 (0)\n255.1\n\n\n2𝛿\n250\n62.5\n312.5\n256.4 (0.1)\n62.8 (0)\n319.3\n229.9 (0.1)\n70.6 (0)\n300.5\n\n\n\nResults are based on 1e+06 simulations; mean (standard error) to 1 decimal place"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-1",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-1",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-2",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-2",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s\n\nSuppose the responses of patients from treatment group j are iid normals\n\\[\nX_{i,j}|\\mu_j,\\tau \\sim N(\\mu_j, \\tau^{-1})\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-3",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-3",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s\n\nSuppose the responses of patients from treatment group j are iid normals\n\\[\nX_{i,j}|\\mu_j,\\tau \\sim N(\\mu_j, \\tau^{-1})\n\\]\nWith priors on \\(\\mu\\) for each treatment j\n\\[\n\\mu_j \\sim N(\\mu_{0,j}, \\tau_{0,j}^{-1})\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-4",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-4",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s\n\nSuppose the responses of patients from treatment group j are iid normals\n\\[\nX_{i,j}|\\mu_j,\\tau \\sim N(\\mu_j, \\tau^{-1})\n\\]\nWith priors on \\(\\mu\\) for each treatment j\n\\[\n\\mu_j \\sim N(\\mu_{0,j}, \\tau_{0,j}^{-1})\n\\]\nThen the posterior \\(\\theta|\\bar{x}_1^k,\\bar{x}_2^k\\) has mean\n\\[\n\\frac{\\tau_{0,1}\\mu_{0,1}+\\sum_{i=1}^{k} n_1^i \\tau \\mu_1^k}{\\tau_{0,1}+\\sum_{i=1}^k n_1^i \\tau} - \\frac{\\tau_{0,2}\\mu_{0,2}+\\sum_{i=1}^{k} n_2^i \\tau \\mu_2^k}{\\tau_{0,2}+\\sum_{i=1}^k n_2^i \\tau}\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-5",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-5",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s\n\nSuppose the responses of patients from treatment group j are iid normals\n\\[\nX_{i,j}|\\mu_j,\\tau \\sim N(\\mu_j, \\tau^{-1})\n\\]\nWith priors on \\(\\mu\\) for each treatment j\n\\[\n\\mu_j \\sim N(\\mu_{0,j}, \\tau_{0,j}^{-1})\n\\]\nThen the posterior \\(\\theta|\\bar{x}_1^k,\\bar{x}_2^k\\) has mean\n\\[\n\\frac{\\tau_{0,1}\\mu_{0,1}+\\sum_{i=1}^{k} n_1^i \\tau \\mu_1^k}{\\tau_{0,1}+\\sum_{i=1}^k n_1^i \\tau} - \\frac{\\tau_{0,2}\\mu_{0,2}+\\sum_{i=1}^{k} n_2^i \\tau \\mu_2^k}{\\tau_{0,2}+\\sum_{i=1}^k n_2^i \\tau}\n\\]\nand variance\n\\[\n1/(\\tau_{0,1}+\\sum_{i=1}^k n_1^i \\tau) + 1/(\\tau_{0,2}+\\sum_{i=1}^k n_2^i \\tau)\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-6",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-6",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s\n\nSuppose the responses of patients from treatment group j are iid normals\n\\[\nX_{i,j}|\\mu_j,\\tau \\sim N(\\mu_j, \\tau^{-1})\n\\]\nWith priors on \\(\\mu\\) for each treatment j\n\\[\n\\mu_j \\sim N(\\mu_{0,j}, \\tau_{0,j}^{-1})\n\\]\nThen the posterior \\(\\theta|\\bar{x}_1^k,\\bar{x}_2^k\\) has mean\n\\[\n\\frac{\\color{gray}{\\tau_{0,1}\\mu_{0,1}+}\\sum_{i=1}^{k} n_1^i \\tau \\mu_1^k}{\\color{gray}{\\tau_{0,1}}+\\sum_{i=1}^k n_1^i \\tau}\n-\n\\frac{\\color{gray}{\\tau_{0,2}\\mu_{0,2}+}\\sum_{i=1}^{k} n_2^i \\tau \\mu_2^k}{\\color{gray}{\\tau_{0,2}}+\\sum_{i=1}^k n_2^i \\tau}\n\\]\nand variance\n\\[\n1/(\\tau_{0,1}+\\sum_{i=1}^k n_1^i \\tau) + 1/(\\tau_{0,2}+\\sum_{i=1}^k n_2^i \\tau)\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-7",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-7",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s\n\nposterior_mean &lt;- function(prior_mean, prior_tau, data, tau, n,k) {\n  result &lt;- tryCatch({\n    # Check if the lengths of n and data are compatible\n    if (length(n) != length(data)) {\n      stop(\"Length of n and data must be the same. Found n of length \", length(n), \" and data of length \", length(data))\n    }\n    # Calculate post mean\n    posterior_mean_result &lt;- ((prior_tau) * prior_mean + sum(n * (tau) * (data))) / (sum(n* tau) + prior_tau)\n    return(posterior_mean_result)\n    \n  }, error = function(e) {\n    # Catch the error and return a message\n    cat(\"Error in posterior_mean (K=):\",k, e$message, \"\\n\")\n    cat(\"n: \",paste(n),\"\\n\")\n    cat(\"data: \",paste(data),\"\\n\")\n    return(NA)  # Return NA or any default value in case of error\n  })\n  \n  return(result)\n}\n\nx_1[k] &lt;- rnorm(1, mean = mu_1, sd = sqrt(sigma ^ 2 / n1.new[k]))\nx_2[k] &lt;- rnorm(1, mean = mu_2, sd =  sqrt(sigma ^ 2 / n2.new[k]))\n\n# Posterior variances\ntau_n1[k] &lt;- posterior_tau(prior_tau = tau_01,\n                           tau = tau,\n                           n = n1.new[1:k])\n\ntau_n2[k] &lt;- posterior_tau(prior_tau = tau_02,\n                           tau = tau,\n                           n = n2.new[1:k])\n# Posterior means\nmu_n1[k] &lt;- posterior_mean(\n  prior_mean = mu_01,\n  n = n1.new[1:k],\n  tau = tau,\n  prior_tau = tau_01,\n  data = x_1[1:k],\n  k = k\n)\n\nmu_n2[k] &lt;- posterior_mean(\n  prior_mean = mu_02,\n  n = n2.new[1:k],\n  tau = tau,\n  prior_tau = tau_02,\n  data = x_2[1:k],\n  k = k\n)\n\ntheta_hat[k] &lt;- mu_n1[k] - mu_n2[k]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-8",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-8",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo early stopping using frequentist and bayesian methods with pooled θ\n\n\n\nEN1_pool\nEN2_pool\ntotal_pool\nEN1_brar_1\n\nEN2_brar_1\n\ntotal_brar_1\n\nEN1_brar_2\n\nEN2_brar_2\n\ntotal_brar_2\n\nEN1_brar_3\n\nEN2_brar_3\n\ntotal_brar_3\n\nEN1_brar_4\n\nEN2_brar_4\n\ntotal_brar_4\n\n\n\n\n\n-1/2𝛿\n86.4 (0)\n122.8 (0)\n209.2 (0)\n86.4 (0)\n\n\n\nEquals\n\n\n\n\n122.8 (0)\n\n\n\nEquals\n\n\n\n\n209.2 (0)\n\n\n\nEquals\n\n\n\n\n94.5 (0)\n\n\n\nArrow Up\n\n\n\n\n107.9 (0)\n\n\n\nArrow Down\n\n\n\n\n202.5 (0)\n\n\n\nArrow Down\n\n\n\n\n111 (0)\n\n\n\nArrow Up\n\n\n\n\n91.3 (0)\n\n\n\nArrow Down\n\n\n\n\n202.4 (0)\n\n\n\nArrow Down\n\n\n\n\n83.3 (0)\n\n\n\nArrow Down\n\n\n\n\n125 (0)\n\n\n\nArrow Up\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n0𝛿\n101.4 (0)\n101.5 (0)\n202.9 (0)\n101.5 (0)\n\n\n\nEquals\n\n\n\n\n101.4 (0)\n\n\n\nEquals\n\n\n\n\n202.9 (0)\n\n\n\nEquals\n\n\n\n\n107.8 (0)\n\n\n\nArrow Up\n\n\n\n\n94.7 (0)\n\n\n\nArrow Down\n\n\n\n\n202.5 (0)\n\n\n\nArrow Down\n\n\n\n\n121.1 (0)\n\n\n\nArrow Up\n\n\n\n\n85.5 (0)\n\n\n\nArrow Down\n\n\n\n\n206.6 (0)\n\n\n\nArrow Up\n\n\n\n\n83.3 (0)\n\n\n\nArrow Down\n\n\n\n\n125 (0)\n\n\n\nArrow Up\n\n\n\n\n208.3 (0)\n\n\n\nArrow Up\n\n\n\n\n\n\n1/2𝛿\n122.8 (0)\n86.4 (0)\n209.2 (0)\n122.8 (0)\n\n\n\nEquals\n\n\n\n\n86.4 (0)\n\n\n\nEquals\n\n\n\n\n209.2 (0)\n\n\n\nEquals\n\n\n\n\n126.1 (0)\n\n\n\nArrow Up\n\n\n\n\n84 (0)\n\n\n\nArrow Down\n\n\n\n\n210.1 (0)\n\n\n\nArrow Up\n\n\n\n\n133.8 (0)\n\n\n\nArrow Up\n\n\n\n\n80.1 (0)\n\n\n\nArrow Down\n\n\n\n\n214 (0)\n\n\n\nArrow Up\n\n\n\n\n83.4 (0)\n\n\n\nArrow Down\n\n\n\n\n125 (0)\n\n\n\nArrow Up\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n1𝛿\n153 (0)\n75.7 (0)\n228.7 (0)\n153.1 (0)\n\n\n\nEquals\n\n\n\n\n75.7 (0)\n\n\n\nEquals\n\n\n\n\n228.7 (0)\n\n\n\nEquals\n\n\n\n\n151.5 (0)\n\n\n\nArrow Down\n\n\n\n\n75.5 (0)\n\n\n\nArrow Down\n\n\n\n\n227 (0)\n\n\n\nArrow Down\n\n\n\n\n150.4 (0)\n\n\n\nArrow Down\n\n\n\n\n75.2 (0)\n\n\n\nArrow Down\n\n\n\n\n225.6 (0)\n\n\n\nArrow Down\n\n\n\n\n83.4 (0)\n\n\n\nArrow Down\n\n\n\n\n124.9 (0)\n\n\n\nArrow Up\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n3/2𝛿\n195.8 (0)\n68.2 (0)\n263.9 (0)\n195.8 (0)\n\n\n\nEquals\n\n\n\n\n68.2 (0)\n\n\n\nEquals\n\n\n\n\n264 (0)\n\n\n\nEquals\n\n\n\n\n187.7 (0)\n\n\n\nArrow Down\n\n\n\n\n68.8 (0)\n\n\n\nArrow Up\n\n\n\n\n256.5 (0)\n\n\n\nArrow Down\n\n\n\n\n172.6 (0)\n\n\n\nArrow Down\n\n\n\n\n70.6 (0)\n\n\n\nArrow Up\n\n\n\n\n243.2 (0)\n\n\n\nArrow Down\n\n\n\n\n83.4 (0)\n\n\n\nArrow Down\n\n\n\n\n124.9 (0)\n\n\n\nArrow Up\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n2𝛿\n256.4 (0.1)\n62.8 (0)\n319.3 (0.1)\n256.4 (0.1)\n\n\n\nEquals\n\n\n\n\n62.8 (0)\n\n\n\nEquals\n\n\n\n\n319.2 (0.1)\n\n\n\nEquals\n\n\n\n\n239.6 (0)\n\n\n\nArrow Down\n\n\n\n\n63.7 (0)\n\n\n\nArrow Up\n\n\n\n\n303.2 (0)\n\n\n\nArrow Down\n\n\n\n\n203.1 (0)\n\n\n\nArrow Down\n\n\n\n\n66.6 (0)\n\n\n\nArrow Up\n\n\n\n\n269.6 (0)\n\n\n\nArrow Down\n\n\n\n\n83.4 (0)\n\n\n\nArrow Down\n\n\n\n\n124.9 (0)\n\n\n\nArrow Up\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n\nBased on1e+06Simulations; mean (standard error) to 1 decimal place\n\n\nPrior 1:mu_1: 0𝛿, mu_2: 0, tau_01: 1e-05, tau_02: 1e-05, theta_tau0: 5e-06, theta: 0𝛿 Prior 2:mu_1: 1𝛿, mu_2: 0, tau_01: 20, tau_02: 20, theta_tau0: 10, theta: 1𝛿 Prior 3:mu_1: 1𝛿, mu_2: 0, tau_01: 100, tau_02: 100, theta_tau0: 50, theta: 1𝛿 Prior 4:mu_1: -0.584962500721156𝛿, mu_2: 0, tau_01: 100000, tau_02: 100000, theta_tau0: 50000, theta: -0.584962500721156𝛿"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Priors on \\(\\theta\\)",
+    "text": "Priors on \\(\\theta\\)\n\nNow suppose there are priors directly on \\(\\theta\\)\n\\[\n\\theta \\sim N(\\theta_0,\\tau_{0,\\theta})\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta-1",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta-1",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Priors on \\(\\theta\\)",
+    "text": "Priors on \\(\\theta\\)\n\nNow suppose there are priors directly on \\(\\theta\\)\n\\[\n\\theta \\sim N(\\theta_0,\\tau_{0,\\theta})\n\\] And generate data,\n\\[\nY^k = \\bar{X}_1^k - \\bar{X}_2^k \\sim N(\\theta,\\tau_y^{-1})\n\\]\nWhere\n\\[\n\\tau_y^k = (\\sigma^2/n_1^k + \\sigma^2/n_2^k)^{-1}\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta-2",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta-2",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Priors on \\(\\theta\\)",
+    "text": "Priors on \\(\\theta\\)\n\nThen the posterior distribution \\(\\theta|\\bar{y}^k\\) has mean\n\\[\n\\frac{\\theta_0\\tau_{0,\\theta}+\\sum_{i=1}^k y^i\\tau_y^i}{\\tau_{0,\\theta}+\\sum_{i=1}^k \\tau_y^i}\n\\]\nand variance\n\\[\n1/(\\tau_{0,\\theta}+\\sum_{i=1}^k \\tau_y^i)\n\\]\nWhere\n\\[\n\\tau_y = (\\sigma^2/n_1^k + \\sigma^2/n_2^k)^{-1}\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta-3",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta-3",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Priors on \\(\\theta\\)",
+    "text": "Priors on \\(\\theta\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo early stopping using frequentist and bayesian methods with pooled θ\n\n\n\nEN1_pool\nEN2_pool\ntotal_pool\nEN1_brar_1\n\nEN2_brar_1\n\ntotal_brar_1\n\nEN1_brar_2\n\nEN2_brar_2\n\ntotal_brar_2\n\nEN1_brar_3\n\nEN2_brar_3\n\ntotal_brar_3\n\nEN1_brar_4\n\nEN2_brar_4\n\ntotal_brar_4\n\n\n\n\n\n-1/2𝛿\n86.4 (0)\n122.8 (0)\n209.2 (0)\n86.4 (0)\n\n\n\nEquals\n\n\n\n\n123.5 (0)\n\n\n\nArrow Up\n\n\n\n\n209.9 (0)\n\n\n\nArrow Up\n\n\n\n\n94.8 (0)\n\n\n\nArrow Up\n\n\n\n\n108 (0)\n\n\n\nArrow Down\n\n\n\n\n202.8 (0)\n\n\n\nArrow Down\n\n\n\n\n114.1 (0)\n\n\n\nArrow Up\n\n\n\n\n89.4 (0)\n\n\n\nArrow Down\n\n\n\n\n203.6 (0)\n\n\n\nArrow Down\n\n\n\n\n125 (0)\n\n\n\nArrow Up\n\n\n\n\n83.4 (0)\n\n\n\nArrow Down\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n0𝛿\n101.4 (0)\n101.5 (0)\n202.9 (0)\n101.7 (0)\n\n\n\nArrow Up\n\n\n\n\n101.7 (0)\n\n\n\nArrow Up\n\n\n\n\n203.4 (0)\n\n\n\nArrow Up\n\n\n\n\n109 (0)\n\n\n\nArrow Up\n\n\n\n\n94 (0)\n\n\n\nArrow Down\n\n\n\n\n203 (0)\n\n\n\nArrow Up\n\n\n\n\n124.5 (0)\n\n\n\nArrow Up\n\n\n\n\n83.9 (0)\n\n\n\nArrow Down\n\n\n\n\n208.4 (0)\n\n\n\nArrow Up\n\n\n\n\n125 (0)\n\n\n\nArrow Up\n\n\n\n\n83.3 (0)\n\n\n\nArrow Down\n\n\n\n\n208.3 (0)\n\n\n\nArrow Up\n\n\n\n\n\n\n1/2𝛿\n122.8 (0)\n86.4 (0)\n209.2 (0)\n123.5 (0)\n\n\n\nArrow Up\n\n\n\n\n86.4 (0)\n\n\n\nEquals\n\n\n\n\n209.9 (0)\n\n\n\nArrow Up\n\n\n\n\n127.6 (0)\n\n\n\nArrow Up\n\n\n\n\n83.5 (0)\n\n\n\nArrow Down\n\n\n\n\n211.1 (0)\n\n\n\nArrow Up\n\n\n\n\n136.6 (0)\n\n\n\nArrow Up\n\n\n\n\n79.2 (0)\n\n\n\nArrow Down\n\n\n\n\n215.8 (0)\n\n\n\nArrow Up\n\n\n\n\n125 (0)\n\n\n\nArrow Up\n\n\n\n\n83.3 (0)\n\n\n\nArrow Down\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n1𝛿\n153 (0)\n75.7 (0)\n228.7 (0)\n154.6 (0)\n\n\n\nArrow Up\n\n\n\n\n75.6 (0)\n\n\n\nArrow Down\n\n\n\n\n230.2 (0)\n\n\n\nArrow Up\n\n\n\n\n152.1 (0)\n\n\n\nArrow Down\n\n\n\n\n75.4 (0)\n\n\n\nArrow Down\n\n\n\n\n227.6 (0)\n\n\n\nArrow Down\n\n\n\n\n150.6 (0)\n\n\n\nArrow Down\n\n\n\n\n75.1 (0)\n\n\n\nArrow Down\n\n\n\n\n225.7 (0)\n\n\n\nArrow Down\n\n\n\n\n125 (0)\n\n\n\nArrow Down\n\n\n\n\n83.3 (0)\n\n\n\nArrow Up\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n3/2𝛿\n195.8 (0)\n68.2 (0)\n263.9 (0)\n198.5 (0)\n\n\n\nArrow Up\n\n\n\n\n68.1 (0)\n\n\n\nArrow Down\n\n\n\n\n266.5 (0)\n\n\n\nArrow Up\n\n\n\n\n184.1 (0)\n\n\n\nArrow Down\n\n\n\n\n69.4 (0)\n\n\n\nArrow Up\n\n\n\n\n253.4 (0)\n\n\n\nArrow Down\n\n\n\n\n166.7 (0)\n\n\n\nArrow Down\n\n\n\n\n71.7 (0)\n\n\n\nArrow Up\n\n\n\n\n238.3 (0)\n\n\n\nArrow Down\n\n\n\n\n125 (0)\n\n\n\nArrow Down\n\n\n\n\n83.3 (0)\n\n\n\nArrow Up\n\n\n\n\n208.4 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n2𝛿\n256.4 (0.1)\n62.8 (0)\n319.3 (0.1)\n260.7 (0.1)\n\n\n\nArrow Up\n\n\n\n\n62.8 (0)\n\n\n\nArrow Down\n\n\n\n\n323.5 (0.1)\n\n\n\nArrow Up\n\n\n\n\n225.6 (0)\n\n\n\nArrow Down\n\n\n\n\n64.8 (0)\n\n\n\nArrow Up\n\n\n\n\n290.4 (0)\n\n\n\nArrow Down\n\n\n\n\n185.2 (0)\n\n\n\nArrow Down\n\n\n\n\n68.7 (0)\n\n\n\nArrow Up\n\n\n\n\n253.9 (0)\n\n\n\nArrow Down\n\n\n\n\n125.1 (0)\n\n\n\nArrow Down\n\n\n\n\n83.3 (0)\n\n\n\nArrow Up\n\n\n\n\n208.4 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n\nBased on1e+06Simulations; mean (standard error) to 1 decimal place\n\n\nPrior 1:mu_1: 0𝛿, mu_2: 0, tau_01: 1e-06, tau_02: 1e-06, theta_tau0: 5e-07, theta_0: 0, theta: 0𝛿 Prior 2:mu_1: 1𝛿, mu_2: 0, tau_01: 20, tau_02: 20, theta_tau0: 10, theta_0: 0.4584195253573, theta: 1𝛿 Prior 3:mu_1: 1𝛿, mu_2: 0, tau_01: 100, tau_02: 100, theta_tau0: 50, theta_0: 0.4584195253573, theta: 1𝛿 Prior 4:mu_1: 0.584962500721156𝛿, mu_2: 0, tau_01: 1e+05, tau_02: 1e+05, theta_tau0: 50000, theta_0: 0.268158231932412, theta: 0.584962500721156𝛿"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Differences in using direct vs individual priors",
+    "text": "Differences in using direct vs individual priors\n\n\n\n\nIndividual priors on \\(\\mu\\)’s\n\nMean\n\\[\n\\frac{\\tau_{0,1}\\mu_{0,1}+\\sum_{i=1}^{k} n_1^i \\tau \\mu_1^k}{\\tau_{0,1}+\\sum_{i=1}^k n_1^i \\tau} - \\frac{\\tau_{0,2}\\mu_{0,2}+\\sum_{i=1}^{k} n_2^i \\tau \\mu_2^k}{\\tau_{0,2}+\\sum_{i=1}^k n_2^i \\tau}\n\\] Variance\n\\[\n1/(\\tau_{0,1}+\\sum_{i=1}^k n_1^i \\tau) + 1/(\\tau_{0,2}+\\sum_{i=1}^k n_2^i \\tau)\n\\]\n\n\nDirect priors on \\(\\theta\\)\n\nMean\n\\[\n\\frac{\\theta_0\\tau_{0,\\theta}+\\sum_{i=1}^k y^i\\tau_y^i}{\\tau_{0,\\theta}+\\sum_{i=1}^k \\tau_y^i}\n\\] Variance\n\\[\n1/(\\tau_{0,\\theta}+\\sum_{i=1}^k \\tau_y^i)\n\\]\nWhere\n\\[\n\\tau_y = (\\sigma^2/n_1^k + \\sigma^2/n_2^k)^{-1}\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-1",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-1",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Differences in using direct vs individual priors",
+    "text": "Differences in using direct vs individual priors\nThe posterior variance of \\(\\theta\\) when separate prior distributions are given is always smaller than that when only the prior distribution for \\(\\theta\\) is used.1\nStallard et al. (2020)"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-2",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-2",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Differences in using direct vs individual priors",
+    "text": "Differences in using direct vs individual priors\n\nAssess difference using idea of coupling\nPrimarily interested in the vague prior case"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-3",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-3",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Differences in using direct vs individual priors",
+    "text": "Differences in using direct vs individual priors\n\nDistribution of theta_hat at each analysis K using individual priors for treatments and a prior for theta directly using coupling"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-4",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-4",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Differences in using direct vs individual priors",
+    "text": "Differences in using direct vs individual priors\n\nMeans and variances of theta_hat at each analysis K using individual priors for treatments and a prior for theta directly using coupling"
+  }
+]

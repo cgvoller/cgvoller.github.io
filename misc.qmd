@@ -1,0 +1,232 @@
+---
+title: "Miscellaneous"
+css: misc.css
+execute:
+  echo: false
+format:
+  html:
+    grid:
+      body-width: 2000px
+      sidebar-width: 200px
+      margin-width: 200px
+---
+
+I will be updating this page periodically to display a network diagram of the books I have read each calendar year. You might be asking why would I do that. The only answer I can think of is because it seems like a neat way to display data and to motivate me to read more (Note, the network below is not complete but it is interactive).
+
+# 2024
+
+```{ojs}
+miserables = FileAttachment("books_24.json").json()
+
+function ForceGraph(
+  {
+    nodes, // an iterable of node objects (typically [{id}, …])
+    links // an iterable of link objects (typically [{source, target}, …])
+  },
+  {
+    nodeId = (d) => d.id, // given d in nodes, returns a unique identifier (string)
+    nodeGroup, // given d in nodes, returns an (ordinal) value for color
+    nodeGroups, // an array of ordinal values representing the node groups
+    nodeTitle, // given d in nodes, a title string
+    nodeFill = "currentColor", // node stroke fill (if not using a group color encoding)
+    nodeStroke = "currentColor", // node stroke color
+    nodeStrokeWidth = 0, // node stroke width, in pixels
+    nodeStrokeOpacity = 0.1, // node stroke opacity
+    nodeRadius = 7, // node radius, in pixels
+    nodeStrength=-100,
+    linkSource = ({ source }) => source, // given d in links, returns a node identifier string
+    linkTarget = ({ target }) => target, // given d in links, returns a node identifier string
+    linkStroke = "#FFFFFF", // link stroke color
+    linkStrokeOpacity = 0.6, // link stroke opacity
+    linkStrokeWidth = 2, // given d in links, returns a stroke width in pixels
+    linkStrokeLinecap = "round", // link stroke linecap
+    linkStrength=.05,
+    colors = d3.schemeTableau10, // an array of color strings, for the node groups
+    width = 640, // outer width, in pixels
+    height = 600, // outer height, in pixels
+    invalidation // when this promise resolves, stop the simulation
+  } = {}
+) {
+  // Compute values.
+  const N = d3.map(nodes, nodeId).map(intern);
+  const LS = d3.map(links, linkSource).map(intern);
+  const LT = d3.map(links, linkTarget).map(intern);
+  if (nodeTitle === undefined) nodeTitle = (_, i) => N[i];
+  const T = nodeTitle == null ? null : d3.map(nodes, nodeTitle);
+  const G = nodeGroup == null ? null : d3.map(nodes, nodeGroup).map(intern);
+  const W =
+    typeof linkStrokeWidth !== "function"
+      ? null
+      : d3.map(links, linkStrokeWidth);
+  const L = typeof linkStroke !== "function" ? null : d3.map(links, linkStroke);
+
+  // Replace the input nodes and links with mutable objects for the simulation.
+  nodes = d3.map(nodes, (_, i) => ({ id: N[i] }));
+  links = d3.map(links, (_, i) => ({ source: LS[i], target: LT[i] }));
+
+  // Compute default domains.
+  if (G && nodeGroups === undefined) nodeGroups = d3.sort(G);
+
+  // Construct the scales.
+  const color = nodeGroup == null ? null : d3.scaleOrdinal(nodeGroups, colors);
+
+  // Construct the forces.
+  const forceNode = d3.forceManyBody();
+  const forceLink = d3.forceLink(links).id(({ index: i }) => N[i]);
+  if (nodeStrength !== undefined) forceNode.strength(nodeStrength);
+  if (linkStrength !== undefined) forceLink.strength(linkStrength);
+
+  const simulation = d3
+    .forceSimulation(nodes)
+    .force("link", forceLink)
+    .force("charge", forceNode)
+    .force("center", d3.forceCenter())
+    .force('collide', d3.forceCollide(function(d) {
+    return d.id === "j" ? 20 : 10
+  }))
+    .on("tick", ticked);
+
+  const svg = d3
+    .create("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("viewBox", [-width / 2, -height / 2, width, height])
+    .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
+
+  const link = svg
+    .append("g")
+    .attr("stroke", typeof linkStroke !== "function" ? linkStroke : 1.5)
+    .attr("stroke-opacity", linkStrokeOpacity)
+    .attr(
+      "stroke-width",
+      typeof linkStrokeWidth !== "function" ? linkStrokeWidth : 1.5
+    )
+    .attr("stroke-linecap", linkStrokeLinecap)
+    .selectAll("line")
+    .data(links)
+    .join("line");
+
+  const node = svg
+    .append("g")
+    .attr("fill", nodeFill)
+    .attr("stroke", nodeStroke)
+    .attr("stroke-opacity", nodeStrokeOpacity)
+    .attr("stroke-width", nodeStrokeWidth)
+    // SM: change
+    // .selectAll("circle")
+    .selectAll("g")
+    .data(nodes)
+    // SM: change
+    // .join("circle")
+    .join("g")
+    // SM: change
+    // .attr("r", nodeRadius)
+    .call(drag(simulation));
+
+  // SM: change
+  // append circle and text to node <g> (selection of all <g> elements corresponding to each node)
+  node.append("circle").attr("r", nodeRadius);
+  node
+    .append("text")
+    .text(({ index: i }) => ("\u00A0\u00A0"+ T[i]))
+    //.attr("fill", "white")
+    .attr("stroke", "none")
+    .attr("font-size", "1em");
+
+  if (W) link.attr("stroke-width", ({ index: i }) => W[i]);
+  if (L) link.attr("stroke", ({ index: i }) => L[i]);
+  if (G) node.attr("fill", ({ index: i }) => color(G[i]));
+  if (T) node.append("title").text(({ index: i }) => T[i]);
+  if (invalidation != null) invalidation.then(() => simulation.stop());
+
+  function intern(value) {
+    return value !== null && typeof value === "object"
+      ? value.valueOf()
+      : value;
+  }
+
+  function ticked() {
+    link
+      .attr("x1", (d) => d.source.x)
+      .attr("y1", (d) => d.source.y)
+      .attr("x2", (d) => d.target.x)
+      .attr("y2", (d) => d.target.y);
+
+    node.attr("transform", (d) => `translate(${d.x} ${d.y})`);
+    // SM: change
+    // instead of moving the circle centers we transform the whole <g>
+    // .attr("cx", d => d.x)
+    // .attr("cy", d => d.y);
+  }
+
+  function drag(simulation) {
+    function dragstarted(event) {
+      if (!event.active) simulation.alphaTarget(0.3).restart();
+      event.subject.fx = event.subject.x;
+      event.subject.fy = event.subject.y;
+    }
+
+    function dragged(event) {
+      event.subject.fx = event.x;
+      event.subject.fy = event.y;
+    }
+
+    function dragended(event) {
+      if (!event.active) simulation.alphaTarget(0);
+      event.subject.fx = null;
+      event.subject.fy = null;
+    }
+    return d3
+      .drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended);
+  }
+
+  return Object.assign(svg.node(), { scales: { color } });
+}
+
+chart = ForceGraph(miserables, {
+  nodeId: d => d.id,
+  nodeGroup: d => d.group,
+  nodeTitle: d => `${d.id}\n`,
+  linkStrokeWidth: l => Math.sqrt(l.value),
+  width,
+  height: 600,
+  invalidation // a promise to stop the simulation when the cell is re-run
+})
+
+
+
+```
+
+Here is the equivalent data frame containing the books I have read so far in 2024:
+
+```{r,eval=TRUE,warning=FALSE,message=FALSE}
+
+library(tidyverse)
+library(gt)
+library(janitor)
+
+df <- read.csv("Books_24.csv",check.names=FALSE)
+
+df |> 
+  gt()|>
+ # grand_summary_rows(  fns = list(
+ #      total = "sum"
+ #    ),
+ #    columns = c(`Number of pages`)
+ #  ) |>
+  opt_interactive(use_search=TRUE) %>% 
+  tab_options(
+    table.background.color = "#2e3440",
+    column_labels.font.size = px(10),
+    column_labels.font.weight = "bold",
+    table.font.color = "white",
+    table.font.size = px(12L)
+)
+#books_tbl |>
+#  gt() |>
+#  opt_interactive()
+
+```

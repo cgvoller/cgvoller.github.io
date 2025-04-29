@@ -1,0 +1,583 @@
+[
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "CV Supervisor Meetings",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nBayesian Response-Adaptive Randomisation with Group Sequential Designs\n\n\n\n\n\n\nMeetings\n\n\n\n\n\n\n\n\n\nApr 29, 2025\n\n\nCorey Voller\n\n\n\n\n\n\n\n\n\n\n\n\nCollaborative Working\n\n\nA short review into the tools for facilitating a collaborative working environment\n\n\n\nR\n\n\nWorking Practices\n\n\n\n\n\n\n\n\n\nMar 18, 2024\n\n\nCorey Voller\n\n\n\n\n\n\n\n\n\n\n\n\nGetting to grips with Hospital Episode Statistics\n\n\nAn introduction into HES\n\n\n\nR\n\n\ncode\n\n\n\n\n\n\n\n\n\nMar 12, 2024\n\n\nCorey Voller\n\n\n\n\n\n\n\n\n\n\n\n\nVersion Control with Git in R\n\n\nIntroduction to using version control in RStudio with Git\n\n\n\nR\n\n\nGit\n\n\nVersion Control\n\n\n\n\n\n\n\n\n\nFeb 28, 2024\n\n\nCorey Voller\n\n\n\n\n\n\n\n\n\n\n\n\nMore than just a pipe dream\n\n\nThe use of different pipes in R\n\n\n\nR\n\n\ncode\n\n\n\n\n\n\n\n\n\nFeb 11, 2024\n\n\nCorey Voller\n\n\n\n\n\n\n\n\n\n\n\n\nMore Efficient Working\n\n\nA guide to standardising scripts\n\n\n\nR\n\n\ncode\n\n\nWorking Practices\n\n\n\n\n\n\n\n\n\nJan 28, 2024\n\n\nCorey Voller\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/Standardising Scripts/index.html",
+    "href": "posts/Standardising Scripts/index.html",
+    "title": "More Efficient Working",
+    "section": "",
+    "text": "A useful way to cut-down the amount of repetitive typing is through the use of snippets. My love of snippets is primarily fueled by my inherent laziness (If any future employers are reading this I’m joking). A snippet allows you to automatically insert pieces of code. When I mention custom snippets to people they have often never heard of them but you likely use them without knowing and can be very useful. For example, when I type ‘for’ and press tab, I am met with the following chunk of code.\n\nfor (variable in vector) {\n  \n}\n\nThere are numerous pre-defined snippets that exist in the settings already but we can insert our own customised snippets. You can see some larger snippets on my GitHub here."
+  },
+  {
+    "objectID": "posts/Standardising Scripts/index.html#change-to-when-pasting-file-paths",
+    "href": "posts/Standardising Scripts/index.html#change-to-when-pasting-file-paths",
+    "title": "More Efficient Working",
+    "section": "Change \\ to / when pasting file paths",
+    "text": "Change \\ to / when pasting file paths\nThe first snippet is fairly trivial but surprisingly useful in day-to-day working.\n\nsnippet pastefile\n    \"`r gsub('\"', \"\", gsub(\"\\\\\\\\\", \"/\", readClipboard()))`\"\n\nWhen copying and pasting file paths in R you are often met with backslashes which R complains about. The above snippet, when you copy a file path and type ‘pastefile’ it will past the file path location with forward slashes instead."
+  },
+  {
+    "objectID": "posts/Standardising Scripts/index.html#generic-script-template-1",
+    "href": "posts/Standardising Scripts/index.html#generic-script-template-1",
+    "title": "More Efficient Working",
+    "section": "Generic Script Template 1",
+    "text": "Generic Script Template 1\nThis is a generic script template with a few features. Firstly, at the top I like to define a few things:\n\nPath of the project\nOverall purpose of the script\nWho wrote the script\nDate (which is taken automatically using sys.time())\nWho and when the code has been QC’d\n\nYou’ll also notice I use ## text ----. The reason for this is it creates section headers which make navigating code easier.\n\n\n\n\n\n\nsnippet header\n    ## ─────────────────────────────────────────────────────────────────────────────\n    ##\n    ## Project: `r paste(gsub(\".*STUDY FOLDER/\",\"\",getwd()))`\n    ##\n    ## Purpose of script:\n    ##\n    ## Author: \n    ##\n    ## Date Created: `r paste(format(Sys.time(), \"%d-%m-%Y\"))`\n    ##\n    ## QC'd by:\n    ## QC date:\n    ##\n    ## ─────────────────────────────────────────────────────────────────────────────\n    ##\n    ## Notes:\n    ##   \n    ##\n    ## ─────────────────────────────────────────────────────────────────────────────\n    ##\n    ## \n    ## set working directory -------------------------------------------------------\n    message(\"Set working directory\")\n\n    # setwd(\"~/\")  \n    \n    ## Options ---------------------------------------------------------------------\n    \n    # options(scipen = 6, digits = 4) # View outputs in non-scientific notation\n\n    ## Load packages ---------------------------------------------------------------\n    message(\"Load packages\")\n\n    ## Set file paths --------------------------------------------------------------\n    message(\"Set file paths\")\n\n    base.path &lt;- \"\"\n    data.path &lt;- \"\"\n    output.path &lt;- \"\"\n    template.path &lt;- \"\"\n\n\n    ## Load data -------------------------------------------------------------------\n    message(\"Load data\")\n     \n    # data &lt;- fread(file.path(data.path, \".csv\")) # or read.csv, etc\n    # load(x,file.path(data.path,\".RData\"))\n    # load(file.path(\"C:/Users/isfar.RData\"), isfar_env &lt;- new.env())\n\n\n    ## First Section ---------------------------------------------------------------\n    message(\"First Section\")\n\n    ## Second Section --------------------------------------------------------------\n    message(\"Second Section\")\n\n\n    ## Third Section ---------------------------------------------------------------\n    message(\"Third section\")\n\n\n    ## Output  ---------------------------------------------------------------------\n    message(\"Output\")\n\n    # save(x,file.path(output.path,\".RData\"))\n    # write.csv(x,file.path(output.path,\"x.csv\")"
+  },
+  {
+    "objectID": "posts/Standardising Scripts/index.html#fancy-template",
+    "href": "posts/Standardising Scripts/index.html#fancy-template",
+    "title": "More Efficient Working",
+    "section": "Fancy template",
+    "text": "Fancy template\n\nsnippet templatefancy\n    ## ─────────────────────────────────────────────────────────────────────────────\n    ##\n    ## Project: `r paste(gsub(\".*STUDY FOLDER/\",\"\",getwd()))`\n    ##\n    ## Purpose of script:\n    ##\n    ## Author: `r paste(Sys.info()[[\"user\"]])`\n    ##\n    ## Date Created: `r paste(format(Sys.time(), \"%d-%m-%Y\"))`\n    ## R Version: `r paste(R.Version()$version.string)`\n    ## Copyright: (c) `r paste(Sys.info()[[\"user\"]],format(Sys.time(), \"%d-%m-%Y\"))`\n    ## Licence: &lt;Licence details &gt;\n    ##\n    ## QC'd by:\n    ## QC date:\n    ##\n    ## ─────────────────────────────────────────────────────────────────────────────\n    ##\n    ## Notes:\n    ##   \n    ##\n    ## ─────────────────────────────────────────────────────────────────────────────\n    ##\n    ## \n    ## set working directory -------------------------------------------------------\n    message(\"Set working directory\")\n\n    # If you're using an R project file, file paths will be relative so this is not \n    # needed.\n    # setwd(\"~/\")  \n    \n    ## Options ---------------------------------------------------------------------\n    \n    # options(scipen = 6, digits = 4) # View outputs in non-scientific notation\n    \n\n    ## Source config ---------------------------------------------------------------\n    message(\"Source config\")\n\n    # Set up libraries, R options for outputs, read in in-house functions\n    source(\"progs/config.R\")\n\n    ## Set file paths --------------------------------------------------------------\n    message(\"Set file paths\")\n\n    base.path &lt;- \"\"\n    data.path &lt;- \"\"\n    output.path &lt;- \"\"\n    template.path &lt;- \"\"\n\n\n    ## Load data -------------------------------------------------------------------\n    message(\"Load data\")\n     \n    # data &lt;- fread(file.path(data.path, \".csv\")) # or read.csv, etc\n    # load(x,file.path(data.path,\".RData\"))\n    # load(file.path(\"C:/Users/isfar.RData\"), isfar_env &lt;- new.env())\n\n\n    ## First Section ---------------------------------------------------------------\n    message(\"First Section\")\n\n    ## Second Section --------------------------------------------------------------\n    message(\"Second Section\")\n\n    ## Output  ---------------------------------------------------------------------\n    message(\"Output\")\n\n    # save(x,file.path(output.path,\".RData\"))\n    # write.csv(x,file.path(output.path,\"x.csv\")"
+  },
+  {
+    "objectID": "posts/Standardising Scripts/index.html#config-script-template",
+    "href": "posts/Standardising Scripts/index.html#config-script-template",
+    "title": "More Efficient Working",
+    "section": "Config Script Template",
+    "text": "Config Script Template\n\nsnippet configtemplate\n    ## ─────────────────────────────────────────────────────────────────────────────\n    ##\n    ## Project: `r paste(gsub(\".*STUDY FOLDER/\",\"\",getwd()))`\n    ##\n    ## Purpose of script:\n    ##\n    ## Author: \n    ##\n    ## Date Created: `r paste(format(Sys.time(), \"%d-%m-%Y\"))`\n    ##\n    ## QC'd by:\n    ## QC date:\n    ##\n    ## ─────────────────────────────────────────────────────────────────────────────\n    ##\n    ## Notes:\n    ##   \n    ##\n    ## ─────────────────────────────────────────────────────────────────────────────\n    ##\n    ## \n    ## Preliminary -----------------------------------------------------------------\n    message(\"Preliminary\")\n\n    # Remove objects from workspace\n    rm(list = ls())\n    \n    ## Options ---------------------------------------------------------------------\n    \n    options(verbose = TRUE, stringsAsFactors = FALSE)\n\n    ## Load packages ---------------------------------------------------------------\n    message(\"Load packages\")\n    # List of packages to be used\n    packages &lt;-\n      c(\n            \"magrittr\",\n            \"dplyr\",\n            \"tidyr\",\n            \"ggplot2\",\n            \"dplyr\",\n            \"lubridate\",\n            \"RODBC\",\n            \"data.table\",\n            \"stringr\",\n            \"grid\",\n            \"gridExtra\"\n            )\n\n\n    # Install cctu package (needs devtools)\n    # Install packages which aren't installed in \"packages\"\n    # if (length(packages[!(packages %in% installed.packages()[, \"Package\"])]))\n    #   install.packages(packages[!(packages %in% installed.packages()[, \"Package\"])])\n    # Load packages\n    lapply(packages, library, character.only = TRUE)\n\n    # source functions from sub folder functions\n    file.sources = list.files(\n    c(\"progs/functions\"),\n    pattern = \"\\\\.R$\",\n    full.names = TRUE,\n    ignore.case = T\n    )\n\n    sapply(file.sources,source)\n    # define theme for figures\n    default_theme &lt;- theme_get()\n\n    graphical_theme &lt;- theme_bw() + theme(\n     axis.line.x      = element_line(color = \"black\")\n     axis.line.y      = element_line(color = \"black\"),\n     panel.grid.major = element_blank() ,\n     panel.grid.minor = element_blank(),\n     panel.background = element_blank(),\n     # panel.border = element_blank(),\n     # axis.text = element_text(size = rel(1), angle = 45)\n     axis.title.x     = element_text(margin = margin(t = 10)),\n     legend.key       = element_rect(colour = \"white\", fill = NA),\n     strip.background = element_rect(colour = \"black\")\n    )"
+  },
+  {
+    "objectID": "posts/Standardising Scripts/index.html#end-header",
+    "href": "posts/Standardising Scripts/index.html#end-header",
+    "title": "More Efficient Working",
+    "section": "End header",
+    "text": "End header\nDynamically adds dashes to the width of the script.\n\nsnippet endhead\n    `r paste0(rep.int(\"-\", 88 - rstudioapi::primary_selection(rstudioapi::getActiveDocumentContext())$range$start[2]), collapse = \"\")`"
+  },
+  {
+    "objectID": "posts/intro_hes/index.html",
+    "href": "posts/intro_hes/index.html",
+    "title": "Getting to grips with Hospital Episode Statistics",
+    "section": "",
+    "text": "In the late 1980’s, after a series of reports produced by the Steering Group on Health and Services Information advocating the need for a centralised data base of hospital information to the Secretary of State, the roll-out of a standardised administrative data for the National Health Service (NHS) began.\nUp until 1989 when the English HES database was established, hospital episode statistics were based on a sample of 10% of admitted records and whilst this may have provided some value for research, it was believed a more complete data set would improve the quality and efficiency of the NHS.\nInitially, the database was only for inpatient care however this later expanded to include:\n\nInpatient episodes (including maternity)\nOutpatient episodes\nA&E attendance\nCritical Care\n\nNote: Not all mental health activity is included in HES as there is a separate Mental Health Services Data Set (MHSDS)"
+  },
+  {
+    "objectID": "posts/intro_hes/index.html#the-different-data-sets-of-hes",
+    "href": "posts/intro_hes/index.html#the-different-data-sets-of-hes",
+    "title": "Getting to grips with Hospital Episode Statistics",
+    "section": "The different data sets of HES",
+    "text": "The different data sets of HES\n[diagram of different data sets, subsets, etc]\n\nAdmitted Patient Care (APC) - Details of episodes of care where a patient has been admitted into hospital (including regular day or night attending patients)\nCritical Care (CC) - A subset of APC data and consists of Adult Critical Care from 2008-09 onwards, with neonatal and paediatric CC included from 2017-18.\n\nEach adult CC record represents a critical care period (from admission to discharge at a particular location)\n\nOutpatients (OP) - Collection of individual records of outpatient appointment in England. It includes information on:\n\nType of outpatient consultation\nAppointment dates\nMain specialty treatment specialty under which the patient was treated\nReferral source\nWaiting times\n\nAccident & Emergency (AE) - attendances recorded at major A&E departments, single specialty A&E departments, walk-in centres and minor injury units in England.\n\nthe Emergency Care dataset ECDS has now replaced AE as the official source of emergency care data, as of April 2020.\n\nThe HES-ONS linked mortality dataset is created by linking mortality data from the Office for National Statistics (ONS) to patient information in HES. The HES database captures information on deaths only if they occurred in hospital."
+  },
+  {
+    "objectID": "posts/intro_hes/index.html#the-case-for-hes-in-research",
+    "href": "posts/intro_hes/index.html#the-case-for-hes-in-research",
+    "title": "Getting to grips with Hospital Episode Statistics",
+    "section": "The case for HES in research",
+    "text": "The case for HES in research"
+  },
+  {
+    "objectID": "posts/intro_hes/index.html#considerations-and-issues-of-hes",
+    "href": "posts/intro_hes/index.html#considerations-and-issues-of-hes",
+    "title": "Getting to grips with Hospital Episode Statistics",
+    "section": "Considerations and issues of HES",
+    "text": "Considerations and issues of HES"
+  },
+  {
+    "objectID": "posts/intro_hes/index.html#definition-of-an-episode-and-spell",
+    "href": "posts/intro_hes/index.html#definition-of-an-episode-and-spell",
+    "title": "Getting to grips with Hospital Episode Statistics",
+    "section": "Definition of an Episode and Spell",
+    "text": "Definition of an Episode and Spell\n\nSpell - Period of continuous care in one provider institution\nEpisode - Periods of continuous care from a single consultant (as in one, we’re not too concerned with the martial status of the good-looking physician who treated you).\n\n[Insert diagram of episodes within a spell]\nEach row in HES admitted patient care (APC) is a single episode which can be grouped into spells. A spell begins when a patient is admitted and ends when a patient has been discharges, transferred or dies.\n[example image of data frame]\nThings become increasingly complete when a patient is transferred to another NHS provider institution as a new spell is created with a new episode within it. For example,\n[insert image with CIP]\nHowever, a Continuous Inpatient Spell (CIP) is defined to encompass multiple spells.\nDiagnostic and procedure coding is entered by clinical coders written by the clinicians, when junior doctors are being trained they are reminded of the importance to get it correct on discharge summaries and to be clear on diagnosis of patients as there rules on what can/can’t be coded. I.e., probable diabetes cannot be coded, only definitive diagnoses can be."
+  },
+  {
+    "objectID": "posts/intro_hes/index.html#examples-of-fces-spells",
+    "href": "posts/intro_hes/index.html#examples-of-fces-spells",
+    "title": "Getting to grips with Hospital Episode Statistics",
+    "section": "Examples of FCE’s & Spells",
+    "text": "Examples of FCE’s & Spells"
+  },
+  {
+    "objectID": "posts/intro_hes/index.html#id-change---august-2021-update",
+    "href": "posts/intro_hes/index.html#id-change---august-2021-update",
+    "title": "Getting to grips with Hospital Episode Statistics",
+    "section": "ID change - August 2021 Update",
+    "text": "ID change - August 2021 Update\nData cleaning and Derivations can be found here. From 2021, the patient identified in HES (HESID) changed to Master Person Service (MPS)."
+  },
+  {
+    "objectID": "posts/intro_hes/index.html#summary",
+    "href": "posts/intro_hes/index.html#summary",
+    "title": "Getting to grips with Hospital Episode Statistics",
+    "section": "Summary",
+    "text": "Summary\n\nAll FCE’s in a spell will have the same admission date (admidate).\nepistart and epiend denote the start and end dates of an episode. epiend will be missing for unfinished episodes.\nepiorder denotes the order of episode within a spell\nadmimeth denotes the admission method and is useful for determining which admissions are planned vs unplanned e.g. Elective (booked/waiting list), emergency, transferred from another hospital, delivery/new baby.\n\nAccording to the HES data analysis guide, it is recommended to remove unfinished episodes. The reason for this is, if you do not, you will have duplicates as unfinished episodes will also show in the next financial year as finished episodes. epistat is used to define an episode’s status, a finished episode is coded using the epistat = 3 meanwhile unfinished episodes are epistat = 1 .\nVariables relating to discharge such as date (disdate), method (dismeth), destination (disdest), etc will only be recorded for the last episode of a spell. Therefore, if you wish to make this complete within a spell, you will need to perform some R trickery."
+  },
+  {
+    "objectID": "posts/intro_hes/index.html#cipssuperspells",
+    "href": "posts/intro_hes/index.html#cipssuperspells",
+    "title": "Getting to grips with Hospital Episode Statistics",
+    "section": "CIPS/Superspells",
+    "text": "CIPS/Superspells\nAs briefly mentioned, a CIPS (also known as a superspell) is used to define one continuous period of care within NHS hospitals. An additional complexity when using this is the need to define transfers between hospitals. This can be done by looking at the admission date and discharge dates (allowing for possibly 1 day gap as they may be discharged/admitted around midnight on a given day which looks like a gap but isn’t). Columns such as admission method admimeth, admission source admisorc and discharge destination disdest can be used to work out transfers.\nWhy is that important? It is more important if you’re analysing your data at a hospital level as you will need to determine which hospital to attribute your outcomes to. A patient could have had a procedure at one hospital but recovering in another, for example.\nDocumentation into the methodology can be found here"
+  },
+  {
+    "objectID": "posts/intro_hes/index.html#hes-analysis-steps",
+    "href": "posts/intro_hes/index.html#hes-analysis-steps",
+    "title": "Getting to grips with Hospital Episode Statistics",
+    "section": "HES analysis steps",
+    "text": "HES analysis steps\nHES analysis guide can be found here.\nSummary of steps:\n\nInitial data checks\n\nAre all the requested variables in the data?\nHow much of the data is missing\n\nData cleaning\n\nCheck date columns\nRemove duplicates and unfinished episodes\nLink admissions into spells/CIPS\nIf you’re using linked data do a sense check e.g. Do rates over time make sense\nDerive analysis variables\n\nAnalyse results\n\nLook at sensitivity analysis and tests robustness. I.e. results are not driven by odd artifacts resulting from the use of HES\n\nValidate\n\nIdeally comparing to published data or experts (e.g. clinicians)"
+  },
+  {
+    "objectID": "posts/intro_hes/index.html#small-numbers",
+    "href": "posts/intro_hes/index.html#small-numbers",
+    "title": "Getting to grips with Hospital Episode Statistics",
+    "section": "Small Numbers",
+    "text": "Small Numbers\nA small number in HES is defined as 1 - 5 which may allow for the identification of individual patients or a hospital consultant. When publishing or releasing HES data, cell values from 1-5 should be omitted to prevent possible identification. A note can be added at the bottom such as:\n\n\n\n\n\n\nSmall Numbers table text\n\n\n\n“* in this table denotes a figure between 1 and 5”\n\n\nThe small numbers guidance also extends to restrictions on certain ICD/OPCS codings which are sensitive (e.g. Abortions, HIV, IVF, STI’s). Advice should be sought from HSCIC if there are any doubts."
+  },
+  {
+    "objectID": "posts/collaborative_working/index.html",
+    "href": "posts/collaborative_working/index.html",
+    "title": "Collaborative Working",
+    "section": "",
+    "text": "The communication of ideas has interested me for a while, ever since I was a tutor I was always looking for alternative and interesting ways to visualise things. With the rise of remote working post-pandemic, it seems more important than ever to focus on creating a collaborative working environment which is also efficient when not working face-to-face. By doing so, and creating good guides, you minimise the time wasted from not having to refind solutions to previous problems as well as, a good and clear guide can avoid the same questions repeated. It is better to invest some time upfront now than to pay for it later on.\nIt is also much more enjoyable and productive working when you feel part of a community than to awkwardly work disjointedly. In this post I will go through some different tools for enabling more collaborative working I have either worked with or seen implemented elsewhere. Some of these are very common and widely used, some less so.\nTl;dr, It is all good and well having lots of ideas to improve working but I strongly believe in the necessity of communicating these ideas and making understandable, and dare I say, interesting. How well I’ve doing that here I don’t know, I hope to improve though…"
+  },
+  {
+    "objectID": "posts/collaborative_working/index.html#motivation",
+    "href": "posts/collaborative_working/index.html#motivation",
+    "title": "Collaborative Working",
+    "section": "Motivation",
+    "text": "Motivation\nThis is something I stumbled across watching a video by Novo Nordisk when they were describing their journey to an R based FDA submission. I definitely recommend giving it a watch. They also go through how they used docker and Azure DevOps in their workflow.\nA website/blog might be useful as a home to host various program specific documents, guides and a place for forums to ask questions. Essentially, trying to create a community.\nI liked this idea in particular (enough that it played some role in the creation of this blog) as it creates a centralised place to find information. There is nothing more frustrating than spending hours looking at how to do something only to find the information buried in some folder nested in another folder somewhere far away from what you expected (as the Romanians say ‘la mama naibii’). After-all, if you were trying to navigate your way through a building, is it easier to do so blindly wondering the hundred unlabeled corridors and rooms or when you have a map?"
+  },
+  {
+    "objectID": "posts/collaborative_working/index.html#quarto",
+    "href": "posts/collaborative_working/index.html#quarto",
+    "title": "Collaborative Working",
+    "section": "Quarto",
+    "text": "Quarto\nWriting this in Quarto may seem biased but I do see the merit in creating a website/blog using Quarto. It is useful if you’re a team of R-users and want to create posts / guides using R but it can also handle other languages such as Python and JS, both of which I have used within this blog. I mean, it’s easy to navigate and looks pretty right?…right?\nSome elements I think are useful to include are:\n\nBlog posts with guides which are searchable in some way and split into categories. Not that I want to segregate users, but it can be useful to have dedicated sections for R and SAS users rather than to have them messily combined.\n\nIt may also be good to have who authored the guide, last modified/date written, and who maintains responsibility for that piece of work so that people know who to go to if they have questions.\n\nCreate a link to find useful bits of code (this could be done by linking your company GitHub account) and socials.\nEnable comments to receive feedback and create discussions on pages. Chances are if someone has a comment, others have probably had a similar thought.\nCreate a log of questions / answers forum.\n\nThis could be done in anyway you wish but I will discuss using stack overflow for teams in the upcoming sections."
+  },
+  {
+    "objectID": "posts/collaborative_working/index.html#personal-corporate-github-accounts",
+    "href": "posts/collaborative_working/index.html#personal-corporate-github-accounts",
+    "title": "Collaborative Working",
+    "section": "Personal / Corporate GitHub accounts",
+    "text": "Personal / Corporate GitHub accounts\n\n\n\n\n\n\nNote from GitHub\n\n\n\nMost people will use one personal account for all their work on GitHub.com, including both open source projects and paid employment. If you’re currently using more than one personal account that you created for yourself, we suggest combining the accounts.\n\n\nGitHub does recommend having just one account for both person and professional use. Whether you decide to listen to this or not is up to you but nevertheless I would not mix personal and professional projects in any way shape or form. If you’re going to use your personal account then you should use your work email as a secondary email on your GitHub account and the organisation should have an SSO set up.\nYou can also commit on behalf of an organisation by doing the following:\n\ngit commit -m \"Some commit message\"\n&gt;\n&gt;\non-behalf-of: @ORG NAME@ORGANISATION.COM\n\nYou need to create two newlines between the commit and on-behalf-of command. The commmit, message and badge will then appear on GitHub when you next push.\nWhen it comes the time to leave the company then you should do the following:\n\nunverify the company email address.\nchange the primary address to your personal email.\nremove any references to the company/organisation.\nremove yourself as a member from the organisation and transfer ownerships to another person.\nCheck 2FA methods can be accessed using your personal accounts not company."
+  },
+  {
+    "objectID": "posts/collaborative_working/index.html#the-good",
+    "href": "posts/collaborative_working/index.html#the-good",
+    "title": "Collaborative Working",
+    "section": "The good",
+    "text": "The good\nOn a few occasions I have encountered the issue of “The document is locked for editing by another user”. Whether this be a colleague working on the document or simply left if it open, it can be an inconvenience and slow down your productivity. An advantage of Teams (or Google docs/Overleaf) is the ability to collaborate on documents and make edits at the same time as another person.\nMicrosoft teams also allows you to create a number of teams. For example, ‘Statistics’ team or ‘R-users’. Within a team, channels can be made so that conversations/topics can have their own designated area (Which I much prefer to keep things separate as it helps when trying to locate things in the future).\nFinally, general communication through email can be tedious. I’ve always found it much easier talking and discussing things in a group either via Teams chat or a call. Additionally, having dedicated channels/places for discussion on a number of projects is much easier from an organisational point of view (who wants a hundred emails and to be continuously cc’d into long email chains?)."
+  },
+  {
+    "objectID": "posts/collaborative_working/index.html#the-not-so-good",
+    "href": "posts/collaborative_working/index.html#the-not-so-good",
+    "title": "Collaborative Working",
+    "section": "The not so good",
+    "text": "The not so good\nSome correspondences are better suited to email, particularly if you want to be sure of a trail. Depending on your organisational settings sometimes messages disappear after a certain period of time or you may find yourself having to re-upload documents in a group chat. Admittedly, these are fairly minor inconveniences."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "meetings",
+    "section": "",
+    "text": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs\n\n\n\n\n\n\nMeetings\n\n\n\n\n\n\n\n\n\nApr 29, 2025\n\n\nCorey Voller\n\n\n\n\n\n\n\n\n\n\n\n\nCollaborative Working\n\n\nA short review into the tools for facilitating a collaborative working environment\n\n\n\nR\n\n\nWorking Practices\n\n\n\n\n\n\n\n\n\nMar 18, 2024\n\n\nCorey Voller\n\n\n\n\n\n\n\n\n\n\n\n\nGetting to grips with Hospital Episode Statistics\n\n\nAn introduction into HES\n\n\n\nR\n\n\ncode\n\n\n\n\n\n\n\n\n\nMar 12, 2024\n\n\nCorey Voller\n\n\n\n\n\n\n\n\n\n\n\n\nVersion Control with Git in R\n\n\nIntroduction to using version control in RStudio with Git\n\n\n\nR\n\n\nGit\n\n\nVersion Control\n\n\n\n\n\n\n\n\n\nFeb 28, 2024\n\n\nCorey Voller\n\n\n\n\n\n\n\n\n\n\n\n\nMore than just a pipe dream\n\n\nThe use of different pipes in R\n\n\n\nR\n\n\ncode\n\n\n\n\n\n\n\n\n\nFeb 11, 2024\n\n\nCorey Voller\n\n\n\n\n\n\n\n\n\n\n\n\nMore Efficient Working\n\n\nA guide to standardising scripts\n\n\n\nR\n\n\ncode\n\n\nWorking Practices\n\n\n\n\n\n\n\n\n\nJan 28, 2024\n\n\nCorey Voller\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "about{Corey}",
+    "section": "",
+    "text": "My name is Corey, I graduated from UCL with a Masters in Medical Statistics in 2021 and since been working as a Statistician in the UK. I enjoy searching for new topics outside of my day-job relating to statistics and programming in R although, I will occasionally use Python to create animated videos with a package called manim (if you’ve seen any 3Blue1Brown video’s on YouTube you will have seen this package implemented there.)\n\nThis blog will be focused primarily on statistics with an emphasis in medical applications although not exclusively. The aim is to push my statistical knowledge, searching for new methods and to catalogue these as often the things I stumble across become forgotten. A lot of my day job is spent looking at static outputs so where possible I will try to showcase interactive and alternative ways to display data (3-d plots, dynamic figures, tables, etc). The opinions and thoughts expressed here are my own and do not represent anyone else (i.e., employer).\n\n\n\n\n\n\n\n\n\n.quarto\nThis blog is currently written using quarto docs, an open-source publishing system (Think Rmarkdown on steroids, with added functionality e.g. ability to handle multiple languages) and html/css.\n\n\n.github\nIt is hosted using github pages (Although, I’ve heard good things about Netlify).\n\n\n.rversion\nAt the time of writing, I am using it within RStudio (R 4.3.1).\n\n\n.badprogrammer\n\n\n\n.pixel\nPixel images are created using aseprite.\n\n\n.names\nCorey"
+  },
+  {
+    "objectID": "about.html#description",
+    "href": "about.html#description",
+    "title": "about{Corey}",
+    "section": "",
+    "text": "My name is Corey, I graduated from UCL with a Masters in Medical Statistics in 2021 and since been working as a Statistician in the UK. I enjoy searching for new topics outside of my day-job relating to statistics and programming in R although, I will occasionally use Python to create animated videos with a package called manim (if you’ve seen any 3Blue1Brown video’s on YouTube you will have seen this package implemented there.)\n\nThis blog will be focused primarily on statistics with an emphasis in medical applications although not exclusively. The aim is to push my statistical knowledge, searching for new methods and to catalogue these as often the things I stumble across become forgotten. A lot of my day job is spent looking at static outputs so where possible I will try to showcase interactive and alternative ways to display data (3-d plots, dynamic figures, tables, etc). The opinions and thoughts expressed here are my own and do not represent anyone else (i.e., employer).\n\n\n\n\n\n\n\n\n\n.quarto\nThis blog is currently written using quarto docs, an open-source publishing system (Think Rmarkdown on steroids, with added functionality e.g. ability to handle multiple languages) and html/css.\n\n\n.github\nIt is hosted using github pages (Although, I’ve heard good things about Netlify).\n\n\n.rversion\nAt the time of writing, I am using it within RStudio (R 4.3.1).\n\n\n.badprogrammer\n\n\n\n.pixel\nPixel images are created using aseprite.\n\n\n.names\nCorey"
+  },
+  {
+    "objectID": "about.html#arguments",
+    "href": "about.html#arguments",
+    "title": "about{Corey}",
+    "section": "",
+    "text": ".quarto\nThis blog is currently written using quarto docs, an open-source publishing system (Think Rmarkdown on steroids, with added functionality e.g. ability to handle multiple languages) and html/css.\n\n\n.github\nIt is hosted using github pages (Although, I’ve heard good things about Netlify).\n\n\n.rversion\nAt the time of writing, I am using it within RStudio (R 4.3.1).\n\n\n.badprogrammer\n\n\n\n.pixel\nPixel images are created using aseprite.\n\n\n.names\nCorey"
+  },
+  {
+    "objectID": "about.html#see-also",
+    "href": "about.html#see-also",
+    "title": "about{Corey}",
+    "section": "See Also",
+    "text": "See Also\nblog() for various posts on statistics and programming\n\n\n\n\n\n  A Bayesian is one who, vaguely expecting a horse, and catching a glimpse of a donkey, strongly believes he has seen a mule.\n  \n  \n\n\n\n  Sometimes a weakly informative prior is just a shit one."
+  },
+  {
+    "objectID": "misc.html",
+    "href": "misc.html",
+    "title": "Miscellaneous",
+    "section": "",
+    "text": "I will be updating this page periodically to display a network diagram of the books I have read each calendar year. You might be asking why would I do that. The only answer I can think of is because it seems like a neat way to display data and to motivate me to read more (Note, the network below is not complete but it is interactive).\n\n2024\n\nmiserables = FileAttachment(\"books_24.json\").json()\n\nfunction ForceGraph(\n  {\n    nodes, // an iterable of node objects (typically [{id}, …])\n    links // an iterable of link objects (typically [{source, target}, …])\n  },\n  {\n    nodeId = (d) =&gt; d.id, // given d in nodes, returns a unique identifier (string)\n    nodeGroup, // given d in nodes, returns an (ordinal) value for color\n    nodeGroups, // an array of ordinal values representing the node groups\n    nodeTitle, // given d in nodes, a title string\n    nodeFill = \"currentColor\", // node stroke fill (if not using a group color encoding)\n    nodeStroke = \"currentColor\", // node stroke color\n    nodeStrokeWidth = 0, // node stroke width, in pixels\n    nodeStrokeOpacity = 0.1, // node stroke opacity\n    nodeRadius = 7, // node radius, in pixels\n    nodeStrength=-100,\n    linkSource = ({ source }) =&gt; source, // given d in links, returns a node identifier string\n    linkTarget = ({ target }) =&gt; target, // given d in links, returns a node identifier string\n    linkStroke = \"#FFFFFF\", // link stroke color\n    linkStrokeOpacity = 0.6, // link stroke opacity\n    linkStrokeWidth = 2, // given d in links, returns a stroke width in pixels\n    linkStrokeLinecap = \"round\", // link stroke linecap\n    linkStrength=.05,\n    colors = d3.schemeTableau10, // an array of color strings, for the node groups\n    width = 640, // outer width, in pixels\n    height = 600, // outer height, in pixels\n    invalidation // when this promise resolves, stop the simulation\n  } = {}\n) {\n  // Compute values.\n  const N = d3.map(nodes, nodeId).map(intern);\n  const LS = d3.map(links, linkSource).map(intern);\n  const LT = d3.map(links, linkTarget).map(intern);\n  if (nodeTitle === undefined) nodeTitle = (_, i) =&gt; N[i];\n  const T = nodeTitle == null ? null : d3.map(nodes, nodeTitle);\n  const G = nodeGroup == null ? null : d3.map(nodes, nodeGroup).map(intern);\n  const W =\n    typeof linkStrokeWidth !== \"function\"\n      ? null\n      : d3.map(links, linkStrokeWidth);\n  const L = typeof linkStroke !== \"function\" ? null : d3.map(links, linkStroke);\n\n  // Replace the input nodes and links with mutable objects for the simulation.\n  nodes = d3.map(nodes, (_, i) =&gt; ({ id: N[i] }));\n  links = d3.map(links, (_, i) =&gt; ({ source: LS[i], target: LT[i] }));\n\n  // Compute default domains.\n  if (G && nodeGroups === undefined) nodeGroups = d3.sort(G);\n\n  // Construct the scales.\n  const color = nodeGroup == null ? null : d3.scaleOrdinal(nodeGroups, colors);\n\n  // Construct the forces.\n  const forceNode = d3.forceManyBody();\n  const forceLink = d3.forceLink(links).id(({ index: i }) =&gt; N[i]);\n  if (nodeStrength !== undefined) forceNode.strength(nodeStrength);\n  if (linkStrength !== undefined) forceLink.strength(linkStrength);\n\n  const simulation = d3\n    .forceSimulation(nodes)\n    .force(\"link\", forceLink)\n    .force(\"charge\", forceNode)\n    .force(\"center\", d3.forceCenter())\n    .force('collide', d3.forceCollide(function(d) {\n    return d.id === \"j\" ? 20 : 10\n  }))\n    .on(\"tick\", ticked);\n\n  const svg = d3\n    .create(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n    .attr(\"viewBox\", [-width / 2, -height / 2, width, height])\n    .attr(\"style\", \"max-width: 100%; height: auto; height: intrinsic;\");\n\n  const link = svg\n    .append(\"g\")\n    .attr(\"stroke\", typeof linkStroke !== \"function\" ? linkStroke : 1.5)\n    .attr(\"stroke-opacity\", linkStrokeOpacity)\n    .attr(\n      \"stroke-width\",\n      typeof linkStrokeWidth !== \"function\" ? linkStrokeWidth : 1.5\n    )\n    .attr(\"stroke-linecap\", linkStrokeLinecap)\n    .selectAll(\"line\")\n    .data(links)\n    .join(\"line\");\n\n  const node = svg\n    .append(\"g\")\n    .attr(\"fill\", nodeFill)\n    .attr(\"stroke\", nodeStroke)\n    .attr(\"stroke-opacity\", nodeStrokeOpacity)\n    .attr(\"stroke-width\", nodeStrokeWidth)\n    // SM: change\n    // .selectAll(\"circle\")\n    .selectAll(\"g\")\n    .data(nodes)\n    // SM: change\n    // .join(\"circle\")\n    .join(\"g\")\n    // SM: change\n    // .attr(\"r\", nodeRadius)\n    .call(drag(simulation));\n\n  // SM: change\n  // append circle and text to node &lt;g&gt; (selection of all &lt;g&gt; elements corresponding to each node)\n  node.append(\"circle\").attr(\"r\", nodeRadius);\n  node\n    .append(\"text\")\n    .text(({ index: i }) =&gt; (\"\\u00A0\\u00A0\"+ T[i]))\n    //.attr(\"fill\", \"white\")\n    .attr(\"stroke\", \"none\")\n    .attr(\"font-size\", \"1em\");\n\n  if (W) link.attr(\"stroke-width\", ({ index: i }) =&gt; W[i]);\n  if (L) link.attr(\"stroke\", ({ index: i }) =&gt; L[i]);\n  if (G) node.attr(\"fill\", ({ index: i }) =&gt; color(G[i]));\n  if (T) node.append(\"title\").text(({ index: i }) =&gt; T[i]);\n  if (invalidation != null) invalidation.then(() =&gt; simulation.stop());\n\n  function intern(value) {\n    return value !== null && typeof value === \"object\"\n      ? value.valueOf()\n      : value;\n  }\n\n  function ticked() {\n    link\n      .attr(\"x1\", (d) =&gt; d.source.x)\n      .attr(\"y1\", (d) =&gt; d.source.y)\n      .attr(\"x2\", (d) =&gt; d.target.x)\n      .attr(\"y2\", (d) =&gt; d.target.y);\n\n    node.attr(\"transform\", (d) =&gt; `translate(${d.x} ${d.y})`);\n    // SM: change\n    // instead of moving the circle centers we transform the whole &lt;g&gt;\n    // .attr(\"cx\", d =&gt; d.x)\n    // .attr(\"cy\", d =&gt; d.y);\n  }\n\n  function drag(simulation) {\n    function dragstarted(event) {\n      if (!event.active) simulation.alphaTarget(0.3).restart();\n      event.subject.fx = event.subject.x;\n      event.subject.fy = event.subject.y;\n    }\n\n    function dragged(event) {\n      event.subject.fx = event.x;\n      event.subject.fy = event.y;\n    }\n\n    function dragended(event) {\n      if (!event.active) simulation.alphaTarget(0);\n      event.subject.fx = null;\n      event.subject.fy = null;\n    }\n    return d3\n      .drag()\n      .on(\"start\", dragstarted)\n      .on(\"drag\", dragged)\n      .on(\"end\", dragended);\n  }\n\n  return Object.assign(svg.node(), { scales: { color } });\n}\n\nchart = ForceGraph(miserables, {\n  nodeId: d =&gt; d.id,\n  nodeGroup: d =&gt; d.group,\n  nodeTitle: d =&gt; `${d.id}\\n`,\n  linkStrokeWidth: l =&gt; Math.sqrt(l.value),\n  width,\n  height: 600,\n  invalidation // a promise to stop the simulation when the cell is re-run\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHere is the equivalent data frame containing the books I have read so far in 2024:"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#objectives",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#objectives",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Objectives",
+    "text": "Objectives\n\nFeedback on the slides/presentation\nBayesian/Frequentist stopping boundary\nExplanation of differences using different priors\nNext steps"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "APTS Durham",
+    "text": "APTS Durham"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-1",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-1",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "APTS Durham",
+    "text": "APTS Durham\n\n\n\nUse version control (Git)"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-2",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-2",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "APTS Durham",
+    "text": "APTS Durham\n\n\n\nAttend lots of seminars\nUse version control (Git)"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-3",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-3",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "APTS Durham",
+    "text": "APTS Durham\n\n\n\nRead the latest and first paper on a topic\nAttend lots of seminars\nUse version control (Git)"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-4",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-4",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "APTS Durham",
+    "text": "APTS Durham\n\n\n\nGet the simplest case working\nRead the latest and first paper on a topic\nAttend lots of seminars\nUse version control (Git)"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-5",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#apts-durham-5",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "APTS Durham",
+    "text": "APTS Durham\n\n\n\nGet the simplest case working  Otherwise, go back to the drawing board\nRead the latest and first paper on a topic\nAttend lots of seminars\nUse version control (Git)"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Stopping Boundary",
+    "text": "Stopping Boundary\n\nYour browser does not support the video tag."
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-1",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-1",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Stopping Boundary",
+    "text": "Stopping Boundary"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-2",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-2",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Stopping Boundary",
+    "text": "Stopping Boundary\n\n\n\nBayesian stopping rule"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-3",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-3",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Stopping Boundary",
+    "text": "Stopping Boundary\n\n\n\nBayesian stopping rule\n\n\n\nBayesian allocation ratio only"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-4",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-4",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Stopping Boundary",
+    "text": "Stopping Boundary\n\n\n\nBayesian stopping rule\n\n\n\nBayesian allocation ratio only"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-5",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-5",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Stopping Boundary",
+    "text": "Stopping Boundary\n\n\n\n\n\nIrving John Good (1916 - 2009)\n\n\n\n\n\nThe subjectivist (i.e. Bayesian) states his judgements, whereas the objectivist sweeps them under the carpet by calling assumptions knowledge, and he basks in the glorious objectivity of science."
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-6",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#stopping-boundary-6",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Stopping Boundary",
+    "text": "Stopping Boundary\n\n\n\n\n\nIrving John Good (1916 - 2009)\n\n\n\n\n\nThe subjectivist (i.e. Bayesian) states his judgements, whereas the objectivist sweeps them under the carpet by calling assumptions knowledge, and he basks in the glorious objectivity of science.\n\n\n\n\n\nWhat assumptions do we want to make?\nInterpretability\nOption 3\nTime constraint"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Maximum likelihood estimate",
+    "text": "Maximum likelihood estimate"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-1",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-1",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Maximum likelihood estimate",
+    "text": "Maximum likelihood estimate\n\nGenerate data from group j using independent normal distributions with mean \\(\\mu_j\\) and a known common variance \\(\\sigma^2\\).\n\\[\nX_{i,j} \\sim N(\\mu_j, \\sigma^2)\n\\]\nwhere \\(j=1,2\\) and \\(i=1,\\ldots,n_j\\)."
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-2",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-2",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Maximum likelihood estimate",
+    "text": "Maximum likelihood estimate\n\nGenerate data from group j using independent normal distributions with mean \\(\\mu_j\\) and a known common variance \\(\\sigma^2\\).\n\\[\nX_{i,j} \\sim N(\\mu_j, \\sigma^2)\n\\]\nwhere \\(j=1,2\\) and \\(i=1,\\ldots,n_j\\).\nUsing pooled data over groups, we get the following expression for our estimate of the treatment effect \\(\\theta\\) at analysis \\(k\\)\n\\[\n\\hat{\\theta}_{p,K} = \\frac{\\sum_{k=1}^{K}\\bar{X}_1^k n_1^k}{\\sum_{k=1}^{K}n_1^k} - \\frac{\\sum_{k=1}^{K}\\bar{X}_2^k n_2^k}{\\sum_{k=1}^{K}n_2^k}\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-3",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-3",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Maximum likelihood estimate",
+    "text": "Maximum likelihood estimate\n\nsimulate_RAR &lt;- function(N, K, mu_1, mu_2, sigma, I_theta_fix,delta) {\n  # Ratio, estimates of mu, theta\n  muhat_1 &lt;- muhat_2 &lt;- ratio &lt;- numeric(K)\n  theta_hat &lt;- rep(NA, K)\n  # data from trial\n  x_1 &lt;- x_2 &lt;- numeric(0)\n  # Information\n  I1 &lt;- I2 &lt;- numeric(K)\n  # Number of patients per arm\n  n1 &lt;- n2 &lt;- n1.new &lt;- n2.new &lt;- w &lt;- numeric(K)\n  S1 &lt;- N1 &lt;- S2 &lt;- N2 &lt;- 0\n  for (k in 1:K) {\n    if (k == 1) {\n      # Initial equal allocation\n      ratio[k] &lt;- 1\n      # Enroll 20 patients when N = 100, K=5\n      n1.new[k] &lt;- n2.new[k] &lt;- N / K\n      n1[k] &lt;- n2[k] &lt;- N / K\n    } else {\n      # Define ratio based on formula with previous estimate of theta\n      ratio[k] &lt;-  a ** (theta_hat[k - 1]/ (2 * delta))\n      # Patients in N1\n      n1[k] &lt;- (k / 5) * (sigma ^ 2) * I_theta_fix * (1 + ratio[k])\n      # Patient in N2\n      n2[k] &lt;- (k / 5) * (sigma ^ 2) * I_theta_fix * (1 + (1 / ratio[k]))\n      # Difference in patients from previous\n      n1.new[k] &lt;- n1[k] - n1[k - 1]\n      n2.new[k] &lt;- n2[k] - n2[k - 1]\n      if(n1.new[k]&lt;=0){\n        n1[k]= n1[k - 1]+0.00001\n        n1.new[k] = n1[k] - n1[k - 1]\n        #n2[k] = (((k/5)*I_theta_fix)^(-1)-1/(n2/sigma^2))^(-1)\n        n2[k] = (k*n1[k]*sigma^2*I_theta_fix)/(5*n1[k]-k*sigma^2*I_theta_fix)\n        n2.new[k] = n2[k]-n2[k-1]\n      }\n      if(n2.new[k]&lt;=0){\n        n2[k]= n2[k - 1]+0.00001\n        n2.new[k] = n2[k] - n2[k - 1]\n        #n1[k] = (((k/5)*I_theta_fix)^(-1)-1/(n2[k]/sigma^2))^(-1)\n        n1[k] = (k*n2[k]*sigma^2*I_theta_fix)/(5*n2[k]-k*sigma^2*I_theta_fix)\n        n1.new[k] = n1[k]-n1[k-1]\n      }\n    }\n    #Sample once from normal distribution\n    x_1[k] &lt;- rnorm(1, mu_1, sqrt(sigma^2/n1.new[k]))\n    x_2[k] &lt;- rnorm(1, mu_2, sqrt(sigma^2/n2.new[k]))\n    \n    muhat_1[k] &lt;- sum(n1.new[1:k] * x_1[1:k]) / sum(n1.new)\n    muhat_2[k] &lt;- sum(n2.new[1:k] * x_2[1:k]) / sum(n2.new)\n    theta_hat[k] &lt;- muhat_1[k] - muhat_2[k]\n  }\n  return(list(n1 = n1, n2 = n2, theta_hat = theta_hat))\n}"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-4",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#maximum-likelihood-estimate-4",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Maximum likelihood estimate",
+    "text": "Maximum likelihood estimate\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDesigns with no early stopping\n\n\n𝜃\n\nTarget\n\n\nRAR Using Pooled θ\n\n\nRAR Using Grouped θ\n\n\n\nEN1\nEN2\ntotal\nEN1\nEN2\ntotal\nEN1\nEN2\ntotal\n\n\n\n\n-½𝛿\n85.4\n120.7\n206.1\n86.4 (0)\n122.8 (0)\n209.2\n90 (0)\n120.1 (0)\n210.1\n\n\n0𝛿\n100\n100\n200\n101.4 (0)\n101.5 (0)\n202.9\n102.5 (0)\n102.5 (0)\n205\n\n\n½𝛿\n120.7\n85.4\n206.1\n122.8 (0)\n86.4 (0)\n209.2\n120.1 (0)\n90 (0)\n210.1\n\n\n1𝛿\n150\n75\n225\n153 (0)\n75.7 (0)\n228.7\n145 (0)\n81.2 (0)\n226.2\n\n\n3/2𝛿\n191.4\n67.7\n259.1\n195.8 (0)\n68.2 (0)\n263.9\n180.1 (0)\n75 (0)\n255.1\n\n\n2𝛿\n250\n62.5\n312.5\n256.4 (0.1)\n62.8 (0)\n319.3\n229.9 (0.1)\n70.6 (0)\n300.5\n\n\n\nResults are based on 1e+06 simulations; mean (standard error) to 1 decimal place"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-1",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-1",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-2",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-2",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s\n\nSuppose the responses of patients from treatment group j are iid normals\n\\[\nX_{i,j}|\\mu_j,\\tau \\sim N(\\mu_j, \\tau^{-1})\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-3",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-3",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s\n\nSuppose the responses of patients from treatment group j are iid normals\n\\[\nX_{i,j}|\\mu_j,\\tau \\sim N(\\mu_j, \\tau^{-1})\n\\]\nWith priors on \\(\\mu\\) for each treatment j\n\\[\n\\mu_j \\sim N(\\mu_{0,j}, \\tau_{0,j}^{-1})\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-4",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-4",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s\n\nSuppose the responses of patients from treatment group j are iid normals\n\\[\nX_{i,j}|\\mu_j,\\tau \\sim N(\\mu_j, \\tau^{-1})\n\\]\nWith priors on \\(\\mu\\) for each treatment j\n\\[\n\\mu_j \\sim N(\\mu_{0,j}, \\tau_{0,j}^{-1})\n\\]\nThen the posterior \\(\\theta|\\bar{x}_1^k,\\bar{x}_2^k\\) has mean\n\\[\n\\frac{\\tau_{0,1}\\mu_{0,1}+\\sum_{i=1}^{k} n_1^i \\tau \\mu_1^k}{\\tau_{0,1}+\\sum_{i=1}^k n_1^i \\tau} - \\frac{\\tau_{0,2}\\mu_{0,2}+\\sum_{i=1}^{k} n_2^i \\tau \\mu_2^k}{\\tau_{0,2}+\\sum_{i=1}^k n_2^i \\tau}\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-5",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-5",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s\n\nSuppose the responses of patients from treatment group j are iid normals\n\\[\nX_{i,j}|\\mu_j,\\tau \\sim N(\\mu_j, \\tau^{-1})\n\\]\nWith priors on \\(\\mu\\) for each treatment j\n\\[\n\\mu_j \\sim N(\\mu_{0,j}, \\tau_{0,j}^{-1})\n\\]\nThen the posterior \\(\\theta|\\bar{x}_1^k,\\bar{x}_2^k\\) has mean\n\\[\n\\frac{\\tau_{0,1}\\mu_{0,1}+\\sum_{i=1}^{k} n_1^i \\tau \\mu_1^k}{\\tau_{0,1}+\\sum_{i=1}^k n_1^i \\tau} - \\frac{\\tau_{0,2}\\mu_{0,2}+\\sum_{i=1}^{k} n_2^i \\tau \\mu_2^k}{\\tau_{0,2}+\\sum_{i=1}^k n_2^i \\tau}\n\\]\nand variance\n\\[\n1/(\\tau_{0,1}+\\sum_{i=1}^k n_1^i \\tau) + 1/(\\tau_{0,2}+\\sum_{i=1}^k n_2^i \\tau)\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-6",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-6",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s\n\nSuppose the responses of patients from treatment group j are iid normals\n\\[\nX_{i,j}|\\mu_j,\\tau \\sim N(\\mu_j, \\tau^{-1})\n\\]\nWith priors on \\(\\mu\\) for each treatment j\n\\[\n\\mu_j \\sim N(\\mu_{0,j}, \\tau_{0,j}^{-1})\n\\]\nThen the posterior \\(\\theta|\\bar{x}_1^k,\\bar{x}_2^k\\) has mean\n\\[\n\\frac{\\color{gray}{\\tau_{0,1}\\mu_{0,1}+}\\sum_{i=1}^{k} n_1^i \\tau \\mu_1^k}{\\color{gray}{\\tau_{0,1}}+\\sum_{i=1}^k n_1^i \\tau}\n-\n\\frac{\\color{gray}{\\tau_{0,2}\\mu_{0,2}+}\\sum_{i=1}^{k} n_2^i \\tau \\mu_2^k}{\\color{gray}{\\tau_{0,2}}+\\sum_{i=1}^k n_2^i \\tau}\n\\]\nand variance\n\\[\n1/(\\tau_{0,1}+\\sum_{i=1}^k n_1^i \\tau) + 1/(\\tau_{0,2}+\\sum_{i=1}^k n_2^i \\tau)\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-7",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-7",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s\n\nposterior_mean &lt;- function(prior_mean, prior_tau, data, tau, n,k) {\n  result &lt;- tryCatch({\n    # Check if the lengths of n and data are compatible\n    if (length(n) != length(data)) {\n      stop(\"Length of n and data must be the same. Found n of length \", length(n), \" and data of length \", length(data))\n    }\n    # Calculate post mean\n    posterior_mean_result &lt;- ((prior_tau) * prior_mean + sum(n * (tau) * (data))) / (sum(n* tau) + prior_tau)\n    return(posterior_mean_result)\n    \n  }, error = function(e) {\n    # Catch the error and return a message\n    cat(\"Error in posterior_mean (K=):\",k, e$message, \"\\n\")\n    cat(\"n: \",paste(n),\"\\n\")\n    cat(\"data: \",paste(data),\"\\n\")\n    return(NA)  # Return NA or any default value in case of error\n  })\n  \n  return(result)\n}\n\nx_1[k] &lt;- rnorm(1, mean = mu_1, sd = sqrt(sigma ^ 2 / n1.new[k]))\nx_2[k] &lt;- rnorm(1, mean = mu_2, sd =  sqrt(sigma ^ 2 / n2.new[k]))\n\n# Posterior variances\ntau_n1[k] &lt;- posterior_tau(prior_tau = tau_01,\n                           tau = tau,\n                           n = n1.new[1:k])\n\ntau_n2[k] &lt;- posterior_tau(prior_tau = tau_02,\n                           tau = tau,\n                           n = n2.new[1:k])\n# Posterior means\nmu_n1[k] &lt;- posterior_mean(\n  prior_mean = mu_01,\n  n = n1.new[1:k],\n  tau = tau,\n  prior_tau = tau_01,\n  data = x_1[1:k],\n  k = k\n)\n\nmu_n2[k] &lt;- posterior_mean(\n  prior_mean = mu_02,\n  n = n2.new[1:k],\n  tau = tau,\n  prior_tau = tau_02,\n  data = x_2[1:k],\n  k = k\n)\n\ntheta_hat[k] &lt;- mu_n1[k] - mu_n2[k]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-8",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#prior-on-individual-mus-8",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Prior on individual \\(\\mu\\)’s",
+    "text": "Prior on individual \\(\\mu\\)’s\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo early stopping using frequentist and bayesian methods with pooled θ\n\n\n\nEN1_pool\nEN2_pool\ntotal_pool\nEN1_brar_1\n\nEN2_brar_1\n\ntotal_brar_1\n\nEN1_brar_2\n\nEN2_brar_2\n\ntotal_brar_2\n\nEN1_brar_3\n\nEN2_brar_3\n\ntotal_brar_3\n\nEN1_brar_4\n\nEN2_brar_4\n\ntotal_brar_4\n\n\n\n\n\n-1/2𝛿\n86.4 (0)\n122.8 (0)\n209.2 (0)\n86.4 (0)\n\n\n\nEquals\n\n\n\n\n122.8 (0)\n\n\n\nEquals\n\n\n\n\n209.2 (0)\n\n\n\nEquals\n\n\n\n\n94.5 (0)\n\n\n\nArrow Up\n\n\n\n\n107.9 (0)\n\n\n\nArrow Down\n\n\n\n\n202.5 (0)\n\n\n\nArrow Down\n\n\n\n\n111 (0)\n\n\n\nArrow Up\n\n\n\n\n91.3 (0)\n\n\n\nArrow Down\n\n\n\n\n202.4 (0)\n\n\n\nArrow Down\n\n\n\n\n83.3 (0)\n\n\n\nArrow Down\n\n\n\n\n125 (0)\n\n\n\nArrow Up\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n0𝛿\n101.4 (0)\n101.5 (0)\n202.9 (0)\n101.5 (0)\n\n\n\nEquals\n\n\n\n\n101.4 (0)\n\n\n\nEquals\n\n\n\n\n202.9 (0)\n\n\n\nEquals\n\n\n\n\n107.8 (0)\n\n\n\nArrow Up\n\n\n\n\n94.7 (0)\n\n\n\nArrow Down\n\n\n\n\n202.5 (0)\n\n\n\nArrow Down\n\n\n\n\n121.1 (0)\n\n\n\nArrow Up\n\n\n\n\n85.5 (0)\n\n\n\nArrow Down\n\n\n\n\n206.6 (0)\n\n\n\nArrow Up\n\n\n\n\n83.3 (0)\n\n\n\nArrow Down\n\n\n\n\n125 (0)\n\n\n\nArrow Up\n\n\n\n\n208.3 (0)\n\n\n\nArrow Up\n\n\n\n\n\n\n1/2𝛿\n122.8 (0)\n86.4 (0)\n209.2 (0)\n122.8 (0)\n\n\n\nEquals\n\n\n\n\n86.4 (0)\n\n\n\nEquals\n\n\n\n\n209.2 (0)\n\n\n\nEquals\n\n\n\n\n126.1 (0)\n\n\n\nArrow Up\n\n\n\n\n84 (0)\n\n\n\nArrow Down\n\n\n\n\n210.1 (0)\n\n\n\nArrow Up\n\n\n\n\n133.8 (0)\n\n\n\nArrow Up\n\n\n\n\n80.1 (0)\n\n\n\nArrow Down\n\n\n\n\n214 (0)\n\n\n\nArrow Up\n\n\n\n\n83.4 (0)\n\n\n\nArrow Down\n\n\n\n\n125 (0)\n\n\n\nArrow Up\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n1𝛿\n153 (0)\n75.7 (0)\n228.7 (0)\n153.1 (0)\n\n\n\nEquals\n\n\n\n\n75.7 (0)\n\n\n\nEquals\n\n\n\n\n228.7 (0)\n\n\n\nEquals\n\n\n\n\n151.5 (0)\n\n\n\nArrow Down\n\n\n\n\n75.5 (0)\n\n\n\nArrow Down\n\n\n\n\n227 (0)\n\n\n\nArrow Down\n\n\n\n\n150.4 (0)\n\n\n\nArrow Down\n\n\n\n\n75.2 (0)\n\n\n\nArrow Down\n\n\n\n\n225.6 (0)\n\n\n\nArrow Down\n\n\n\n\n83.4 (0)\n\n\n\nArrow Down\n\n\n\n\n124.9 (0)\n\n\n\nArrow Up\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n3/2𝛿\n195.8 (0)\n68.2 (0)\n263.9 (0)\n195.8 (0)\n\n\n\nEquals\n\n\n\n\n68.2 (0)\n\n\n\nEquals\n\n\n\n\n264 (0)\n\n\n\nEquals\n\n\n\n\n187.7 (0)\n\n\n\nArrow Down\n\n\n\n\n68.8 (0)\n\n\n\nArrow Up\n\n\n\n\n256.5 (0)\n\n\n\nArrow Down\n\n\n\n\n172.6 (0)\n\n\n\nArrow Down\n\n\n\n\n70.6 (0)\n\n\n\nArrow Up\n\n\n\n\n243.2 (0)\n\n\n\nArrow Down\n\n\n\n\n83.4 (0)\n\n\n\nArrow Down\n\n\n\n\n124.9 (0)\n\n\n\nArrow Up\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n2𝛿\n256.4 (0.1)\n62.8 (0)\n319.3 (0.1)\n256.4 (0.1)\n\n\n\nEquals\n\n\n\n\n62.8 (0)\n\n\n\nEquals\n\n\n\n\n319.2 (0.1)\n\n\n\nEquals\n\n\n\n\n239.6 (0)\n\n\n\nArrow Down\n\n\n\n\n63.7 (0)\n\n\n\nArrow Up\n\n\n\n\n303.2 (0)\n\n\n\nArrow Down\n\n\n\n\n203.1 (0)\n\n\n\nArrow Down\n\n\n\n\n66.6 (0)\n\n\n\nArrow Up\n\n\n\n\n269.6 (0)\n\n\n\nArrow Down\n\n\n\n\n83.4 (0)\n\n\n\nArrow Down\n\n\n\n\n124.9 (0)\n\n\n\nArrow Up\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n\nBased on1e+06Simulations; mean (standard error) to 1 decimal place\n\n\nPrior 1:mu_1: 0𝛿, mu_2: 0, tau_01: 1e-05, tau_02: 1e-05, theta_tau0: 5e-06, theta: 0𝛿 Prior 2:mu_1: 1𝛿, mu_2: 0, tau_01: 20, tau_02: 20, theta_tau0: 10, theta: 1𝛿 Prior 3:mu_1: 1𝛿, mu_2: 0, tau_01: 100, tau_02: 100, theta_tau0: 50, theta: 1𝛿 Prior 4:mu_1: -0.584962500721156𝛿, mu_2: 0, tau_01: 100000, tau_02: 100000, theta_tau0: 50000, theta: -0.584962500721156𝛿"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Priors on \\(\\theta\\)",
+    "text": "Priors on \\(\\theta\\)\n\nNow suppose there are priors directly on \\(\\theta\\)\n\\[\n\\theta \\sim N(\\theta_0,\\tau_{0,\\theta})\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta-1",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta-1",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Priors on \\(\\theta\\)",
+    "text": "Priors on \\(\\theta\\)\n\nNow suppose there are priors directly on \\(\\theta\\)\n\\[\n\\theta \\sim N(\\theta_0,\\tau_{0,\\theta})\n\\] And generate data,\n\\[\nY^k = \\bar{X}_1^k - \\bar{X}_2^k \\sim N(\\theta,\\tau_y^{-1})\n\\]\nWhere\n\\[\n\\tau_y^k = (\\sigma^2/n_1^k + \\sigma^2/n_2^k)^{-1}\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta-2",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta-2",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Priors on \\(\\theta\\)",
+    "text": "Priors on \\(\\theta\\)\n\nThen the posterior distribution \\(\\theta|\\bar{y}^k\\) has mean\n\\[\n\\frac{\\theta_0\\tau_{0,\\theta}+\\sum_{i=1}^k y^i\\tau_y^i}{\\tau_{0,\\theta}+\\sum_{i=1}^k \\tau_y^i}\n\\]\nand variance\n\\[\n1/(\\tau_{0,\\theta}+\\sum_{i=1}^k \\tau_y^i)\n\\]\nWhere\n\\[\n\\tau_y = (\\sigma^2/n_1^k + \\sigma^2/n_2^k)^{-1}\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta-3",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#priors-on-theta-3",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Priors on \\(\\theta\\)",
+    "text": "Priors on \\(\\theta\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo early stopping using frequentist and bayesian methods with pooled θ\n\n\n\nEN1_pool\nEN2_pool\ntotal_pool\nEN1_brar_1\n\nEN2_brar_1\n\ntotal_brar_1\n\nEN1_brar_2\n\nEN2_brar_2\n\ntotal_brar_2\n\nEN1_brar_3\n\nEN2_brar_3\n\ntotal_brar_3\n\nEN1_brar_4\n\nEN2_brar_4\n\ntotal_brar_4\n\n\n\n\n\n-1/2𝛿\n86.4 (0)\n122.8 (0)\n209.2 (0)\n86.4 (0)\n\n\n\nEquals\n\n\n\n\n123.5 (0)\n\n\n\nArrow Up\n\n\n\n\n209.9 (0)\n\n\n\nArrow Up\n\n\n\n\n94.8 (0)\n\n\n\nArrow Up\n\n\n\n\n108 (0)\n\n\n\nArrow Down\n\n\n\n\n202.8 (0)\n\n\n\nArrow Down\n\n\n\n\n114.1 (0)\n\n\n\nArrow Up\n\n\n\n\n89.4 (0)\n\n\n\nArrow Down\n\n\n\n\n203.6 (0)\n\n\n\nArrow Down\n\n\n\n\n125 (0)\n\n\n\nArrow Up\n\n\n\n\n83.4 (0)\n\n\n\nArrow Down\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n0𝛿\n101.4 (0)\n101.5 (0)\n202.9 (0)\n101.7 (0)\n\n\n\nArrow Up\n\n\n\n\n101.7 (0)\n\n\n\nArrow Up\n\n\n\n\n203.4 (0)\n\n\n\nArrow Up\n\n\n\n\n109 (0)\n\n\n\nArrow Up\n\n\n\n\n94 (0)\n\n\n\nArrow Down\n\n\n\n\n203 (0)\n\n\n\nArrow Up\n\n\n\n\n124.5 (0)\n\n\n\nArrow Up\n\n\n\n\n83.9 (0)\n\n\n\nArrow Down\n\n\n\n\n208.4 (0)\n\n\n\nArrow Up\n\n\n\n\n125 (0)\n\n\n\nArrow Up\n\n\n\n\n83.3 (0)\n\n\n\nArrow Down\n\n\n\n\n208.3 (0)\n\n\n\nArrow Up\n\n\n\n\n\n\n1/2𝛿\n122.8 (0)\n86.4 (0)\n209.2 (0)\n123.5 (0)\n\n\n\nArrow Up\n\n\n\n\n86.4 (0)\n\n\n\nEquals\n\n\n\n\n209.9 (0)\n\n\n\nArrow Up\n\n\n\n\n127.6 (0)\n\n\n\nArrow Up\n\n\n\n\n83.5 (0)\n\n\n\nArrow Down\n\n\n\n\n211.1 (0)\n\n\n\nArrow Up\n\n\n\n\n136.6 (0)\n\n\n\nArrow Up\n\n\n\n\n79.2 (0)\n\n\n\nArrow Down\n\n\n\n\n215.8 (0)\n\n\n\nArrow Up\n\n\n\n\n125 (0)\n\n\n\nArrow Up\n\n\n\n\n83.3 (0)\n\n\n\nArrow Down\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n1𝛿\n153 (0)\n75.7 (0)\n228.7 (0)\n154.6 (0)\n\n\n\nArrow Up\n\n\n\n\n75.6 (0)\n\n\n\nArrow Down\n\n\n\n\n230.2 (0)\n\n\n\nArrow Up\n\n\n\n\n152.1 (0)\n\n\n\nArrow Down\n\n\n\n\n75.4 (0)\n\n\n\nArrow Down\n\n\n\n\n227.6 (0)\n\n\n\nArrow Down\n\n\n\n\n150.6 (0)\n\n\n\nArrow Down\n\n\n\n\n75.1 (0)\n\n\n\nArrow Down\n\n\n\n\n225.7 (0)\n\n\n\nArrow Down\n\n\n\n\n125 (0)\n\n\n\nArrow Down\n\n\n\n\n83.3 (0)\n\n\n\nArrow Up\n\n\n\n\n208.3 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n3/2𝛿\n195.8 (0)\n68.2 (0)\n263.9 (0)\n198.5 (0)\n\n\n\nArrow Up\n\n\n\n\n68.1 (0)\n\n\n\nArrow Down\n\n\n\n\n266.5 (0)\n\n\n\nArrow Up\n\n\n\n\n184.1 (0)\n\n\n\nArrow Down\n\n\n\n\n69.4 (0)\n\n\n\nArrow Up\n\n\n\n\n253.4 (0)\n\n\n\nArrow Down\n\n\n\n\n166.7 (0)\n\n\n\nArrow Down\n\n\n\n\n71.7 (0)\n\n\n\nArrow Up\n\n\n\n\n238.3 (0)\n\n\n\nArrow Down\n\n\n\n\n125 (0)\n\n\n\nArrow Down\n\n\n\n\n83.3 (0)\n\n\n\nArrow Up\n\n\n\n\n208.4 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n2𝛿\n256.4 (0.1)\n62.8 (0)\n319.3 (0.1)\n260.7 (0.1)\n\n\n\nArrow Up\n\n\n\n\n62.8 (0)\n\n\n\nArrow Down\n\n\n\n\n323.5 (0.1)\n\n\n\nArrow Up\n\n\n\n\n225.6 (0)\n\n\n\nArrow Down\n\n\n\n\n64.8 (0)\n\n\n\nArrow Up\n\n\n\n\n290.4 (0)\n\n\n\nArrow Down\n\n\n\n\n185.2 (0)\n\n\n\nArrow Down\n\n\n\n\n68.7 (0)\n\n\n\nArrow Up\n\n\n\n\n253.9 (0)\n\n\n\nArrow Down\n\n\n\n\n125.1 (0)\n\n\n\nArrow Down\n\n\n\n\n83.3 (0)\n\n\n\nArrow Up\n\n\n\n\n208.4 (0)\n\n\n\nArrow Down\n\n\n\n\n\n\n\nBased on1e+06Simulations; mean (standard error) to 1 decimal place\n\n\nPrior 1:mu_1: 0𝛿, mu_2: 0, tau_01: 1e-06, tau_02: 1e-06, theta_tau0: 5e-07, theta_0: 0, theta: 0𝛿 Prior 2:mu_1: 1𝛿, mu_2: 0, tau_01: 20, tau_02: 20, theta_tau0: 10, theta_0: 0.4584195253573, theta: 1𝛿 Prior 3:mu_1: 1𝛿, mu_2: 0, tau_01: 100, tau_02: 100, theta_tau0: 50, theta_0: 0.4584195253573, theta: 1𝛿 Prior 4:mu_1: 0.584962500721156𝛿, mu_2: 0, tau_01: 1e+05, tau_02: 1e+05, theta_tau0: 50000, theta_0: 0.268158231932412, theta: 0.584962500721156𝛿"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Differences in using direct vs individual priors",
+    "text": "Differences in using direct vs individual priors\n\n\n\n\nIndividual priors on \\(\\mu\\)’s\n\nMean\n\\[\n\\frac{\\tau_{0,1}\\mu_{0,1}+\\sum_{i=1}^{k} n_1^i \\tau \\mu_1^k}{\\tau_{0,1}+\\sum_{i=1}^k n_1^i \\tau} - \\frac{\\tau_{0,2}\\mu_{0,2}+\\sum_{i=1}^{k} n_2^i \\tau \\mu_2^k}{\\tau_{0,2}+\\sum_{i=1}^k n_2^i \\tau}\n\\] Variance\n\\[\n1/(\\tau_{0,1}+\\sum_{i=1}^k n_1^i \\tau) + 1/(\\tau_{0,2}+\\sum_{i=1}^k n_2^i \\tau)\n\\]\n\n\nDirect priors on \\(\\theta\\)\n\nMean\n\\[\n\\frac{\\theta_0\\tau_{0,\\theta}+\\sum_{i=1}^k y^i\\tau_y^i}{\\tau_{0,\\theta}+\\sum_{i=1}^k \\tau_y^i}\n\\] Variance\n\\[\n1/(\\tau_{0,\\theta}+\\sum_{i=1}^k \\tau_y^i)\n\\]\nWhere\n\\[\n\\tau_y = (\\sigma^2/n_1^k + \\sigma^2/n_2^k)^{-1}\n\\]"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-1",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-1",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Differences in using direct vs individual priors",
+    "text": "Differences in using direct vs individual priors\nThe posterior variance of \\(\\theta\\) when separate prior distributions are given is always smaller than that when only the prior distribution for \\(\\theta\\) is used.1\nStallard et al. (2020)"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-2",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-2",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Differences in using direct vs individual priors",
+    "text": "Differences in using direct vs individual priors\n\nAssess difference using idea of coupling\nPrimarily interested in the vague prior case"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-3",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-3",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Differences in using direct vs individual priors",
+    "text": "Differences in using direct vs individual priors\n\nDistribution of theta_hat at each analysis K using individual priors for treatments and a prior for theta directly using coupling"
+  },
+  {
+    "objectID": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-4",
+    "href": "posts/CV_meeting_29042025/Supervisor_meeting_29042025.html#differences-in-using-direct-vs-individual-priors-4",
+    "title": "Bayesian Response-Adaptive Randomisation with Group Sequential Designs",
+    "section": "Differences in using direct vs individual priors",
+    "text": "Differences in using direct vs individual priors\n\nMeans and variances of theta_hat at each analysis K using individual priors for treatments and a prior for theta directly using coupling"
+  },
+  {
+    "objectID": "posts/Pipes/index.html",
+    "href": "posts/Pipes/index.html",
+    "title": "More than just a pipe dream",
+    "section": "",
+    "text": "Named after a famous artist Rene Magritte, who painted the famous ‘ceci n’est pas une pipe’ image, the magrittr / dplyr packages contains a suite of functions using pipes for data manipulation.\nI had a friend at university who frequently bought pipe tobacco as apparently it is much cheaper than regular tobacco. Anyway, much like his smoking habit, dplyr can chain things together. In addition to this, it is relatively readable and interpretable in comparison to data.table (or at least to me). That isn’t to say I don’t like data.table, it has its place and advantages with larger data sets but I do not often work with such data sets that the efficiency gain outweighs the trade-off between readability. It is important to balance such things and to consider QC’ers or the possibility of someone taking over a piece of code from you."
+  },
+  {
+    "objectID": "posts/Pipes/index.html#native-vs-magrittr",
+    "href": "posts/Pipes/index.html#native-vs-magrittr",
+    "title": "More than just a pipe dream",
+    "section": "Native vs Magrittr",
+    "text": "Native vs Magrittr\nThere are some subtle differences between the native and magrittr pipe, including operational efficiency/speed, bracket usage, placeholder syntax, etc. For example, using rlang we can see what is happening under the hood between the two pipes. I.e.,\nThe R native pipe:\n\nrlang::expr(x |&gt; f())\n\nf(x)\n\n\nMagrittr forward pipe:\n\nrlang::expr(x %&gt;% f())\n\nx %&gt;% f()\n\n\nWe can see that the native pipe is changing the structure (evaluating the expression as syntax) whereas the magrittr pipe is evaluated as a function call and thus is slightly slower.\n\nmicrobenchmark::microbenchmark(\"sqrt(4)\" = sqrt(4),\n                               \"Native\" = 4 |&gt; sqrt(),\n                               \"Magrittr\" = 4 %&gt;% sqrt())\n\nUnit: nanoseconds\n     expr  min   lq mean median   uq   max neval\n  sqrt(4)    0    0   40      0  100   300   100\n   Native    0    0  102      0  100  7300   100\n Magrittr 1600 1700 1943   1700 1800 11900   100\n\n\nThere is a wonderful answer here which goes through in more detail some of the differences.\nGenerally speaking though, if you’re really concerned about speed you wouldn’t use dplyr."
+  },
+  {
+    "objectID": "posts/Pipes/index.html#magrittr",
+    "href": "posts/Pipes/index.html#magrittr",
+    "title": "More than just a pipe dream",
+    "section": "Magrittr",
+    "text": "Magrittr\n\nForward pipe (%&gt;%)\nAs briefly mentioned, the forward pipe from magrittr behaves similarly to the native pipe in R and allows you to apply potentially many functions in a sequence of code. It will take in values from the LHS and apply functions on the RHS. For example, here we are doing the following:\n\nSelect columns species, sepal length and petal length from iris\nFor the newly subsetted data, replace dots with underscores and make names lower case\ndisplay the first 6 rows of the data frame\n\n\niris %&gt;% \n  select(Species,Sepal.Length,Petal.Length) %&gt;%\n  rename_with(~tolower(gsub(\"\\\\.\",\"_\",.)), everything()) %&gt;% \n  head()\n\n  species sepal_length petal_length\n1  setosa          5.1          1.4\n2  setosa          4.9          1.4\n3  setosa          4.7          1.3\n4  setosa          4.6          1.5\n5  setosa          5.0          1.4\n6  setosa          5.4          1.7\n\n\n\n\nAssignment pipe (%&lt;&gt;%)\nTypically after applying a series of functions we want to save the result. If you are writing back to the original object a quicker step than doing:\n\n# Create data frame of normally distributed values\ndf &lt;- data.frame(col=rnorm(100,10,1))\n# Remove values greater than 10\ndf &lt;- df %&gt;% filter(col&lt;10)\n\nis to simply use the assignment:\n\n# Create data frame of normally distributed values\ndf &lt;- data.frame(col=rnorm(100,10,1))\n# Remove values greater than 10\ndf %&lt;&gt;% filter(col&lt;10)\n\n\n\nEager pipe (%!&gt;%)\nThe eager pipe evaluates the piped input at each step, you’ll notice when the code below is run with the “lazy” forward pipe, messages appears in a backwards order.\n\n# Set seed for reproducibility\nset.seed(42)\n# Create main function with forward pipes\nmain_fun &lt;- function() {\n  cli::cli_progress_step(msg = \"Running main function\")\n  sample(1:100,50,replace=T) %&gt;% \n    fun1() %&gt;% \n    fun2() %&gt;% \n    fun3()\n}\n# Create sub functions\nfun1 &lt;- function(x){cli::cli_progress_step(msg = \"Function 1\");Sys.sleep(2); x*2}\nfun2 &lt;- function(x){cli::cli_progress_step(msg = \"Function 2\");Sys.sleep(2); x+5}\nfun3 &lt;- function(x){cli::cli_progress_step(msg = \"Function 3\");Sys.sleep(2); mean(x)}\n\n# call main function\nmain_fun()\n\nℹ Running main function\n\n\nℹ Function 3\n\n\nℹ Function 2\n\n\nℹ Function 1\n\n\n✔ Function 1 [2.1s]\n\n\n\n\n\nℹ Function 2\n✔ Function 2 [4.4s]\n\nℹ Function 3\n✔ Function 3 [6.7s]\n\nℹ Running main function\n✔ Running main function [7s]\n\n\n[1] 107.8\n\n\nHowever, when applying the ‘eager’ pipe we see a more intuitive output which is useful for debugging as messages will appear in the order the functions are applied.\n\n# Set seed for reproducibility\nset.seed(42)\n# Create main function with eager pipes\nmain_fun &lt;- function() {\n  cli::cli_progress_step(msg = \"Running main function\")\n  sample(1:100,50,replace=T) %!&gt;% \n    fun1() %!&gt;% \n    fun2() %!&gt;% \n    fun3()\n}\n# Create sub functions\nfun1 &lt;- function(x){cli::cli_progress_step(msg = \"Function 1\");Sys.sleep(2); x*2}\nfun2 &lt;- function(x){cli::cli_progress_step(msg = \"Function 2\");Sys.sleep(2); x+5}\nfun3 &lt;- function(x){cli::cli_progress_step(msg = \"Function 3\");Sys.sleep(2); mean(x)}\n\n# call main function\nmain_fun()\n\nℹ Running main function\n\n\nℹ Function 1\n\n\n✔ Function 1 [2.1s]\n\n\n\n\n\nℹ Running main function\nℹ Function 2\n✔ Function 2 [2.2s]\n\nℹ Running main function\nℹ Function 3\n✔ Function 3 [2.1s]\n\nℹ Running main function\n✔ Running main function [7.1s]\n\n\n[1] 107.8\n\n\n\n\nTee pipe (%T&gt;%)\nA regular forward pipe will update the value of the expression on the LHS from expressions on the RHS and is performed sequentially. A useful, less well-known pipe is the ‘Tee Pipe’. Similar to the Tee Pipe used by your local plumber to create a junction through a T shape, the Tee Pipe takes the input on the LHS and creates a junction to bypass functions which would normally terminate. A popular example is the use of plot with colSums\n\niris %&gt;%\n select(Sepal.Length,Sepal.Width) %&gt;%\n plot %&gt;%\n colSums\n\nError in colSums(.): 'x' must be an array of at least two dimensions\n\n\n\n\n\n\n\n\n\nThe above code will produce an error as the plot command does not return anything and therefore colSums will throw an error. Instead we can use a Tee Pipe to pass the data with Sepal.Length and Sepal.Width to both the plot and colSums argument.\n\n\n\n\n\nflowchart LR\n  A[iris] --&gt; B[select]\n  B --&gt; C{T}\n  C --&gt; D[plot]\n  C --&gt; E[colSums]\n\n\n\n\n\n\n\niris %&gt;%\n select(Sepal.Length,Sepal.Width) %T&gt;%\n plot %&gt;%\n colSums\n\n\n\n\n\n\n\n\nSepal.Length  Sepal.Width \n       876.5        458.6 \n\n\nThis is a fairly trivial example but it does have its uses. By inserting a print command it can be used to help with debugging or we can save an object in the middle of pipes.\nIt should also be noted that the use of curly brackets will give the same result.\n\niris %&gt;%\n  select(Sepal.Length,Sepal.Width) %&gt;%\n  {plot(.)\n  colSums(.)}\n\n\n\n\n\n\n\n\nSepal.Length  Sepal.Width \n       876.5        458.6 \n\n\nWhat about the example below?\n\niris %&gt;%\n  select(Sepal.Length,Sepal.Width) %T&gt;%\n  sqrt %&gt;%\n  colSums\n\nSepal.Length  Sepal.Width \n       876.5        458.6 \n\n\nYou might be wondering why this appears to not work, shouldn’t this output the square root and the column sums? It turns out that it works only when one of the operations does not return a value e.g. plot() and print() are used to generate outputs and therefore the function themselves returns NULL."
+  },
+  {
+    "objectID": "posts/Pipes/index.html#zeallot-pipe--",
+    "href": "posts/Pipes/index.html#zeallot-pipe--",
+    "title": "More than just a pipe dream",
+    "section": "Zeallot pipe (%<-%)",
+    "text": "Zeallot pipe (%&lt;-%)\nThe zeallot package contains pipes which allow for multiple assignment. The operator allows for the user to assign from LHS to RHS or RHS to LHS. A simple example below shows how I can assign values to x and y.\n\nc(3,4) %-&gt;% c(x,y)\n\nc(x,y) %&lt;-% c(3,4)\n\n\ncat(\"x = \", x, \"\\ny = \", y)\n\nx =  3 \ny =  4\n\n\n\ndf1 &lt;- \n  data.frame(\n    subject_id = c(\"S001-0001\", \"S001-0002\", \"S001-0003\"),\n    Trt = c(\"Pembrolizumab\", \"Pembrolizumab\", \"nivolumab\"),\n    status = c(1,1,1),\n    age = c(38,64,24),\n    time = c(10,38,83)\n    )\n\ndf2 &lt;-\n  data.frame(\n    subject_id = c(\"S002-0001\", \"S002-0002\", \"S002-0003\"),\n    Trt = c(\"atezolizumab \", \"Pembrolizumab\", \"atezolizumab\"),\n    status = c(1,1,1),\n    age = c(24,67,12),\n    time = c(34,92,145)\n    )\n\n# Create data.tables\npurrr::map(mget(ls(pattern = '^df\\\\d+$')), as.data.table) %-&gt;%\n          c(df1, df2)\n\n# See result\nlist(df1,df2) %&gt;% \n  lapply(\\(x) class(x))\n\n[[1]]\n[1] \"data.table\" \"data.frame\"\n\n[[2]]\n[1] \"data.table\" \"data.frame\""
+  },
+  {
+    "objectID": "posts/version_control/index.html",
+    "href": "posts/version_control/index.html",
+    "title": "Version Control with Git in R",
+    "section": "",
+    "text": "A key requirement set out by regulators is to have a system which can modify, maintain, archive, retrieve and transmit clinical trial data. Furthermore, to ensure data integrity and reduce the risk of fraudulent activity, it is important to have an audit trail to document proof of events, procedures and that changes have been made by authorised users only. An audit trail allows for a time-stamped electronic record which can reconstruct a sequence of events. Showing the stages of modification and deletion of data. Now, even bodies such as the FDA do not seem to particularly care what software you conduct your work on as long as all your affairs are in order.\n\n\n\n\n\n\nNote\n\n\n\n“FDA does not require use of any specific software for statistical analyses, and statistical software is not explicitly discussed in Title 21 of the Code of Federal Regulations [e.g., in 21CFR part 11]. However, the software package(s) used for statistical analyses should be fully documented in the submission, including version and build identification.”\n\n\nWhilst SAS is still used by many (and I really did try to like it but…), increasingly R is being implemented in the world of clinical trials. Its freely available, open-source nature means that it not only reduces operational costs but sees continuous developments for new packages and documentation as an expanding community of people create innovative ideas. However, where SAS has an advantage is in their proven statistical functions/software which makes version controlling slightly easier than open-sourced R."
+  },
+  {
+    "objectID": "posts/version_control/index.html#huh-git-github-git-desktop-git-bash-and-other-guis-explained",
+    "href": "posts/version_control/index.html#huh-git-github-git-desktop-git-bash-and-other-guis-explained",
+    "title": "Version Control with Git in R",
+    "section": "3.1 Huh? Git, GitHub, Git Desktop, Git Bash and other GUI’s explained",
+    "text": "3.1 Huh? Git, GitHub, Git Desktop, Git Bash and other GUI’s explained\n\nGit: This is the actual version control program itself.\nGitHub: A website where you can store your code and files, also known as a ‘repository’ or ‘repo’ for short. This can be a useful home for codes, where you can fork/clone repositories onto different machines easily as well as collaborate and create teams. A way of thinking about it is git creates a book. You can then place a copy of this book on a shelf in a library, aka GitHub.\nGit Desktop: A graphical user interface (GUI) for git/github. It is more beginner friendly than your cmd counterpart and you can simply drag and drop repo’s to add it to the desktop\nGit Bash: An interface with git functionality and unix commands. Unix shell is used in most linux distributions so if you’re using linux, using Git Bash might feel straight forward. It offers greater flexibility for more complicated procedures.\nOther: Git Kraken, Fork, Sublime merge are different GUI tools with their advantages and disadvantages…and pricey but worth researching and considering."
+  },
+  {
+    "objectID": "posts/version_control/index.html#summary-of-basic-git-commands",
+    "href": "posts/version_control/index.html#summary-of-basic-git-commands",
+    "title": "Version Control with Git in R",
+    "section": "3.2 Summary of basic Git Commands",
+    "text": "3.2 Summary of basic Git Commands"
+  },
+  {
+    "objectID": "posts/version_control/index.html#more-detail",
+    "href": "posts/version_control/index.html#more-detail",
+    "title": "Version Control with Git in R",
+    "section": "3.3 More Detail:",
+    "text": "3.3 More Detail:\n\n3.3.1 Init\nGit init creates a repository in the current working directory. It is used when you’re starting a project that is not currently using git. Each project will have a .git folder in the root directory and the project repository. Git will begin to track all files using a Secure Hash Algorithm (SHA) and those files/folders which you do not want tracked will exist in the .gitignore file.\nIn essence, you create an ‘empty’ book.\n\n\n\n\n\ngitGraph\n  commit id: \"Initialise Project\"\n\n\n\n\n\n\n\n\n\n3.3.2 Add\nAnother eponymous function name. It is used for adding files. Since Git 2.0 there has been some changes:\n\n\n\n\n\n\n\nGit 2.0 Changes\n\n\n\nChanges found here\nWhen “git add -u” and “git add -A” are run inside a subdirectory without specifying which paths to add on the command line, they operate on the entire tree for consistency with “git commit -a” and other commands (these commands used to operate only on the current subdirectory). Say “git add -u .” or “git add -A .” if you want to limit the operation to the current directory.\n“git add ” is the same as “git add -A ” now, so that “git add dir/” will notice paths you removed from the directory and record the removal. In older versions of Git, “git add ” used to ignore removals. You can say “git add –ignore-removal ” to add only added or modified paths in , if you really want to.\n\n\n\n\ngit add -A # Stage all new, modified and deleted files\ngit add . # As of Git 2.0, git add . = git add -A\ngit add -u # Stage modified and deleted files\ngit add --ignore-removal # Stage new/modified files\n\ngit add . will expand to the current directory whereas git add * triggers file globbing, expanding to all files and directories that do not start with a dot (I know…slightly confusing). Running git add . from a sub-folder will update the index for files in that folder and subfolders recursively whereas git add ./git add-A will add all files in the working tree.\nFollowing the book analogy, I can think of it as saying ‘I should start to include some pages I have written in this book’.\n\n\n3.3.3 Commit\nSaves a snapshot of your repository. Git messages are a way to communicate the changes that have been made as well as why. You need to include sufficient information in your commit messages. There’s many passionate devs arguing the length of commit messages and despise the use of -m.\nThere’s the viewpoint of the need for massive messages as a sign of you’re not committing enough, it should be succinct so that people don’t just gloss over it. On the other hand, if you’re taking over a new project, come back from a long holiday or just generally made significant changes whether that is adding a new feature/fixing a bug and needs a sufficient explanation of what and why, you’ll want longer messages.\nI lean towards advocating the longer, more detailed messages. I would rather be completely explicit and slightly overkill than to provide next to no detail.\n\nThere is a nice project for generating pretty changelogs here.\n\nFor a few files you can use:\n\ngit add file file2 \ngit commit -m\"Adding file and file2\" # Specify message for commit\n\nOr for many:\n\ngit add .\ngit commit -m\"Multiple changes\"\n\n\n‘I’m content with what is written in the book for now, I’ll create a save point, logging what is done, signed with the date, time and author.’\n\n\n\n\n\ngitGraph\n  commit id: \"Initialise\"\n  commit id: \"Commit\"\n\n\n\n\n\n\n\n\n\n3.3.4 Push\ngit push is commonly used when you’re using GitHub. You’ll want to commit your changes and then push/upload files from your local repository to GitHub.\nThe book is looking pretty good, I’ll send the latest version to a librarian for safe keeping.\n\n\n3.3.5 Clone\ngit clone quite literally creates a local duplicate with everything from some specified repository.\nE.g. ‘I’ll ask the librarian for a copy of my book or get someone to send a copy from my study to my new location.’\n\n\n3.3.6 Branch\nIf you do not want to risk impacting the main codebase, it can be a good idea to work from a branch if you are working on some new feature or bug. After working on a branch, you can then merge these changes back into main.\nI think I’ll create a separate copy of the book to write some chapters and make edits. Later, I might merge the two copies.\n\n\n\n\n\ngitGraph\n  commit id: \"Initialise\"\n  commit id: \"Just\"\n  commit id: \"Keep\"\n  commit id: \"Committing\"\n  commit id: \"one more...\"\n  branch feat\n  checkout feat\n  commit\n\n\n\n\n\n\n\n\n\n3.3.7 Checkout\nHere I commit on my branch ‘feat’ and then use checkout to go back to main. I can then create another branch ‘bug’ from main, do some commits, and switch back to main again. The checkout function allows you to swap between the different branches.\n\n\n\n\n\ngitGraph\n  commit id: \"Initialise\"\n  commit id: \"Just\"\n  commit id: \"Keep\"\n  commit id: \"Committing\"\n  commit id: \"one more...\"\n  branch feat\n  checkout feat\n  commit\n  commit\n  checkout main\n  commit\n  branch bug\n  checkout bug\n  commit\n  commit\n  checkout main\n  commit\n\n\n\n\n\n\n\nI want to swap between the different copies of this book I am working on.\n\n\n3.3.8 Restore\nThis is a mess, I need to start from my last saved version. I’ll contact the library to get the last version of the book they have.\n\n\n\n\n\ngitGraph\n  commit id: \"Initialise\"\n  commit id: \"Just\"\n  commit id: \"Keep\"\n  commit id: \"Committing\"\n  commit id: \"one more...\"\n  branch feat\n  checkout feat\n  commit\n  commit\n  checkout main\n  commit\n  branch bug\n  checkout bug\n  commit\n  commit\n\n\n\n\n\n\n\n\n3.3.9 Merge\nI want to incorporate my changes from this other book into my main book.\n\n\n\n\n\ngitGraph\n  commit id: \"Initialise\"\n  commit id: \"Just\"\n  commit id: \"Keep\"\n  commit id: \"Committing\"\n  commit id: \"one more...\"\n  branch feat\n  checkout feat\n  commit\n  commit\n  checkout main\n  commit\n  branch bug\n  checkout bug\n  commit\n  commit\n  checkout main\n  commit\n  merge bug\n  checkout feat\n  commit\n\n\n\n\n\n\n\n\n\n3.3.10 Fetch\nI need to get my book with all branches, tags, commits, etc from the library into my study.\n\n\n3.3.11 Pull\nA combination of fetch and merge."
+  },
+  {
+    "objectID": "posts/version_control/index.html#initialising-git-repository-through-rstudio",
+    "href": "posts/version_control/index.html#initialising-git-repository-through-rstudio",
+    "title": "Version Control with Git in R",
+    "section": "4.1 Initialising git repository through RStudio",
+    "text": "4.1 Initialising git repository through RStudio\nVideo"
+  },
+  {
+    "objectID": "posts/version_control/index.html#example-of-using-git-in-rstudio",
+    "href": "posts/version_control/index.html#example-of-using-git-in-rstudio",
+    "title": "Version Control with Git in R",
+    "section": "4.2 Example of using git in RStudio",
+    "text": "4.2 Example of using git in RStudio\nI have included below a small example using a few key commands from git:\n\ngit init initialise a git repository\ngit config user.name define the user name (you can also use git config --local to see details)\ngit config user.email define email\ngit add . add everything in the working directory\ngit commit -m\"Text\" git commit with message Text\ngit log see the log produced from git (You can see the author, date/time, commits, etc.)\n\nVideo"
+  },
+  {
+    "objectID": "posts/version_control/index.html#how-do-i-view-user-name-email-settings-in-git",
+    "href": "posts/version_control/index.html#how-do-i-view-user-name-email-settings-in-git",
+    "title": "Version Control with Git in R",
+    "section": "4.3 How do I view user name / email / settings in git?",
+    "text": "4.3 How do I view user name / email / settings in git?\nGlobal Settings and Details:\n\n# Global level settings (including details of user name/email)\ngit config --list\n\nLocally/Repository Settings and Details:\n\n# Local/Repository level settings (including details of user name/email)\ngit config --list --local"
+  },
+  {
+    "objectID": "posts/version_control/index.html#how-do-i-configure-user-name-email-in-git",
+    "href": "posts/version_control/index.html#how-do-i-configure-user-name-email-in-git",
+    "title": "Version Control with Git in R",
+    "section": "4.4 How do I configure user name / email in git?",
+    "text": "4.4 How do I configure user name / email in git?\n\n# Change global user name\ngit config --global user.name \"user_name\"\n# Change global user email\ngit config --global user.email \"user@email.com\"\n# Change local user name\ngit config --local user.name \"user_name\"\n# Change local user email\ngit config --local user.email \"user@email.com\""
+  },
+  {
+    "objectID": "posts/version_control/index.html#how-do-i-see-the-number-of-commits-per-contributor-for-files",
+    "href": "posts/version_control/index.html#how-do-i-see-the-number-of-commits-per-contributor-for-files",
+    "title": "Version Control with Git in R",
+    "section": "4.5 How do I see the number of commits per contributor for files?",
+    "text": "4.5 How do I see the number of commits per contributor for files?\n\n-s number of commits per contributor\n-n sort by number of commits descending\n– useful for commands such as log/checkout where you want to be clear whether you’re indicating a reference to a revision or a path\n\n\ngit shortlog -n -s -- folder #"
+  },
+  {
+    "objectID": "posts/version_control/index.html#how-do-i-get-the-hash-and-details-of-the-current-commit",
+    "href": "posts/version_control/index.html#how-do-i-get-the-hash-and-details-of-the-current-commit",
+    "title": "Version Control with Git in R",
+    "section": "4.6 How do I get the hash and details of the current commit?",
+    "text": "4.6 How do I get the hash and details of the current commit?\n\ngit rev-parse HEAD\ngit rev-parse --short HEAD # Short version\ngit cat-file -p # Followed by the hash"
+  },
+  {
+    "objectID": "posts/version_control/index.html#initialise",
+    "href": "posts/version_control/index.html#initialise",
+    "title": "Version Control with Git in R",
+    "section": "5.1 Initialise",
+    "text": "5.1 Initialise\nI should acknowledge, this is how to set up a project without using renv. For those unfamiliar with renv it is a package used to create reproducible environments. You can take various snapshots of your project library, updating/staging the, with the ability to roll-back. I will do another post for renv at a later date.\nIn RStudio, go to file, new project and create an R project file in the folder you wish to version control.\nNow, add an empty folder called ‘library’. The idea is, instead of using the packages installed on the machine, we will be pointing to this library folder for all our packages. This will give us more control over each project and avoid the issue of if I update this package on the local machine, affecting all the projects and potentially breaking them (which is very incredibly frustrating).\nTo tell R to point to this library, create a new text file in the folder called ‘.Rprofile’. Within the text file add:\n\n.libPaths(\"library\")\n\nIt should look something like this.\n\n\n\nAn example project folder with an rprofile pointing to the folder called library\n\n\nYou may have to reload your Rproject for the profile to take effect in this next step. Next, install some packages. For example,\n\npackages &lt;-\n  c(\n    \"magrittr\",\n    \"dplyr\",\n    \"tidyr\",\n    \"ggplot2\",\n    \"dplyr\",\n    \"lubridate\",\n    \"RODBC\",\n    \"data.table\",\n    \"stringr\",\n    \"grid\",\n    \"gridExtra\"\n  )\n\nif (length(packages[!(packages %in% installed.packages()[, \"Package\"])]))\n  install.packages(packages[!(packages %in% installed.packages()[, \"Package\"])]\n  )\n# Load packages\n#lapply(packages, library, character.only = TRUE)\n\nThese packages should now be in the library folder like so:\n\n\n\nAn example project folder with an rprofile pointing to the folder called library\n\n\nTo initialise git for enabling version control and adding files/commit, in the terminal in RStudio type:\n\ngit init # Initialise the project on the current working directory\ngit add * # Add all files in current working directory except those beginning with a . (dot)\n\n# Optional configuration for user.name and email\ngit config --local user.name username\ngit config --local user.email username@snailmail.com\n\n# Commit with message\ngit commit -m\"Initial DSMB Statistical Report XXXX\" #Change the text in quotes to whatever you like"
+  },
+  {
+    "objectID": "posts/version_control/index.html#subsequent-staging",
+    "href": "posts/version_control/index.html#subsequent-staging",
+    "title": "Version Control with Git in R",
+    "section": "5.2 Subsequent staging",
+    "text": "5.2 Subsequent staging\nIf you are producing a DSMB, TSC, etc report and you set up your folders to be called ‘MM YYYY’. On the next iteration of the report, copy the folder and changing the name of the folder. Delete the .git and R project files. Next, follow the previous steps but with a new commit message:\n\ngit init # Initialise the project on the current working directory\ngit add * # Add all files in current working directory except those beginning with a . (dot)\n  \n# Commit with message\ngit commit -m\"Subsequent changes...DSMB Statistical Report XXXX\" #Change the text in quotes to whatever you like"
+  }
+]

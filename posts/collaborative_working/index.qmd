@@ -1,0 +1,110 @@
+---
+title: "Collaborative Working"
+subtitle: "A short review into the tools for facilitating a collaborative working environment" 
+author: "Corey Voller"
+date: "2024-03-18"
+toc: true
+toc-expand: 3
+categories: [R, Working Practices]
+image: "image.jpg"
+---
+
+# Introduction
+
+The communication of ideas has interested me for a while, ever since I was a tutor I was always looking for alternative and interesting ways to visualise things. With the rise of remote working post-pandemic, it seems more important than ever to focus on creating a collaborative working environment which is also efficient when not working face-to-face. By doing so, and creating good guides, you minimise the time wasted from not having to refind solutions to previous problems as well as, a good and clear guide can avoid the same questions repeated. It is better to invest some time upfront now than to pay for it later on.
+
+It is also much more enjoyable and productive working when you feel part of a community than to awkwardly work disjointedly. In this post I will go through some different tools for enabling more collaborative working I have either worked with or seen implemented elsewhere. Some of these are very common and widely used, some less so.
+
+Tl;dr, It is all good and well having lots of ideas to improve working but I strongly believe in the necessity of communicating these ideas and making understandable, and dare I say, interesting. How well I've doing that here I don't know, I hope to improve though...
+
+# Creating an internal blog / website
+
+## Motivation
+
+This is something I stumbled across watching a video by Novo Nordisk when they were describing their [journey to an R based FDA submission](https://www.youtube.com/watch?v=t33dS17QHuA). I definitely recommend giving it a watch. They also go through how they used [docker](https://www.docker.com/) and [Azure DevOps](https://azure.microsoft.com/en-gb/products/devops) in their workflow.
+
+A website/blog might be useful as a home to host various program specific documents, guides and a place for forums to ask questions. Essentially, trying to create a community.
+
+I liked this idea in particular (enough that it played some role in the creation of this blog) as it creates a centralised place to find information. There is nothing more frustrating than spending hours looking at how to do something only to find the information buried in some folder nested in another folder somewhere far away from what you expected (as the Romanians say 'la mama naibii'). After-all, if you were trying to navigate your way through a building, is it easier to do so blindly wondering the hundred unlabeled corridors and rooms or when you have a map?
+
+## Quarto
+
+Writing this in Quarto may seem biased but I do see the merit in creating a website/blog using Quarto. It is useful if you're a team of R-users and want to create posts / guides using R but it can also handle other languages such as Python and JS, both of which I have used within this blog. I mean, it's easy to navigate and looks pretty right?...right?
+
+Some elements I think are useful to include are:
+
+-   Blog posts with guides which are searchable in some way and split into categories. Not that I want to segregate users, but it can be useful to have dedicated sections for R and SAS users rather than to have them messily combined.
+
+    -   It may also be good to have who authored the guide, last modified/date written, and who maintains responsibility for that piece of work so that people know who to go to if they have questions.
+
+-   Create a link to find useful bits of code (this could be done by linking your company GitHub account) and socials.
+
+-   Enable comments to receive feedback and create discussions on pages. Chances are if someone has a comment, others have probably had a similar thought.
+
+-   Create a log of questions / answers forum.
+
+    -   This could be done in anyway you wish but I will discuss using stack overflow for teams in the upcoming sections.
+
+# Creating an organisation on GitHub
+
+If you're collaborating with several coders on a project, GitHub is a particularly useful site for facilitating this. By creating an organisation you can reflect your organisations structure through nested teams and collaborate with, view and mention members within your team. It is also very easy to create and experiment with new projects and by using this as a centralised place for storing codes/projects, it can act as a decent additional back-up system.
+
+There are additional functionalities which become more useful when you work with others on a project such as:
+
+-   Creating a task list/map to track progress and assign responsibilities.
+-   Create issues from a repository, comment, discussion or project.
+-   Easy to manage multiple people with different levels of power.
+-   Don't have to worry about.
+
+## Personal / Corporate GitHub accounts
+
+::: {.callout-note .card .text-white .bg-secondary .mb-3 title="Note from GitHub"}
+Most people will use one personal account for all their work on GitHub.com, including both open source projects and paid employment. If you're currently using more than one personal account that you created for yourself, we suggest combining the accounts.
+:::
+
+GitHub does recommend having just one account for both person and professional use. Whether you decide to listen to this or not is up to you but nevertheless I would not mix personal and professional projects in any way shape or form. If you're going to use your personal account then you should use your work email as a secondary email on your GitHub account and the organisation should have an SSO set up.
+
+You can also commit [on behalf of an organisation](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-on-behalf-of-an-organization) by doing the following:
+
+```{r,eval=FALSE}
+
+git commit -m "Some commit message"
+>
+>
+on-behalf-of: @ORG NAME@ORGANISATION.COM
+
+
+```
+
+You need to create two newlines between the `commit` and `on-behalf-of` command. The commmit, message and badge will then appear on GitHub when you next push.
+
+When it comes the time to leave the company then you should do the following:
+
+-   unverify the company email address.
+-   change the primary address to your personal email.
+-   remove any references to the company/organisation.
+-   remove yourself as a member from the organisation and transfer ownerships to another person.
+-   Check 2FA methods can be accessed using your personal accounts not company.
+
+# Stack Overflow for Teams
+
+I'm sure many programmers are already familiar with the use of stack overflow, it is a popular platform where users can ask/answer questions relating to any number of topics. However, may be unaware that there is a [Stack Overflow for Teams](https://stackoverflowteams.com/) which has several potential advantages:
+
+-   It is also free to create a team provided you have no more than 50 team members in the group.
+-   It reduced the burden of any one person having to answer a question
+-   Creates a log of questions and answers over time which reduces time spent re-finding answers over and over again.
+-   Can be integrated with other programs such as Microsoft Teams, GitHub and Slack.
+
+# Microsoft Teams: Creating Channels and Teams
+
+## The good
+
+On a few occasions I have encountered the issue of "The document is locked for editing by another user". Whether this be a colleague working on the document or simply left if it open, it can be an inconvenience and slow down your productivity. An advantage of Teams (or Google docs/Overleaf) is the ability to collaborate on documents and make edits at the same time as another person.
+
+Microsoft teams also allows you to create a number of teams. For example, 'Statistics' team or 'R-users'. Within a team, channels can be made so that conversations/topics can have their own designated area (Which I much prefer to keep things separate as it helps when trying to locate things in the future).
+
+Finally, general communication through email can be tedious. I've always found it much easier talking and discussing things in a group either via Teams chat or a call. Additionally, having dedicated channels/places for discussion on a number of projects is much easier from an organisational point of view (who wants a hundred emails and to be continuously cc'd into long email chains?).
+
+## The not so good
+
+Some correspondences are better suited to email, particularly if you want to be sure of a trail. Depending on your organisational settings sometimes messages disappear after a certain period of time or you may find yourself having to re-upload documents in a group chat. Admittedly, these are fairly minor inconveniences.

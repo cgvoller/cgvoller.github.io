@@ -1,0 +1,152 @@
+---
+title: "about{Corey}"
+image: Randroom18022024_noback.png
+tbl-colwidths: [25,75]
+about:
+  template: solana
+  image-width: 20em
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/corey-v-027bb0198
+    - icon: github
+      text: Github
+      href: https://github.com/cgvoller
+format: 
+  html:
+    self-contained: true
+    grid:
+      body-width: 900px
+---
+
+```{=html}
+<style>
+ .title {
+  color: white;
+}
+
+.sidekick {
+  position: relative;
+  padding-left: 1em;
+  border-left: 0.2em solid #ebcb8b;
+  font-family: 'Roboto', serif;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  font-weight: 100;
+}
+.sidekick:before, .sidekick:after {
+  font-family: Calibri;
+    color: #ffffff;
+    font-size: 24px;
+}
+.sidekick:before {content: '\201e'}
+.sidekick:after {content: '\201c';}
+.sidekick cite {font-size: 70%; text-align:center; top:50%}
+.sidekick cite:before {content: ' \2015 '}
+
+.sidekick2 {
+  position: relative;
+  padding-left: 1em;
+  border-left: 0.2em solid #b48ead;
+  font-family: 'Roboto', serif;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  font-weight: 100;
+}
+.sidekick2:before, .sidekick2:after {
+  font-family: Calibri;
+    color: #ffffff;
+    font-size: 24px;
+}
+.sidekick2:before {content: '\201e'}
+.sidekick2:after {content: '\201c';}
+.sidekick2 cite {font-size: 70%; text-align:center; top:50%}
+.sidekick2 cite:before {content: ' \2015 '}
+
+
+
+.sidekick3 {
+  position: relative;
+  padding-left: 1em;
+  border-left: 0.2em solid #88c0d0;
+  font-family: 'Roboto', serif;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  font-weight: 100;
+}
+.sidekick3:before, .sidekick3:after {
+  font-family: Calibri;
+    color: #ffffff;
+    font-size: 24px;
+}
+.sidekick3:before {content: '\201e'}
+.sidekick3:after {content: '\201c';}
+.sidekick3 cite {font-size: 70%; text-align:center; top:50%}
+.sidekick3 cite:before {content: ' \2015 '}
+
+
+td, th {
+   border: none!important;
+}
+.table > :not(caption) > * > * {
+  background-color: #272b30;
+  color: #FFF;
+}
+
+
+
+
+</style>
+```
+## Description
+
+My name is Corey, I graduated from UCL with a Masters in Medical Statistics in 2021 and since been working as a Statistician in the UK. I enjoy searching for new topics outside of my day-job relating to statistics and programming in R although, I will occasionally use Python to create animated videos with a package called `manim` (if you've seen any 3Blue1Brown video's on YouTube you will have seen this package implemented there.)
+
+::: {.column width="175%" .flex-column}
+
+This blog will be focused primarily on statistics with an emphasis in medical applications although not exclusively. The aim is to push my statistical knowledge, searching for new methods and to catalogue these as often the things I stumble across become forgotten. A lot of my day job is spent looking at static outputs so where possible I will try to showcase interactive and alternative ways to display data (3-d plots, dynamic figures, tables, etc). The opinions and thoughts expressed here are my own and do not represent anyone else (i.e., employer).
+
+## Arguments
+
+|       |                                                                                                                                                                                                                           |
+|-------------------|-----------------------------------------------|
+| .quarto        | This blog is currently written using [quarto](https://quarto.org/) docs, an open-source publishing system (Think Rmarkdown on steroids, with added functionality e.g. ability to handle multiple languages) and html/css. |
+| .github        | It is hosted using [github pages](https://pages.github.com/) (Although, I've heard good things about Netlify).                                                                                                            |
+| .rversion      | At the time of writing, I am using it within [RStudio (R 4.3.1)](https://posit.co/download/rstudio-desktop/).                                                                                                             |
+| .badprogrammer | ![](lifecycle-deprecated.svg)                                                                                                                                                                                             |
+| .pixel         | Pixel images are created using [aseprite](https://www.aseprite.org/).                                                                                                                                                     |
+.names | Corey  ![](lifecycle-stable.svg)|
+:::
+
+## See Also
+
+`blog()` for various posts on statistics and programming
+
+
+<br>
+
+::: columns
+::: {.column width="40%"}
+```{=html}
+<body>
+<section class="component">
+<blockquote class="sidekick">
+  A Bayesian is one who, vaguely expecting a horse, and catching a glimpse of a donkey, strongly believes he has seen a mule.
+  </blockquote>
+  </section>
+</body>
+```
+:::
+
+::: {.column width="60%"}
+```{=html}
+<body>
+<section class="component">
+<blockquote class="sidekick3">
+  Sometimes a weakly informative prior is just a shit one.
+  </blockquote>
+  </section>
+</body>
+```
+:::
+:::

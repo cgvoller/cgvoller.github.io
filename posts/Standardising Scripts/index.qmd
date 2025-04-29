@@ -1,0 +1,329 @@
+---
+title: "More Efficient Working"
+subtitle: "A guide to standardising scripts" 
+author: "Corey Voller"
+date: "2024-01-28"
+toc: true
+toc-expand: 3
+categories: [R, code, Working Practices]
+image: "image.jpg"
+---
+
+# What are snippets?
+
+A useful way to cut-down the amount of repetitive typing is through the use of snippets. My love of snippets is primarily fueled by my inherent laziness (If any future employers are reading this I'm joking). A snippet allows you to automatically insert pieces of code. When I mention custom snippets to people they have often never heard of them but you likely use them without knowing and can be very useful. For example, when I type 'for' and press tab, I am met with the following chunk of code.
+
+```{r,eval=FALSE}
+for (variable in vector) {
+  
+}
+```
+
+There are numerous pre-defined snippets that exist in the settings already but we can insert our own customised snippets. You can see some larger snippets on my GitHub [here](https://github.com/cgvoller/standardisingScripts).
+
+# Motivation
+
+To anyone who has QC'd code, they will understand the frustration of loading up a script and seeing a huge mess of disjointed code with a lack of structure and comments (Not mentioning any names - I am far from perfect myself!). As part of having good coding practices, I believe it is good to have consistency and fluency across scripts, not just for an individual but across a team. This is where snippets can be useful, I can load up a script template which will be consistent across my projects and work and therefore easier to navigate across them.
+
+# How to add custom snippets
+
+Within RStudio, navigate to the top and click Tools -\> Global Options and select the code tab on the left. It should look something like this:
+
+![](options.jpg){fig-align="center" width="652"}
+
+Ensure that snippets is ticked at the bottom and click 'Edit Snippets'.
+
+Next, add in your custom snippet by typing 'snippet' followed by whatever name you choose for it and its functionality. The word snippet should be left aligned and coloured purple as seen below for my snippet 'pastefile'.
+
+![](snippet_menu.JPG){fig-align="center" width="631" height="629"}
+
+To use your custom snippets, begin typing the name of the snippet into the script and you should see it appear with brackets `{snippet}` . Press 'tab' and it should load/execute the snippet.
+
+![](test.jpg){fig-align="center" width="737"}
+
+# Examples
+
+## Change \\ to / when pasting file paths
+
+The first snippet is fairly trivial but surprisingly useful in day-to-day working.
+
+```{r,eval=FALSE}
+
+snippet pastefile
+	"`r gsub('"', "", gsub("\\\\", "/", readClipboard()))`"
+	
+```
+
+When copying and pasting file paths in R you are often met with backslashes which R complains about. The above snippet, when you copy a file path and type 'pastefile' it will past the file path location with forward slashes instead.
+
+## Generic Script Template 1
+
+This is a generic script template with a few features. Firstly, at the top I like to define a few things:
+
+1.  Path of the project
+2.  Overall purpose of the script
+3.  Who wrote the script
+4.  Date (which is taken automatically using `sys.time()`)
+5.  Who and when the code has been QC'd
+
+You'll also notice I use `## text ----`. The reason for this is it creates section headers which make navigating code easier.
+
+![](sections.JPG){fig-align="center" width="745"}
+
+```{r,eval=FALSE}
+
+snippet header
+	## ─────────────────────────────────────────────────────────────────────────────
+	##
+	## Project: `r paste(gsub(".*STUDY FOLDER/","",getwd()))`
+	##
+	## Purpose of script:
+	##
+	## Author: 
+	##
+	## Date Created: `r paste(format(Sys.time(), "%d-%m-%Y"))`
+	##
+	## QC'd by:
+	## QC date:
+	##
+	## ─────────────────────────────────────────────────────────────────────────────
+	##
+	## Notes:
+	##   
+	##
+	## ─────────────────────────────────────────────────────────────────────────────
+	##
+	## 
+	## set working directory -------------------------------------------------------
+	message("Set working directory")
+
+	# setwd("~/")  
+	
+	## Options ---------------------------------------------------------------------
+	
+	# options(scipen = 6, digits = 4) # View outputs in non-scientific notation
+
+	## Load packages ---------------------------------------------------------------
+	message("Load packages")
+
+	## Set file paths --------------------------------------------------------------
+	message("Set file paths")
+
+	base.path <- ""
+	data.path <- ""
+	output.path <- ""
+	template.path <- ""
+
+
+	## Load data -------------------------------------------------------------------
+	message("Load data")
+	 
+	# data <- fread(file.path(data.path, ".csv")) # or read.csv, etc
+	# load(x,file.path(data.path,".RData"))
+	# load(file.path("C:/Users/isfar.RData"), isfar_env <- new.env())
+
+
+	## First Section ---------------------------------------------------------------
+	message("First Section")
+
+	## Second Section --------------------------------------------------------------
+	message("Second Section")
+
+
+	## Third Section ---------------------------------------------------------------
+	message("Third section")
+
+
+	## Output  ---------------------------------------------------------------------
+	message("Output")
+
+	# save(x,file.path(output.path,".RData"))
+	# write.csv(x,file.path(output.path,"x.csv")
+
+
+
+```
+
+
+## Fancy template
+
+```{r,eval=FALSE}
+snippet templatefancy
+	## ─────────────────────────────────────────────────────────────────────────────
+	##
+	## Project: `r paste(gsub(".*STUDY FOLDER/","",getwd()))`
+	##
+	## Purpose of script:
+	##
+	## Author: `r paste(Sys.info()[["user"]])`
+	##
+	## Date Created: `r paste(format(Sys.time(), "%d-%m-%Y"))`
+	## R Version: `r paste(R.Version()$version.string)`
+	## Copyright: (c) `r paste(Sys.info()[["user"]],format(Sys.time(), "%d-%m-%Y"))`
+	## Licence: <Licence details >
+	##
+	## QC'd by:
+	## QC date:
+	##
+	## ─────────────────────────────────────────────────────────────────────────────
+	##
+	## Notes:
+	##   
+	##
+	## ─────────────────────────────────────────────────────────────────────────────
+	##
+	## 
+	## set working directory -------------------------------------------------------
+	message("Set working directory")
+
+	# If you're using an R project file, file paths will be relative so this is not 
+	# needed.
+	# setwd("~/")  
+	
+	## Options ---------------------------------------------------------------------
+	
+	# options(scipen = 6, digits = 4) # View outputs in non-scientific notation
+	
+
+	## Source config ---------------------------------------------------------------
+	message("Source config")
+
+	# Set up libraries, R options for outputs, read in in-house functions
+	source("progs/config.R")
+
+	## Set file paths --------------------------------------------------------------
+	message("Set file paths")
+
+	base.path <- ""
+	data.path <- ""
+	output.path <- ""
+	template.path <- ""
+
+
+	## Load data -------------------------------------------------------------------
+	message("Load data")
+	 
+	# data <- fread(file.path(data.path, ".csv")) # or read.csv, etc
+	# load(x,file.path(data.path,".RData"))
+	# load(file.path("C:/Users/isfar.RData"), isfar_env <- new.env())
+
+
+	## First Section ---------------------------------------------------------------
+	message("First Section")
+
+	## Second Section --------------------------------------------------------------
+	message("Second Section")
+
+	## Output  ---------------------------------------------------------------------
+	message("Output")
+
+	# save(x,file.path(output.path,".RData"))
+	# write.csv(x,file.path(output.path,"x.csv")
+
+
+
+```
+
+## Config Script Template
+
+```{r,eval=FALSE}
+
+snippet configtemplate
+	## ─────────────────────────────────────────────────────────────────────────────
+	##
+	## Project: `r paste(gsub(".*STUDY FOLDER/","",getwd()))`
+	##
+	## Purpose of script:
+	##
+	## Author: 
+	##
+	## Date Created: `r paste(format(Sys.time(), "%d-%m-%Y"))`
+	##
+	## QC'd by:
+	## QC date:
+	##
+	## ─────────────────────────────────────────────────────────────────────────────
+	##
+	## Notes:
+	##   
+	##
+	## ─────────────────────────────────────────────────────────────────────────────
+	##
+	## 
+	## Preliminary -----------------------------------------------------------------
+	message("Preliminary")
+
+	# Remove objects from workspace
+	rm(list = ls())
+	
+	## Options ---------------------------------------------------------------------
+	
+	options(verbose = TRUE, stringsAsFactors = FALSE)
+
+	## Load packages ---------------------------------------------------------------
+	message("Load packages")
+	# List of packages to be used
+	packages <-
+	  c(
+			"magrittr",
+			"dplyr",
+			"tidyr",
+			"ggplot2",
+			"dplyr",
+			"lubridate",
+			"RODBC",
+			"data.table",
+			"stringr",
+			"grid",
+			"gridExtra"
+			)
+
+
+	# Install cctu package (needs devtools)
+	# Install packages which aren't installed in "packages"
+	# if (length(packages[!(packages %in% installed.packages()[, "Package"])]))
+	#   install.packages(packages[!(packages %in% installed.packages()[, "Package"])])
+	# Load packages
+	lapply(packages, library, character.only = TRUE)
+
+	# source functions from sub folder functions
+	file.sources = list.files(
+	c("progs/functions"),
+	pattern = "\\.R$",
+	full.names = TRUE,
+	ignore.case = T
+	)
+
+	sapply(file.sources,source)
+	# define theme for figures
+	default_theme <- theme_get()
+
+	graphical_theme <- theme_bw() + theme(
+	 axis.line.x      = element_line(color = "black")
+	 axis.line.y      = element_line(color = "black"),
+	 panel.grid.major = element_blank() ,
+	 panel.grid.minor = element_blank(),
+	 panel.background = element_blank(),
+	 # panel.border = element_blank(),
+	 # axis.text = element_text(size = rel(1), angle = 45)
+	 axis.title.x     = element_text(margin = margin(t = 10)),
+	 legend.key       = element_rect(colour = "white", fill = NA),
+	 strip.background = element_rect(colour = "black")
+	)
+
+
+```
+
+
+## End header
+
+Dynamically adds dashes to the width of the script.
+
+```{r,eval=FALSE}
+snippet endhead
+	`r paste0(rep.int("-", 88 - rstudioapi::primary_selection(rstudioapi::getActiveDocumentContext())$range$start[2]), collapse = "")`
+
+```
+
+
+
