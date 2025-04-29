@@ -3,6 +3,7 @@ project:
   output-dir: docs
 website:
   title: Corey Voller
+  repo-url: https://github.com/cgvoller/cvoller.co.uk
   search:
     location: navbar
     type: textbox
