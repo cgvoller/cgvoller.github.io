@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CV Supervisor Meetings – Corey Voller</title>
+<title>Posts – Corey Voller</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -77,9 +77,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -155,11 +155,15 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./posts.html" aria-current="page"> 
-<span class="menu-text">Meetings()</span></a>
+<span class="menu-text">Posts()</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./misc.html"> 
 <span class="menu-text">miscellaneous()</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./CV.pdf"> 
+<span class="menu-text">CV()</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/cgvoller/"> <i class="bi bi-github" role="img">
@@ -182,7 +186,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
-      <h1 class="title">CV Supervisor Meetings</h1>
+      <h1 class="title">Posts</h1>
                       </div>
   </div>
     
@@ -212,21 +216,21 @@ window.Quarto = {
 
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
      <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
      <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
        <option value="" disabled="" selected="" hidden="">Order By</option>
        <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
          <option value="listing-date-sort" data-direction="asc">
           Date - Oldest
         </option>
          <option value="listing-date-sort" data-direction="desc">
           Date - Newest
+        </option>
+         <option value="listing-title-sort" data-direction="asc">
+          Title
         </option>
          <option value="listing-author" data-direction="asc">
           Author
@@ -234,227 +238,89 @@ window.Quarto = {
      </select>
   </div>
 </div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="TWVldGluZ3M=" data-listing-date-sort="1745881200000" data-listing-file-modified-sort="1745943668612" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1983">
-<div class="thumbnail">
-<p><a href="./posts/CV_meeting_29042025/Supervisor_meeting_29042025.html" class="no-external"></a></p><a href="./posts/CV_meeting_29042025/Supervisor_meeting_29042025.html" class="no-external">
-<p><img loading="lazy" src="./posts/CV_meeting_29042025/github_resized.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/CV_meeting_29042025/Supervisor_meeting_29042025.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/CV_meeting_29042025/Supervisor_meeting_29042025.html" class="no-external">Bayesian Response-Adaptive Randomisation with Group Sequential Designs</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/CV_meeting_29042025/Supervisor_meeting_29042025.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('TWVldGluZ3M='); return false;">
-Meetings
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/CV_meeting_29042025/Supervisor_meeting_29042025.html" class="no-external"></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/CV_meeting_29042025/Supervisor_meeting_29042025.html" class="no-external">
-<div class="listing-date">
-Apr 29, 2025
-</div>
-<div class="listing-author">
-Corey Voller
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="UiUyQ1dvcmtpbmclMjBQcmFjdGljZXM=" data-listing-date-sort="1710720000000" data-listing-file-modified-sort="1745943025057" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1371">
-<div class="thumbnail">
-<p><a href="./posts/collaborative_working/index.html" class="no-external"></a></p><a href="./posts/collaborative_working/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/collaborative_working/image.jpg" class="thumbnail-image"></p>
-</a><p><a href="./posts/collaborative_working/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/collaborative_working/index.html" class="no-external">Collaborative Working</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/collaborative_working/index.html" class="no-external">A short review into the tools for facilitating a collaborative working environment</a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('V29ya2luZyUyMFByYWN0aWNlcw=='); return false;">
-Working Practices
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/collaborative_working/index.html" class="no-external">The communication of ideas has interested me for a while, ever since I was a tutor I was always looking for alternative and interesting ways to visualise things. With the…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/collaborative_working/index.html" class="no-external">
-<div class="listing-date">
-Mar 18, 2024
-</div>
-<div class="listing-author">
-Corey Voller
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="UiUyQ2NvZGU=" data-listing-date-sort="1710201600000" data-listing-file-modified-sort="1745943025258" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1481">
-<div class="thumbnail">
-<p><a href="./posts/intro_hes/index.html" class="no-external"></a></p><a href="./posts/intro_hes/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/intro_hes/image.jpg" class="thumbnail-image"></p>
-</a><p><a href="./posts/intro_hes/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/intro_hes/index.html" class="no-external">Getting to grips with Hospital Episode Statistics</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/intro_hes/index.html" class="no-external">An introduction into HES</a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">
-code
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/intro_hes/index.html" class="no-external">In the late 1980’s, after a series of reports produced by the Steering Group on Health and Services Information advocating the need for a centralised data base of hospital…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/intro_hes/index.html" class="no-external">
-<div class="listing-date">
-Mar 12, 2024
-</div>
-<div class="listing-author">
-Corey Voller
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="UiUyQ0dpdCUyQ1ZlcnNpb24lMjBDb250cm9s" data-listing-date-sort="1709078400000" data-listing-file-modified-sort="1745943025583" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3237">
-<div class="thumbnail">
-<p><a href="./posts/version_control/index.html" class="no-external"></a></p><a href="./posts/version_control/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/version_control/github_resized.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/version_control/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/version_control/index.html" class="no-external">Version Control with Git in R</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/version_control/index.html" class="no-external">Introduction to using version control in RStudio with Git</a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R2l0'); return false;">
-Git
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('VmVyc2lvbiUyMENvbnRyb2w='); return false;">
-Version Control
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/version_control/index.html" class="no-external">A key requirement set out by regulators is to have a system which can modify, maintain, archive, retrieve and transmit clinical trial data. Furthermore, to ensure data…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/version_control/index.html" class="no-external">
-<div class="listing-date">
-Feb 28, 2024
-</div>
-<div class="listing-author">
-Corey Voller
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="UiUyQ2NvZGU=" data-listing-date-sort="1707609600000" data-listing-file-modified-sort="1745943024737" data-listing-date-modified-sort="1745943024000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1277">
-<div class="thumbnail">
-<p><a href="./posts/Pipes/index.html" class="no-external"></a></p><a href="./posts/Pipes/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/Pipes/pipes.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/Pipes/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Pipes/index.html" class="no-external">More than just a pipe dream</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Pipes/index.html" class="no-external">The use of different pipes in R</a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">
-code
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/Pipes/index.html" class="no-external">Named after a famous artist Rene Magritte, who painted the famous ‘ceci n’est pas une pipe’ image, the <code>magrittr</code> / <code>dplyr</code> packages contains a suite of functions using pipes…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Pipes/index.html" class="no-external">
-<div class="listing-date">
-Feb 11, 2024
-</div>
-<div class="listing-author">
-Corey Voller
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="UiUyQ2NvZGUlMkNXb3JraW5nJTIwUHJhY3RpY2Vz" data-listing-date-sort="1706400000000" data-listing-file-modified-sort="1745944782022" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="931">
-<div class="thumbnail">
-<p><a href="./posts/Standardising Scripts/index.html" class="no-external"></a></p><a href="./posts/Standardising Scripts/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/Standardising Scripts/image.jpg" class="thumbnail-image"></p>
-</a><p><a href="./posts/Standardising Scripts/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Standardising Scripts/index.html" class="no-external">More Efficient Working</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Standardising Scripts/index.html" class="no-external">A guide to standardising scripts</a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">
-code
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('V29ya2luZyUyMFByYWN0aWNlcw=='); return false;">
-Working Practices
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/Standardising Scripts/index.html" class="no-external">A useful way to cut-down the amount of repetitive typing is through the use of snippets. My love of snippets is primarily fueled by my inherent laziness (If any future…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Standardising Scripts/index.html" class="no-external">
-<div class="listing-date">
-Jan 28, 2024
-</div>
-<div class="listing-author">
-Corey Voller
-</div>
-</a>
-</div>
-</div>
-</div>
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
+</th>
+<th>
+<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
+</th>
+<th>
+<a class="sort" data-sort="listing-author" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Author</a>
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-categories="TWVldGluZ3M=" data-listing-date-sort="1745881200000" data-listing-file-modified-sort="1746008939479" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1983" data-listing-title-sort="Bayesian Response-Adaptive Randomisation with Group Sequential Designs" data-listing-filename-sort="Supervisor_meeting_29042025.qmd">
+<td>
+<span class="listing-date">Apr 29, 2025</span>
+</td>
+<td>
+<a href="./posts/CV_meeting_29042025/Supervisor_meeting_29042025.html" class="title listing-title">Bayesian Response-Adaptive Randomisation with Group Sequential Designs</a>
+</td>
+<td>
+<span class="listing-author">Corey Voller</span>
+</td>
+</tr>
+<tr data-index="1" data-categories="UiUyQ1dvcmtpbmclMjBQcmFjdGljZXM=" data-listing-date-sort="1710720000000" data-listing-file-modified-sort="1746008906691" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1371" data-listing-title-sort="Collaborative Working" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Mar 18, 2024</span>
+</td>
+<td>
+<a href="./posts/collaborative_working/index.html" class="title listing-title">Collaborative Working</a>
+</td>
+<td>
+<span class="listing-author">Corey Voller</span>
+</td>
+</tr>
+<tr data-index="2" data-categories="UiUyQ2NvZGU=" data-listing-date-sort="1710201600000" data-listing-file-modified-sort="1746008333331" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1481" data-listing-title-sort="Getting to grips with Hospital Episode Statistics" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Mar 12, 2024</span>
+</td>
+<td>
+<a href="./posts/intro_hes/index.html" class="title listing-title">Getting to grips with Hospital Episode Statistics</a>
+</td>
+<td>
+<span class="listing-author">Corey Voller</span>
+</td>
+</tr>
+<tr data-index="3" data-categories="UiUyQ0dpdCUyQ1ZlcnNpb24lMjBDb250cm9s" data-listing-date-sort="1709078400000" data-listing-file-modified-sort="1746008714240" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3237" data-listing-title-sort="Version Control with Git in R" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Feb 28, 2024</span>
+</td>
+<td>
+<a href="./posts/version_control/index.html" class="title listing-title">Version Control with Git in R</a>
+</td>
+<td>
+<span class="listing-author">Corey Voller</span>
+</td>
+</tr>
+<tr data-index="4" data-categories="UiUyQ2NvZGU=" data-listing-date-sort="1707609600000" data-listing-file-modified-sort="1746008674208" data-listing-date-modified-sort="1746008674000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1281" data-listing-title-sort="More than just a pipe dream" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Feb 11, 2024</span>
+</td>
+<td>
+<a href="./posts/Pipes/index.html" class="title listing-title">More than just a pipe dream</a>
+</td>
+<td>
+<span class="listing-author">Corey Voller</span>
+</td>
+</tr>
+<tr data-index="5" data-categories="UiUyQ2NvZGUlMkNXb3JraW5nJTIwUHJhY3RpY2Vz" data-listing-date-sort="1706400000000" data-listing-file-modified-sort="1746008702827" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="931" data-listing-title-sort="More Efficient Working" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Jan 28, 2024</span>
+</td>
+<td>
+<a href="./posts/Standardising Scripts/index.html" class="title listing-title">More Efficient Working</a>
+</td>
+<td>
+<span class="listing-author">Corey Voller</span>
+</td>
+</tr>
+</tbody>
+</table>
 <div class="listing-no-matching d-none">
 No matching items
 </div>

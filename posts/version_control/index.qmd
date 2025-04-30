@@ -4,7 +4,6 @@ subtitle: "Introduction to using version control in RStudio with Git"
 author: "Corey Voller"
 date: "2024-02-28"
 categories: [R, Git, Version Control]
-image: "github_resized.png"
 bibliography: references.bib
 toc: true
 toc-expand: 3

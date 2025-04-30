@@ -5,7 +5,7 @@
     {"id": "The Hobbit", "group": 3},
     {"id": "Noise", "group": 2},
     {"id": "A Game of Thrones","group":4}
-   
+    {"id": "Unnatural Causes","group":5}
   ],
   "links": [
     {"source": "The Book of Why", "target": "Books", "value": 1,"distance":10},
@@ -13,6 +13,7 @@
     {"source": "Noise", "target": "Books", "value": 2,"distance":50},
     {"source": "Noise", "target": "The Book of Why", "value": 2,"distance":10},
     {"source": "A Game of Thrones", "target": "Books", "value": 1,"distance":10}
+    {"source": "Unnatural Causes", "target": "Books", "value": 1,"distance":10}
 
   ]
 }

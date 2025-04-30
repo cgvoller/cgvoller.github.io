@@ -4,7 +4,6 @@ subtitle: "An introduction into HES"
 author: "Corey Voller"
 date: "2024-03-12"
 categories: [R, code]
-image: "image.jpg"
 bibliography: references.bib
 toc: true
 toc-expand: 3

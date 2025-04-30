@@ -11,10 +11,12 @@ website:
     right:
     - text: "?cvoller::about"
       href: about.qmd
-    - text: "Meetings()"
+    - text: "Posts()"
       href: posts.qmd
     - text: "miscellaneous()"
       file: misc.qmd
+    - text: "CV()"
+      file: CV.pdf
     - icon: github
       href: https://github.com/cgvoller/
     - icon: linkedin

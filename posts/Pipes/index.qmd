@@ -5,7 +5,6 @@ author: "Corey Voller"
 date: "2024-02-11"
 date-modified: last-modified
 categories: [R, code]
-image: "pipes.png"
 bibliography: references.bib
 toc: true
 toc-expand: 3
@@ -25,9 +24,14 @@ library(cli)
 
 # Introduction
 
-Named after a famous artist Rene Magritte, who painted the famous 'ceci n'est pas une pipe' image, the `magrittr` / `dplyr` packages contains a suite of functions using pipes for data manipulation.
+::: {style="float: left; margin: 5px;"}
+![]({{< pipes.png>}}){#fig-placeholder}
+:::
 
-I had a friend at university who frequently bought pipe tobacco as apparently it is much cheaper than regular tobacco. Anyway, much like his smoking habit, `dplyr` can chain things together. In addition to this, it is relatively readable and interpretable in comparison to `data.table` (or at least to me). That isn't to say I don't like `data.table`, it has its place and advantages with larger data sets but I do not often work with such data sets that the efficiency gain outweighs the trade-off between readability. It is important to balance such things and to consider QC'ers or the possibility of someone taking over a piece of code from you.
+{{< Named after a famous artist Rene Magritte, who painted the famous 'ceci n'est pas une pipe' image, the `magrittr` / `dplyr` packages contains a suite of functions using pipes for data manipulation.
+
+Whilst at university, I had a friend who frequently bought pipe tobacco as apparently it is much cheaper than regular tobacco. Much like his smoking habit, `dplyr` can chain things together. Pipe operators are also easily readable and interpretable in comparison to `data.table` (at least to me). That isn't to say I don't like `data.table`, it has its place and advantages with larger data sets but I do not often work with such data sets that the efficiency gain outweighs the trade-off between readability. It is important to balance such things and to consider QC'ers or the possibility of someone taking over a piece of code from you. >}}
+
 
 # R pipe (\|\>)
 

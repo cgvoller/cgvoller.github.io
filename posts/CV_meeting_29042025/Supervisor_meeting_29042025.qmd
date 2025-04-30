@@ -7,7 +7,6 @@ bibliography: bibliography.bib
 toc: true
 toc-title: "Outline"
 categories: [Meetings]
-image: "github_resized.png"
 format: 
   revealjs:
     embed-resources: true

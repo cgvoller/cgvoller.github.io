@@ -142,6 +142,18 @@ Increase spacing between elements
   content: '';
   height: 3px;
   width: 0%;
+  background: #bf616a;
+  position: absolute;
+  left:0;
+  bottom:-9px;
+  transition: 0.5s;
+}
+
+
+.navbar ul li:nth-child(5)::after{
+  content: '';
+  height: 3px;
+  width: 0%;
   background: #62c462;
   position: absolute;
   left:0;
@@ -149,7 +161,7 @@ Increase spacing between elements
   transition: 0.5s;
 }
 
-.navbar ul li:nth-child(5)::after{
+.navbar ul li:nth-child(6)::after{
   content: '';
   height: 3px;
   width: 0%;
@@ -216,4 +228,43 @@ div.quarto-about-solana .about-entity .about-link:nth-child(2):hover{
   color: #62c462;
 }
 
+
+.homepage-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.card {
+  background-color: #2e3440;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.015);
+  background-color: #3b4252;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #eceff4;
+}
+
+.card p {
+  margin-bottom: 0.5rem;
+}
+
+.card a {
+  color: #88c0d0;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.card a:hover {
+  color: #81a1c1;
+}
 
