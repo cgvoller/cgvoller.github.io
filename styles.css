@@ -149,8 +149,18 @@ Increase spacing between elements
   transition: 0.5s;
 }
 
-
 .navbar ul li:nth-child(5)::after{
+  content: '';
+  height: 3px;
+  width: 0%;
+  background: #FFFF00;
+  position: absolute;
+  left:0;
+  bottom:-9px;
+  transition: 0.5s;
+}
+
+.navbar ul li:nth-child(6)::after{
   content: '';
   height: 3px;
   width: 0%;
@@ -161,7 +171,7 @@ Increase spacing between elements
   transition: 0.5s;
 }
 
-.navbar ul li:nth-child(6)::after{
+.navbar ul li:nth-child(7)::after{
   content: '';
   height: 3px;
   width: 0%;

@@ -17,6 +17,8 @@ website:
       file: misc.qmd
     - text: "CV()"
       file: CV.pdf
+    - text: "Gallery()"
+      file: gallery.qmd
     - icon: github
       href: https://github.com/cgvoller/
     - icon: linkedin
