@@ -439,6 +439,17 @@ class BoundaryAnimation(Scene):
 ```
 
 
+## Multi-Arm Multi-Stage (MAMS)
+
+<video width="640" controls>
+
+<source src="videos/MAMS.mp4" type="video/mp4">
+
+Your browser does not support the video tag. </video>
+
+
+
+
 
 ## 3 + 3 Dose escalation
 
