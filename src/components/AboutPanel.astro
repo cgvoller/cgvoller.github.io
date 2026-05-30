@@ -1,0 +1,44 @@
+---
+import SocialButtons from './SocialButtons.astro';
+---
+<section class="section reveal" id="about-preview">
+  <div class="container">
+    <div class="about-panel">
+      <aside class="profile-card" aria-label="Corey profile links">
+        <div class="profile-image-wrap">
+          <img src="/images/corey-profile.png" alt="Corey Voller" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+          <span class="profile-placeholder">CV</span>
+        </div>
+        <h2>Corey</h2>
+        <p>Statistician · PhD researcher · software developer</p>
+        <SocialButtons compact />
+      </aside>
+
+      <div class="about-copy">
+        <span class="tag">About</span>
+        <h2 class="section-title">about<span class="brace">&#123;</span>Corey<span class="brace">&#125;</span></h2>
+        <blockquote class="sidekick">
+          Statistics, programming and visual explanation for medical research and trial methodology.
+        </blockquote>
+        <p>
+          I enjoy exploring statistical ideas beyond routine analysis work, especially where methods can be made clearer through
+          simulation, interactive graphics, reproducible notebooks or small pieces of software.
+        </p>
+        <p>
+          My research focuses on Bayesian adaptive clinical trial designs, with broader interests in biostatistics,
+          external data, evidence synthesis, R programming and practical teaching resources.
+        </p>
+
+        <table class="about-meta" aria-label="About Corey details">
+          <tbody>
+            <tr><td>.focus</td><td>Bayesian adaptive clinical trials, small population designs, medical statistics and simulation.</td></tr>
+            <tr><td>.tooling</td><td>R, Quarto, Git, HTML/CSS, Python, C#, dashboards and reproducible reports.</td></tr>
+            <tr><td>.research</td><td>Efficient design and analysis of small population clinical trials with external data.</td></tr>
+            <tr><td>.teaching</td><td>Mathematics, statistics, R workflows and visual explanations of complex methods.</td></tr>
+            <tr><td>.approach</td><td>Turn complicated statistical ideas into something people can inspect, question and use.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

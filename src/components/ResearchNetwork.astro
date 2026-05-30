@@ -1,0 +1,74 @@
+---
+import { networkNodes } from '../data/site';
+const first = networkNodes[0];
+---
+<section class="section network-section reveal" id="research-network">
+  <div class="container">
+    <div class="section-heading center">
+      <span class="eyebrow">Interactive research map</span>
+      <h2>Navigate the work as a statistical network.</h2>
+      <p>
+        This lightweight first version gives you the network-meta-analysis feel without adding extra packages.
+        Later, this section can become a true 3D force graph.
+      </p>
+    </div>
+
+    <div class="network-shell">
+      <div class="network-canvas" aria-label="Interactive research network">
+        <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+          <path class="network-edge" d="M50 28 L25 47 L42 67 L79 72 L70 48 L50 28" />
+          <path class="network-edge muted" d="M25 47 L70 48 M19 76 L42 67 M19 76 L25 47 M79 72 L50 28" />
+        </svg>
+        {networkNodes.map((node) => (
+          <button
+            class:list={['network-node', node.type, node.id === first.id && 'active']}
+            type="button"
+            style={`--x:${node.x}; --y:${node.y};`}
+            data-id={node.id}
+            data-label={node.label}
+            data-summary={node.summary}
+            data-links={node.links.join('|')}
+          >
+            <span>{node.label}</span>
+          </button>
+        ))}
+      </div>
+
+      <article class="network-card" data-network-card>
+        <span class="tag">Selected node</span>
+        <h3 data-network-title>{first.label}</h3>
+        <p data-network-summary>{first.summary}</p>
+        <div class="mini-tags" data-network-links>
+          {first.links.map((link) => <span>{link}</span>)}
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <script is:inline>
+    const nodes = document.querySelectorAll('[data-id]');
+    const title = document.querySelector('[data-network-title]');
+    const summary = document.querySelector('[data-network-summary]');
+    const links = document.querySelector('[data-network-links]');
+    const card = document.querySelector('[data-network-card]');
+
+    nodes.forEach((node) => {
+      node.addEventListener('click', () => {
+        nodes.forEach((n) => n.classList.remove('active'));
+        node.classList.add('active');
+        if (!title || !summary || !links || !card) return;
+        card.classList.remove('flip-in');
+        void card.offsetWidth;
+        card.classList.add('flip-in');
+        title.textContent = node.dataset.label;
+        summary.textContent = node.dataset.summary;
+        links.innerHTML = '';
+        (node.dataset.links || '').split('|').forEach((item) => {
+          const span = document.createElement('span');
+          span.textContent = item;
+          links.appendChild(span);
+        });
+      });
+    });
+  </script>
+</section>

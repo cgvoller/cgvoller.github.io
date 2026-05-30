@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { posts } from '../data/site';
+---
+<Layout title="Posts | Corey Voller" active="posts">
+  <PageHero
+    eyebrow="Research notebook"
+    title="Posts, notes and statistical experiments."
+    lead="This page carries over the posts from your current site, but presents them as a modern research notebook."
+  />
+
+  <section class="section reveal">
+    <div class="container posts-list">
+      {posts.map((post) => (
+        <article class="post-row">
+          <div>
+            <p class="post-date">{post.date}</p>
+            <h2><a href={post.href}>{post.title}</a></h2>
+            <p>{post.excerpt}</p>
+            <div class="mini-tags">{post.tags.map((tag) => <span>{tag}</span>)}</div>
+          </div>
+          <a class="text-link" href={post.href}>Read post →</a>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>

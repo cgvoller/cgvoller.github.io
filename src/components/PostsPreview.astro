@@ -1,0 +1,25 @@
+---
+import { posts } from '../data/site';
+const previewPosts = posts.slice(0, 3);
+---
+<section class="section reveal">
+  <div class="container">
+    <div class="section-heading split-heading">
+      <div>
+        <span class="eyebrow">Research notebook</span>
+        <h2>Posts, notes and working ideas.</h2>
+      </div>
+      <a class="text-link" href="/posts/">View all posts →</a>
+    </div>
+    <div class="card-grid">
+      {previewPosts.map((post) => (
+        <article class="post-card">
+          <p class="post-date">{post.date}</p>
+          <h3><a href={post.href}>{post.title}</a></h3>
+          <p>{post.excerpt}</p>
+          <div class="mini-tags">{post.tags.map((tag) => <span>{tag}</span>)}</div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

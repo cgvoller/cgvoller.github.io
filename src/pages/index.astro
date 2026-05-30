@@ -1,11 +1,31 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Hero from '../components/Hero.astro';
+import AboutPanel from '../components/AboutPanel.astro';
+import ResearchNetwork from '../components/ResearchNetwork.astro';
+import PublicationsPreview from '../components/PublicationsPreview.astro';
+import TeachingPreview from '../components/TeachingPreview.astro';
+import PostsPreview from '../components/PostsPreview.astro';
 ---
+<Layout active="home">
+  <Hero />
+  <AboutPanel />
+  <ResearchNetwork />
+  <PublicationsPreview />
+  <TeachingPreview />
+  <PostsPreview />
 
-<Layout>
-	<Welcome />
+  <section class="section contact-band reveal">
+    <div class="container contact-panel">
+      <div>
+        <span class="eyebrow">CV and contact</span>
+        <h2>Need the formal version?</h2>
+        <p>Download the CV, view the publications page, or use the links above for GitHub, LinkedIn and Google Scholar.</p>
+      </div>
+      <div class="actions">
+        <a class="button button-primary" href="/CV.pdf">Download CV</a>
+        <a class="button button-secondary" href="/cv/">View CV page</a>
+      </div>
+    </div>
+  </section>
 </Layout>

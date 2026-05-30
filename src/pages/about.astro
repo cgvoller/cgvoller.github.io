@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import AboutPanel from '../components/AboutPanel.astro';
+import Timeline from '../components/Timeline.astro';
+---
+<Layout title="About | Corey Voller" active="about">
+  <PageHero
+    eyebrow="about{Corey}"
+    title="Statistics, software and visual explanation."
+    lead="This page keeps the spirit of the original about{Corey} page, but turns it into a more modern research profile."
+  />
+
+  <AboutPanel />
+
+  <section class="section reveal">
+    <div class="container two-column">
+      <div class="section-heading sticky-heading">
+        <span class="eyebrow">Background</span>
+        <h2>From medical statistics and clinical trials to PhD research.</h2>
+        <p>
+          My work sits between statistical methodology, applied health research, reproducible programming and clear communication.
+        </p>
+      </div>
+      <Timeline />
+    </div>
+  </section>
+
+  <section class="section paper-section reveal">
+    <div class="container card-grid">
+      <article class="clean-card wide-card">
+        <span class="tag">Research focus</span>
+        <h2>Efficient design and analysis of small population clinical trials with external data.</h2>
+        <p>
+          The central research interest is how to design and analyse trials when populations are small, uncertainty is high,
+          and borrowing or adapting information must be done carefully.
+        </p>
+      </article>
+      <article class="clean-card">
+        <h3>What I like building</h3>
+        <p>
+          R simulations, interactive trial design explainers, small dashboards, animated statistical ideas and teaching tools.
+        </p>
+      </article>
+      <article class="clean-card">
+        <h3>What this site is for</h3>
+        <p>
+          A public notebook for statistical posts, publications, teaching resources, visual experiments and project links.
+        </p>
+      </article>
+    </div>
+  </section>
+</Layout>

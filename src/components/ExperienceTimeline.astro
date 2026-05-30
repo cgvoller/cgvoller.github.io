@@ -1,0 +1,73 @@
+---
+import { experienceTimeline } from '../data/site';
+---
+<section class="experience-shell" aria-label="Career and education timeline">
+  <div class="experience-progress" aria-hidden="true">
+    <span class="experience-progress-fill"></span>
+  </div>
+
+  <div class="experience-list">
+    {experienceTimeline.map((item, index) => {
+      const side = index % 2 === 0 ? 'left' : 'right';
+      return (
+        <article class:list={['experience-item', side]}>
+          <div class="experience-spacer" aria-hidden="true"></div>
+          <div class="experience-node-wrap" aria-hidden="true">
+            <span class="experience-connector"></span>
+            <span class="experience-node"></span>
+          </div>
+          <div class="experience-card">
+            <div class="experience-card-top">
+              <span>{item.date}</span>
+              <small>{item.type}</small>
+            </div>
+            <h3>{item.title}</h3>
+            <p class="experience-organisation">{item.organisation}</p>
+            <p>{item.description}</p>
+            <ul>
+              {item.bullets.map((bullet) => <li>{bullet}</li>)}
+            </ul>
+            <div class="experience-tags">
+              {item.tags.map((tag) => <span>{tag}</span>)}
+            </div>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</section>
+
+<script is:inline>
+  const timelineShell = document.querySelector('.experience-shell');
+
+  if (timelineShell) {
+    const items = Array.from(timelineShell.querySelectorAll('.experience-item'));
+    const updateTimeline = () => {
+      const rect = timelineShell.getBoundingClientRect();
+      const triggerY = window.innerHeight * 0.52;
+      const progress = Math.min(Math.max((triggerY - rect.top) / rect.height, 0), 1);
+      timelineShell.style.setProperty('--timeline-progress', `${progress * 100}%`);
+
+      for (const item of items) {
+        const node = item.querySelector('.experience-node');
+        const nodeRect = node.getBoundingClientRect();
+        if (nodeRect.top <= triggerY) {
+          item.classList.add('is-reached');
+        } else {
+          item.classList.remove('is-reached');
+        }
+      }
+    };
+
+    const revealTimelineItem = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+      }
+    }, { threshold: 0.22 });
+
+    items.forEach((item) => revealTimelineItem.observe(item));
+    updateTimeline();
+    window.addEventListener('scroll', updateTimeline, { passive: true });
+    window.addEventListener('resize', updateTimeline);
+  }
+</script>

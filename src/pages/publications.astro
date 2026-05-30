@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { publications } from '../data/site';
+---
+<Layout title="Publications | Corey Voller" active="publications">
+  <PageHero
+    eyebrow="Publications"
+    title="Published work and research outputs."
+    lead="A clean place to list publications, preprints, conference outputs and related code as your research portfolio grows."
+  />
+
+  <section class="section reveal">
+    <div class="container publication-list">
+      {publications.map((pub) => (
+        <article class="paper-card large-paper">
+          <div class="paper-meta"><span>{pub.year}</span><span>{pub.venue}</span><span>{pub.details}</span></div>
+          <h2>{pub.title}</h2>
+          <p>{pub.summary}</p>
+          <div class="mini-tags">{pub.tags.map((tag) => <span>{tag}</span>)}</div>
+          <div class="actions compact-actions">
+            <a class="button button-primary" href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer">Open DOI</a>
+            <button class="button button-secondary citation-button" type="button" data-citation={`${pub.title}. ${pub.venue}. ${pub.year};${pub.details}. doi:${pub.doi}.`}>Copy citation</button>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section paper-section reveal">
+    <div class="container notice-card">
+      <span class="tag">Coming next</span>
+      <h2>Preprints, code and presentations can be added here.</h2>
+      <p>
+        This page is structured so each new publication can be added once in <code>src/data/site.ts</code> and automatically displayed here.
+      </p>
+    </div>
+  </section>
+
+  <script is:inline>
+    document.querySelectorAll('.citation-button').forEach((button) => {
+      button.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(button.dataset.citation || '');
+          button.textContent = 'Copied';
+          setTimeout(() => (button.textContent = 'Copy citation'), 1400);
+        } catch {
+          button.textContent = 'Copy unavailable';
+        }
+      });
+    });
+  </script>
+</Layout>

@@ -1,0 +1,39 @@
+---
+import { site } from '../data/site';
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand footer-brand" href="/">
+        <span class="brand-mark">CV</span>
+        <span class="brand-copy">
+          <strong>{site.name}</strong>
+          <span>Personal research site</span>
+        </span>
+      </a>
+      <p>
+        Statistician and PhD researcher working across Bayesian adaptive clinical trial designs,
+        medical statistics, R, simulation and visual explanation.
+      </p>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <a href="/about/">About</a>
+      <a href="/publications/">Publications</a>
+      <a href="/teaching/">Teaching</a>
+      <a href="/posts/">Posts</a>
+    </div>
+    <div>
+      <h4>Links</h4>
+      <a href={site.cv}>CV</a>
+      <a href={site.links.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href={site.links.scholar} target="_blank" rel="noopener noreferrer">Google Scholar</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <p class="small">Built with Astro and hosted on GitHub Pages.</p>
+    </div>
+  </div>
+</footer>

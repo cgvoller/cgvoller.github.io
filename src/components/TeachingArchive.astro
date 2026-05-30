@@ -1,0 +1,43 @@
+---
+import { teachingArchive } from '../data/site';
+const groups = ['Teaching', 'Conference talks', 'Workshops / demos'];
+---
+<section class="section reveal" id="teaching-archive">
+  <div class="container">
+    <div class="section-heading center">
+      <span class="eyebrow">Teaching & talks</span>
+      <h2>A growing archive, not a fixed three-card section.</h2>
+      <p>
+        Teaching, seminars, conference talks and demos can be added as small entries. The layout keeps the technical grid feeling,
+        but scales better as the list grows.
+      </p>
+    </div>
+
+    <div class="segmented-board" aria-label="Teaching, conference talks and workshop archive">
+      {groups.map((group) => {
+        const items = teachingArchive.filter((item) => item.type === group);
+        return (
+          <section class="segment-column">
+            <div class="segment-head">
+              <span>{group}</span>
+              <small>{items.length} items</small>
+            </div>
+            <div class="segment-stack">
+              {items.map((item) => (
+                <article class="archive-card">
+                  <div class="archive-meta">
+                    <span>{item.year}</span>
+                    <span>{item.context}</span>
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+    <div class="bottom-hatch board-hatch" aria-hidden="true"></div>
+  </div>
+</section>

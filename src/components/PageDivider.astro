@@ -1,0 +1,10 @@
+---
+const { label = '' } = Astro.props;
+---
+<div class="page-divider" aria-hidden="true">
+  <div class="divider-rule"></div>
+  <div class="divider-hatch">
+    {label && <span>{label}</span>}
+  </div>
+  <div class="divider-rule"></div>
+</div>

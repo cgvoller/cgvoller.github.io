@@ -1,0 +1,43 @@
+---
+import { teachingArchive } from '../data/site';
+const groups = ['Teaching', 'Conference talks', 'Workshops / demos'];
+---
+<section class="section paper-section reveal" id="teaching-preview">
+  <div class="container">
+    <div class="section-heading center">
+      <span class="eyebrow">Teaching & talks</span>
+      <h2>Teaching, talks and demos as an expandable archive.</h2>
+      <p>
+        Instead of three static cards, this section works like a compact record of activity. Add more entries in the data file and the board grows.
+      </p>
+    </div>
+
+    <div class="segmented-board compact-board" aria-label="Teaching and talks preview">
+      {groups.map((group) => {
+        const items = teachingArchive.filter((item) => item.type === group).slice(0, 2);
+        return (
+          <section class="segment-column">
+            <div class="segment-head">
+              <span>{group}</span>
+              <small>{teachingArchive.filter((item) => item.type === group).length} items</small>
+            </div>
+            <div class="segment-stack">
+              {items.map((item) => (
+                <article class="archive-card">
+                  <div class="archive-meta">
+                    <span>{item.year}</span>
+                    <span>{item.context}</span>
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+    <div class="bottom-hatch board-hatch" aria-hidden="true"></div>
+    <p class="below-board-link"><a class="text-link" href="/teaching/">View full teaching and talks archive →</a></p>
+  </div>
+</section>

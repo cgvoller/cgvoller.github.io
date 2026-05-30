@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+---
+
+<Layout title="CV | Corey Voller" active="cv">
+  <PageHero
+    eyebrow="CV"
+    title="Changelog of my journey"
+    lead="Timeline of my education and experiences."
+  />
+
+  <section class="section paper-section reveal">
+    <div class="container">
+      <ExperienceTimeline />
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="container contact-panel cv-download">
+      <div>
+        <span class="tag">PDF</span>
+        <h2>Download the full CV.</h2>
+        <p>
+          This page is a visual summary of my main education and experience entries.
+          The full academic CV is available as a PDF.
+        </p>
+      </div>
+      <a class="button button-primary" href="/CV.pdf">Download CV</a>
+    </div>
+  </section>
+  <section class="section reveal">
+    <div class="container card-grid">
+      <article class="clean-card">
+        <h3>Programming</h3>
+        <p>R, tidyverse, data.table, ggplot2, RMarkdown/Quarto, RShiny, Python, SQL, C# and WPF.</p>
+      </article>
+      <article class="clean-card">
+        <h3>Software and workflow</h3>
+        <p>Git, LaTeX, Microsoft Office, STATA, WinBUGS and reproducible reporting workflows.</p>
+      </article>
+      <article class="clean-card">
+        <h3>Research interests</h3>
+        <p>Bayesian methods, adaptive clinical trials, external data, small populations and evidence synthesis.</p>
+      </article>
+    </div>
+  </section>
+</Layout>
