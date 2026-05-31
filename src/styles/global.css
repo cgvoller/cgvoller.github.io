@@ -1422,9 +1422,227 @@ body::before {
     right: auto !important;
     width: 30px;
   }
-  .experience-item.left .experience-connector::after,
-  .experience-item.right .experience-connector::after {
-    left: 0;
-    right: auto;
+
+.experience-item.left .experience-connector::after,
+.experience-item.right .experience-connector::after {
+  left: 0;
+  right: auto;
+}
+
+}
+
+/* Publication flip cards */
+.publication-grid {
+  align-items: stretch;
+}
+
+.publication-flip-card {
+  position: relative;
+  min-height: 540px;
+  perspective: 1200px;
+}
+
+.publication-flip-inner {
+  position: relative;
+  width: 100%;
+  min-height: 540px;
+  transform-style: preserve-3d;
+}
+
+.publication-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  border: 1px solid var(--line-paper);
+  border-radius: 24px;
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: var(--paper-shadow);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  transition: transform 0.65s ease, opacity 0.2s ease;
+}
+
+.publication-face::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px dashed rgba(17, 24, 39, 0.07);
+  border-radius: 18px;
+  pointer-events: none;
+}
+
+.publication-face::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 16px;
+  height: 16px;
+  border-top: 1px solid rgba(37, 99, 235, 0.35);
+  border-right: 1px solid rgba(37, 99, 235, 0.35);
+  pointer-events: none;
+}
+
+.publication-face > * {
+  position: relative;
+  z-index: 1;
+}
+
+.publication-front {
+  transform: rotateY(0deg);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.publication-back {
+  transform: rotateY(180deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.publication-flip-card.is-flipped .publication-front {
+  transform: rotateY(-180deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.publication-flip-card.is-flipped .publication-back {
+  transform: rotateY(0deg);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.publication-footer {
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.publication-doi {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  color: var(--blue-2) !important;
+  font-size: 0.86rem;
+  line-height: 1.35;
+  font-weight: 850;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.publication-action-row {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.publication-flip-card {
+  cursor: pointer;
+}
+
+.publication-flip-card:focus-visible .publication-face {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 4px;
+}
+
+.flip-hint {
+  width: fit-content;
+  border: 1px solid #dbeafe;
+  background: #eff6ff;
+  color: var(--blue-2);
+  border-radius: 999px;
+  padding: 8px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 850;
+  line-height: 1;
+  user-select: none;
+}
+
+.publication-flip-card:hover .flip-hint,
+.publication-flip-card:focus-visible .flip-hint {
+  background: #dbeafe;
+  border-color: rgba(37, 99, 235, 0.45);
+}
+
+.publication-flip-card a {
+  cursor: pointer;
+}
+
+.paper-back-block {
+  margin-top: 18px;
+}
+
+.paper-back-block strong {
+  display: block;
+  color: var(--blue-2);
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  margin-bottom: 5px;
+}
+
+.paper-back-block p {
+  margin: 0;
+  color: var(--muted-dark);
+}
+
+.publication-back-actions {
+  margin-top: auto;
+  padding-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .publication-face {
+    transition: none !important;
   }
+}
+
+@media (max-width: 680px) {
+  .publication-flip-card,
+  .publication-flip-inner {
+    min-height: 640px;
+  }
+}
+
+/* Publication flip hint: text aligned to the base of the dashed arrow */
+.publication-flip-hint {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+  margin: -2px 0 12px 0;
+  color: var(--blue-2);
+  pointer-events: none;
+}
+
+.publication-flip-hint-text {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  padding-top: 4px;
+  white-space: nowrap;
+}
+
+.publication-flip-arrow {
+  display: block;
+  width: 78px;
+  height: 44px;
+  overflow: visible;
+  flex: 0 0 auto;
 }

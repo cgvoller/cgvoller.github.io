@@ -74,8 +74,37 @@ export const publications = [
     doi: '10.1177/03331024241235156',
     tags: ['MAIC', 'Indirect comparison', 'HEOR', 'Migraine'],
     summary:
-      'A matching-adjusted indirect comparison analysis comparing migraine prevention treatments using published evidence.'
+      'A matching-adjusted indirect comparison analysis comparing migraine prevention treatments using published evidence.',
+      back: {
+  question:
+    'How does atogepant compare with rimegepant for migraine prevention when direct head-to-head evidence is unavailable?',
+  method:
+    'Matching-adjusted indirect comparison using published evidence.',
+  contribution:
+    'Applies evidence-synthesis methods to compare efficacy, quality of life, safety and tolerability outcomes across migraine prevention treatments.'
+}
+  },
+  {
+  title: 'Bayesian prior elicitation on the efficacy of medical therapies in perianal fistulizing Crohn’s disease',
+  authors:
+    'Noor NM, Zheng H, Cao Z, Caruso G, Voller C, Cooney R, Din S, Gordon H, Kok KB, Lindsay JO, Moran GW, Patel KV, Sebastian S, Raine T, Subramanian S, Hart AL, Robertson DS, Parkes M',
+  venue: 'Journal of Crohn’s and Colitis',
+  year: '2026',
+  details: '20(5), jjag061',
+  doi: '10.1093/ecco-jcc/jjag061',
+  url: 'https://academic.oup.com/ecco-jcc/article/20/5/jjag061/8675238',
+  summary:
+    'A Bayesian prior elicitation study estimating the efficacy of medical therapies for perianal fistulizing Crohn’s disease.',
+  tags: ['Prior elicitation', 'Crohn’s disease', 'Bayesian statistics','Clinical trials'],
+  back: {
+    question:
+      'How can expert beliefs about treatment efficacy be formally captured for medical therapies in perianal fistulizing Crohn’s disease?',
+    method:
+      'Bayesian prior elicitation using clinical expert judgement.',
+    contribution:
+      'Makes prior assumptions explicit and supports transparent Bayesian modelling in a complex clinical area with limited or uncertain evidence.'
   }
+},
 ];
 
 export const teaching = [
@@ -170,15 +199,15 @@ export const experienceTimeline = [
   },
   {
     date: 'Sep 2024 – Present',
-    title: 'PhD Researcher',
+    title: 'PhD Candidate',
     organisation: 'University of Bath',
     type: 'Research / education',
     description:
-      'Researching Bayesian adaptive clinical trial designs, with a focus on simulation, decision rules and visual communication of statistical methods.',
+      'Researching Bayesian adaptive clinical trial designs.',
     bullets: [
-      'Developing and evaluating adaptive clinical trial designs.',
-      'Using simulation to study operating characteristics and design behaviour.',
-      'Building reproducible R workflows and visualisations for communicating methods.'
+      'First project focused on response-adaptive randomisation within group sequential designs',
+      'Developing statistical methodology and evaluating adaptive clinical trial designs.',
+      'Using simulations to study operating characteristics and design behaviour.'
     ],
     tags: ['Bayesian statistics', 'Clinical trials', 'Adaptive designs','R','Simulation']
   },
@@ -229,11 +258,11 @@ export const experienceTimeline = [
     organisation: 'University College London',
     type: 'Education',
     description:
-      'Postgraduate training in medical statistics, statistical computing, applied modelling and Bayesian methods.',
+      '',
     bullets: [
-      'Focused on medical statistics and applied statistical modelling.',
-      'Developed statistical programming and research methods skills.',
-      'Built a foundation for later work in clinical trials and Bayesian design.'
+      'Focused on medical statistics and applied statistics',
+      'Developed programming knowledge using R and WinBUGS.',
+      'Research project: Alternative Methods of Data Fusion in Metabolomic Cancer Diagnostics'
     ],
     tags: ['Medical statistics', 'Bayesian methods', 'Statistical computing']
   }
