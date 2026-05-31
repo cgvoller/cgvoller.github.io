@@ -4,15 +4,21 @@ import SocialButtons from './SocialButtons.astro';
 <section class="section reveal" id="about-preview">
   <div class="container">
     <div class="about-panel">
-      <aside class="profile-card" aria-label="Corey profile links">
-        <div class="profile-image-wrap">
-          <img src="/images/corey-profile.png" alt="Corey Voller" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
-          <span class="profile-placeholder">CV</span>
-        </div>
-        <h2>Corey</h2>
-        <p>Statistician · PhD researcher · software developer</p>
-        <SocialButtons compact />
-      </aside>
+     <div class="profile-card">
+  <div class="profile-image-wrap profile-image-photo">
+    <img
+      src="/images/Randroom18022024_noback.png"
+      alt="Corey Voller"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+    />
+    <span class="profile-placeholder">CV</span>
+  </div>
+
+  <h2>Corey</h2>
+  <p>Statistician · PhD researcher · software developer</p>
+
+  <SocialButtons compact />
+</div>
 
       <div class="about-copy">
         <span class="tag">About</span>
@@ -20,15 +26,19 @@ import SocialButtons from './SocialButtons.astro';
         <blockquote class="sidekick">
           Statistics, programming and visual explanation for medical research and trial methodology.
         </blockquote>
+        <h3 class="about-subheading">Description</h3>
         <p>
-          I enjoy exploring statistical ideas beyond routine analysis work, especially where methods can be made clearer through
-          simulation, interactive graphics, reproducible notebooks or small pieces of software.
+        I'm Corey and I am currently a PhD Candidate at the University of Bath. My research lies in Bayesian adaptive designs. I am supervised by Haiyan Zheng and Christopher Jennison. I enjoy exploring ideas beyond routine analysis work, especially where methods can be made clearer through interactive graphics, reproducible notebooks or small pieces of software. I sometimes make fun (at least what I call fun) slides in Quarto or Manim (Math animation package). 
+        
+        </p>
+        <p>
+        I've tried to make this site a little interactive and have included some examples of animated slides here.
         </p>
         <p>
           My research focuses on Bayesian adaptive clinical trial designs, with broader interests in biostatistics,
           external data, evidence synthesis, R programming and practical teaching resources.
         </p>
-
+<h3 class="about-subheading about-arguments-heading">Arguments</h3>
         <table class="about-meta" aria-label="About Corey details">
           <tbody>
             <tr><td>.focus</td><td>Bayesian adaptive clinical trials, small population designs, medical statistics and simulation.</td></tr>
@@ -36,6 +46,30 @@ import SocialButtons from './SocialButtons.astro';
             <tr><td>.research</td><td>Efficient design and analysis of small population clinical trials with external data.</td></tr>
             <tr><td>.teaching</td><td>Mathematics, statistics, R workflows and visual explanations of complex methods.</td></tr>
             <tr><td>.approach</td><td>Turn complicated statistical ideas into something people can inspect, question and use.</td></tr>
+            <tr>
+  <td>.badprogrammer</td>
+  <td>
+    <span class="lifecycle-table-item">
+      <img
+        src="/images/lifecycle-deprecated.svg"
+        alt="Deprecated"
+      />
+    </span>
+  </td>
+</tr>
+
+<tr>
+  <td>.names</td>
+  <td>
+  Corey
+    <span class="lifecycle-table-item">
+      <img
+        src="/images/lifecycle-stable.svg"
+        alt="Stable"
+      />
+    </span>
+  </td>
+</tr>
           </tbody>
         </table>
       </div>

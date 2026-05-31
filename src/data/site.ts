@@ -4,7 +4,7 @@ export const site = {
   description:
     'Statistician and PhD researcher working on Bayesian adaptive clinical trial designs, medical statistics, R, simulation and interactive visualisation.',
   url: 'https://cgvoller.github.io',
-  email: 'coreyvoller@hotmail.co.uk',
+  email: 'cv365 [at] bath [dot] ac [dot] uk',
   cv: '/CV.pdf',
   links: {
     github: 'https://github.com/cgvoller',
@@ -132,52 +132,38 @@ export const teaching = [
 export const teachingArchive = [
   {
     type: 'Teaching',
-    year: '2024–present',
+    year: 'Semester 1 · 2025',
     context: 'Tutoring / university support',
-    title: 'Mathematics and statistics teaching',
-    summary: 'One-to-one and small-group support from GCSE mathematics through to postgraduate statistics.'
+    title: 'MA12005: Statistics & Data Science',
+    summary: 'Provided support to first year students studying Python in lab sessions.'
   },
   {
     type: 'Teaching',
-    year: '2023–present',
-    context: 'R workflows',
-    title: 'R, Git and reproducible analysis',
-    summary: 'Practical teaching around project structure, scripts, functions, version control and reproducible outputs.'
-  },
-  {
-    type: 'Teaching',
-    year: '2024–present',
-    context: 'Clinical trials',
-    title: 'Adaptive clinical trial methods',
-    summary: 'Explaining adaptive randomisation, interim monitoring, simulation and operating characteristics.'
+    year: 'Semester 1 · 2025 and 2026',
+    context: 'Tutoring / university support',
+    title: 'MA12002: Programming for Mathematics',
+    summary: 'Provided support to first year students studying Python in lab sessions.'
   },
   {
     type: 'Conference talks',
-    year: 'Add year',
-    context: 'Conference / seminar',
-    title: 'Add conference talk title',
-    summary: 'Use this entry for a conference presentation, research seminar or invited talk.'
+    year: '2025',
+    context: 'Conference oral presentation',
+    title: 'RSC - Glasgow, Scotland',
+    summary: 'Leveraging Posterior Uncertainty of Treatment Effects in Bayesian Response Adapative Group Sequential Designs.'
   },
   {
     type: 'Conference talks',
-    year: 'Add year',
-    context: 'Poster / oral presentation',
-    title: 'Add poster or oral presentation',
-    summary: 'This lane can grow without redesigning the page; just add entries to the data file.'
+    year: 'Upcoming · 2026',
+    context: 'Conference oral presentation',
+    title: 'International Society for Clinical Biostatistics - Freiburg, Germany',
+    summary: 'Optimising Response-adaptive Randomisation in Group Sequential Trials: a Bayesian theory approach.'
   },
   {
     type: 'Workshops / demos',
-    year: 'Future',
+    year: '2024',
     context: 'Interactive teaching',
-    title: 'Bayesian updating visual demo',
-    summary: 'Prior → likelihood → posterior as an animated explanation for teaching.'
-  },
-  {
-    type: 'Workshops / demos',
-    year: 'Future',
-    context: 'Simulation',
-    title: 'Adaptive randomisation simulation',
-    summary: 'A small visual demo of allocation probabilities changing as trial data accumulate.'
+    title: 'Prior elicitation on the efficacy of treatments in Crohns disease',
+    summary: 'Part of a group of statisticians interviewing clinicians to elicite prior distributions on a range of treatments.'
   }
 ];
 
