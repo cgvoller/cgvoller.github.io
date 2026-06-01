@@ -212,7 +212,7 @@ export const experienceTimeline = [
   },
   {
     date: 'Apr 2023 – Aug 2024',
-    title: 'Statistician',
+    title: 'Trial Statistician',
     organisation: 'Cambridge Clinical Trials Unit, University of Cambridge',
     type: 'Clinical trials',
     description:
@@ -246,7 +246,7 @@ export const experienceTimeline = [
     description:
       '',
     bullets: [
-      'Focused on medical statistics and applied statistics',
+      'Focused on medical and applied statistics',
       'Developed programming knowledge using R and WinBUGS.',
       'Research project: Alternative Methods of Data Fusion in Metabolomic Cancer Diagnostics'
     ],
@@ -269,7 +269,7 @@ export const timeline = [
     description: 'Supporting statistical accreditation assessment work.'
   },
   {
-    role: 'Statistician',
+    role: 'Trial Statistician',
     organisation: 'Cambridge Clinical Trials Unit, University of Cambridge',
     date: '2023–2024',
     description:
@@ -299,63 +299,88 @@ export const timeline = [
 
 export const networkNodes = [
   {
-    id: 'adaptive-trials',
-    label: 'Adaptive trials',
-    type: 'research',
-    x: 50,
-    y: 28,
-    summary:
-      'Designs that allow trial features to change as accumulating data are observed, while preserving statistical rigour.',
-    links: ['Bayesian methods', 'Simulation', 'Small populations']
-  },
-  {
-    id: 'bayesian',
+    id: 'bayesian-methods',
     label: 'Bayesian methods',
-    type: 'method',
-    x: 25,
-    y: 47,
-    summary:
-      'Prior information, posterior updating and decision rules for research settings where uncertainty matters.',
-    links: ['Adaptive trials', 'External data', 'Visual explanations']
-  },
-  {
-    id: 'simulation',
-    label: 'Simulation',
-    type: 'tool',
-    x: 70,
+    type: 'framework',
+    theme: 'Framework',
+    x: 18,
     y: 48,
     summary:
-      'R-based simulation workflows for exploring operating characteristics, sensitivity and trial behaviour.',
-    links: ['R', 'Clinical trials', 'Visualisation']
+      'A statistical framework for incorporating prior information, updating evidence as data accumulate and supporting decision-making under uncertainty.',
+    links: ['Prior information', 'Posterior updating', 'Decision-making'],
+    connections: ['phd']
   },
   {
-    id: 'external-data',
-    label: 'External data',
-    type: 'research',
-    x: 42,
-    y: 67,
+    id: 'adaptive-designs',
+    label: 'Adaptive designs',
+    type: 'core',
+    theme: 'Core',
+    bridgeFor: ['Adaptive feature'],
+    x: 50,
+    y: 66,
     summary:
-      'Methods for borrowing information and understanding how external evidence should influence trial analysis.',
-    links: ['Bayesian methods', 'Small populations', 'Evidence synthesis']
+      'A clinical trial is considered an adaptive design if, during the trials course, modifications can be made in accordance with pre-specified rules.',
+    links: ['Interim analyses', 'Decision rules'],
+    connections: ['phd']
   },
   {
-    id: 'r',
-    label: 'R / Quarto',
-    type: 'tool',
-    x: 79,
-    y: 72,
+    id: 'umbrella-trials',
+    label: 'Umbrella trials',
+    type: 'structure',
+    theme: 'Trial structure',
+    x: 35,
+    y: 22,
     summary:
-      'Statistical programming, reproducible documents, visualisation and practical tooling for research work.',
-    links: ['Simulation', 'Posts', 'Teaching']
+      'A master-protocol trial structure evaluating multiple treatments within a single disease setting, often across subgroups. Umbrella trials can include adaptive features. They can offer reduced sample size requirements through shared control and can answer several treatment-related questions in a single trial.',
+    links: ['Master protocol', 'Subgroups', 'Trial architecture'],
+    connections: ['phd']
   },
   {
-    id: 'teaching',
-    label: 'Teaching',
-    type: 'translation',
-    x: 19,
-    y: 76,
+    id: 'mams',
+    label: 'MAMS',
+    type: 'structure',
+    theme: 'Trial structure',
+    x: 65,
+    y: 22,
     summary:
-      'Making statistical and mathematical ideas more understandable through examples, visuals and structured explanation.',
-    links: ['Visual explanations', 'R', 'Clinical trial methods']
+      'A multi-arm, multi-stage trial structure that evaluates several treatments at the same time. Using planned interim stages they have the ability to add or drop treatments. They have several advantages such as reduced overall sample size and reduced cost (no need to set up a new trial for each new treatment).',
+    links: ['Multi-arm', 'Multi-stage', 'Trial architecture'],
+    connections: ['phd']
+  },
+  {
+    id: 'group-sequential-designs',
+    label: 'Group sequential designs',
+    type: 'feature',
+    theme: 'Adaptive feature',
+    x: 80,
+    y: 48,
+    summary:
+      'Designs using planned interim analyses to allow for early stopping of the trial, typically for efficacy or futility ',
+    links: ['Interim monitoring', 'Stopping boundaries', 'Efficiency'],
+    connections: ['adaptive-designs']
+  },
+  {
+    id: 'sample-size-re-estimation',
+    label: 'Sample size re-estimation',
+    type: 'feature',
+    theme: 'Adaptive feature',
+    x: 76,
+    y: 78,
+    summary:
+      'An adaptive approach where the required sample size is reassessed at an interim analysis, often to address uncertainty in design assumptions.',
+    links: ['Interim data', 'Re-estimation'],
+    connections: ['adaptive-designs']
+  },
+  {
+    id: 'response-adaptive-randomisation',
+    label: 'Response-adaptive randomisation',
+    type: 'feature',
+    theme: 'Adaptive feature',
+    x: 27,
+    y: 85,
+    summary:
+      'An adaptive feature where allocation probabilities change as response data accumulate. In my work, this has been explored using a Bayesian framework within group-sequential designs.',
+    links: ['Allocation', 'Bayesian implementation', 'Accumulating data'],
+    connections: ['adaptive-designs']
   }
 ];

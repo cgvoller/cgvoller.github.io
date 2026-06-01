@@ -1681,3 +1681,467 @@ body::before {
   max-width: 120px;
   flex: 0 0 auto;
 }
+
+
+/* Focused two-node research map */
+.focused-network-shell {
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.72fr);
+}
+
+.focused-network-canvas {
+  min-height: 460px;
+}
+
+.focused-edge {
+  stroke-width: 0.55;
+  stroke-dasharray: 4 5;
+  opacity: 0.78;
+}
+
+.focused-edge.muted {
+  opacity: 0.36;
+}
+
+.focused-network-node {
+  min-width: 168px;
+  min-height: 66px;
+  font-size: 0.92rem;
+}
+
+.focused-network-node.active::before {
+  content: "";
+  position: absolute;
+  inset: -9px;
+  border: 1px dashed rgba(37, 99, 235, 0.42);
+  border-radius: inherit;
+  animation: researchPulse 2.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.network-core {
+  position: absolute;
+  left: calc(var(--x) * 1%);
+  top: calc(var(--y) * 1%);
+  width: 58px;
+  height: 58px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(22, 163, 74, 0.28);
+  background: #f0fdf4;
+  color: #15803d;
+  font-family: var(--mono);
+  font-weight: 950;
+  font-size: 0.78rem;
+  box-shadow: 0 14px 34px rgba(17, 24, 39, 0.08);
+  z-index: 2;
+}
+
+.focused-network-card h3 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.focused-network-card .mini-tags {
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+@keyframes researchPulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: scale(1.04);
+  }
+}
+
+@media (max-width: 900px) {
+  .focused-network-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .focused-network-canvas {
+    min-height: 360px;
+  }
+
+  .focused-network-node {
+    min-width: 138px;
+    min-height: 56px;
+    font-size: 0.82rem;
+  }
+
+  .network-core {
+    width: 50px;
+    height: 50px;
+  }
+}
+/* Focused research map with zoom and pan */
+.focused-network-shell {
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.72fr);
+}
+
+.focused-network-canvas {
+  min-height: 460px;
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+}
+
+.focused-network-canvas.is-panning {
+  cursor: grabbing;
+}
+
+.network-viewport {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 50%;
+  transition: transform 0.16s ease;
+  will-change: transform;
+}
+
+.focused-network-canvas.is-panning .network-viewport {
+  transition: none;
+}
+
+.network-controls {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--line-paper);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 30px rgba(17, 24, 39, 0.08);
+}
+
+.network-control-button,
+.network-control-reset {
+  border: 1px solid #dbeafe;
+  background: #eff6ff;
+  color: var(--blue-2);
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.network-control-button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  line-height: 1;
+  font-size: 1.1rem;
+}
+
+.network-control-reset {
+  height: 34px;
+  border-radius: 999px;
+  padding: 0 12px;
+  font-size: 0.78rem;
+}
+
+.network-control-button:hover,
+.network-control-reset:hover {
+  background: #dbeafe;
+  border-color: rgba(37, 99, 235, 0.45);
+}
+
+.network-zoom-label {
+  min-width: 44px;
+  text-align: center;
+  color: var(--muted-dark);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.network-theme-legend {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.theme-pill {
+  border: 1px solid #dbeafe;
+  background: rgba(239, 246, 255, 0.88);
+  color: var(--blue-2);
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.theme-applications {
+  border-color: rgba(22, 163, 74, 0.22);
+  background: rgba(240, 253, 244, 0.88);
+  color: #15803d;
+}
+
+.network-pan-hint {
+  position: absolute;
+  left: 22px;
+  bottom: 20px;
+  z-index: 5;
+  color: var(--muted-dark);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+
+.focused-edge {
+  stroke-width: 0.55;
+  stroke-dasharray: 4 5;
+  opacity: 0.78;
+}
+
+.focused-edge.muted {
+  opacity: 0.36;
+}
+
+.focused-network-node {
+  min-width: 168px;
+  min-height: 66px;
+  font-size: 0.92rem;
+}
+
+.focused-network-node.theme-methods {
+  border-color: rgba(37, 99, 235, 0.28);
+}
+
+.focused-network-node.theme-applications {
+  border-color: rgba(22, 163, 74, 0.28);
+}
+
+.focused-network-node.active::before {
+  content: "";
+  position: absolute;
+  inset: -9px;
+  border: 1px dashed rgba(37, 99, 235, 0.42);
+  border-radius: inherit;
+  animation: researchPulse 2.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.focused-network-node.theme-applications.active::before {
+  border-color: rgba(22, 163, 74, 0.42);
+}
+
+.network-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 58px;
+  height: 58px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(22, 163, 74, 0.28);
+  background: #f0fdf4;
+  color: #15803d;
+  font-family: var(--mono);
+  font-weight: 950;
+  font-size: 0.78rem;
+  box-shadow: 0 14px 34px rgba(17, 24, 39, 0.08);
+}
+
+.focused-network-card h3 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.focused-network-card .mini-tags {
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+@keyframes researchPulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: scale(1.04);
+  }
+}
+
+@media (max-width: 900px) {
+  .focused-network-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .focused-network-canvas {
+    min-height: 360px;
+  }
+
+  .network-controls {
+    top: 14px;
+    right: 14px;
+    transform: scale(0.92);
+    transform-origin: top right;
+  }
+
+  .focused-network-node {
+    min-width: 138px;
+    min-height: 56px;
+    font-size: 0.82rem;
+  }
+
+  .network-core {
+    width: 50px;
+    height: 50px;
+  }
+}
+.network-theme-legend {
+  pointer-events: auto;
+}
+
+.theme-pill {
+  cursor: pointer;
+  font: inherit;
+}
+
+.theme-pill.active {
+  border-color: rgba(37, 99, 235, 0.55);
+  background: #dbeafe;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+}
+
+.theme-pill.theme-applications.active {
+  border-color: rgba(22, 163, 74, 0.48);
+  background: #dcfce7;
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.10);
+}
+
+.focused-network-node.is-dimmed {
+  opacity: 0.22;
+  filter: grayscale(0.5);
+}
+
+.focused-edge.is-dimmed {
+  opacity: 0.08 !important;
+}
+
+/* Smaller research-map theme buttons */
+.network-theme-legend {
+  gap: 6px !important;
+}
+
+.theme-pill {
+  padding: 3px 7px !important;
+  font-size: 0.58rem !important;
+  letter-spacing: 0.06em !important;
+  line-height: 1 !important;
+  min-height: 24px;
+}
+
+/* Research map theme colours */
+.focused-network-node.theme-framework,
+.theme-pill.theme-framework {
+  border-color: rgba(124, 58, 237, 0.28) !important;
+  background: rgba(245, 243, 255, 0.92) !important;
+  color: #6d28d9 !important;
+}
+
+.focused-network-node.theme-design-family,
+.theme-pill.theme-design-family {
+  border-color: rgba(37, 99, 235, 0.30) !important;
+  background: rgba(239, 246, 255, 0.94) !important;
+  color: var(--blue-2) !important;
+}
+
+.focused-network-node.theme-trial-structure,
+.theme-pill.theme-trial-structure {
+  border-color: rgba(245, 158, 11, 0.32) !important;
+  background: rgba(255, 251, 235, 0.94) !important;
+  color: #b45309 !important;
+}
+
+.focused-network-node.theme-adaptive-feature,
+.theme-pill.theme-adaptive-feature {
+  border-color: rgba(22, 163, 74, 0.28) !important;
+  background: rgba(240, 253, 244, 0.94) !important;
+  color: #15803d !important;
+}
+
+/* Active node rings by category */
+.focused-network-node.theme-framework.active::before {
+  border-color: rgba(124, 58, 237, 0.48) !important;
+}
+
+.focused-network-node.theme-design-family.active::before {
+  border-color: rgba(37, 99, 235, 0.48) !important;
+}
+
+.focused-network-node.theme-trial-structure.active::before {
+  border-color: rgba(245, 158, 11, 0.52) !important;
+}
+
+.focused-network-node.theme-adaptive-feature.active::before {
+  border-color: rgba(22, 163, 74, 0.48) !important;
+}
+
+/* Better spacing for longer research-map labels */
+.focused-network-node {
+  min-width: 170px !important;
+  max-width: 210px !important;
+  min-height: 58px !important;
+  padding: 10px 16px !important;
+  line-height: 1.15 !important;
+  text-align: center !important;
+  white-space: normal !important;
+}
+
+/* Slightly smaller labels for the longest nodes */
+.focused-network-node[data-id='response-adaptive-randomisation'],
+.focused-network-node[data-id='sample-size-re-estimation'],
+.focused-network-node[data-id='group-sequential-designs'] {
+  font-size: 0.82rem !important;
+}
+
+/* Make category buttons match the smaller style */
+.network-theme-legend {
+  gap: 6px !important;
+}
+
+.theme-pill {
+  padding: 3px 7px !important;
+  font-size: 0.58rem !important;
+  letter-spacing: 0.06em !important;
+  line-height: 1 !important;
+  min-height: 24px;
+}
+
+/* Dimmed filter state */
+.focused-network-node.is-dimmed {
+  opacity: 0.22 !important;
+  filter: grayscale(0.55);
+}
+
+.focused-edge.is-dimmed {
+  opacity: 0.08 !important;
+}

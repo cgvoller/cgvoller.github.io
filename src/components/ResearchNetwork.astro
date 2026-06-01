@@ -1,41 +1,134 @@
 ---
 import { networkNodes } from '../data/site';
+
 const first = networkNodes[0];
+
+const phdNode = {
+  id: 'phd',
+  label: 'PhD',
+  theme: 'Core',
+  x: 50,
+  y: 45
+};
+
+const themeClass = (theme = '') =>
+  `theme-${theme.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
+const themes = [
+  ...new Set(
+    networkNodes
+      .map((node) => node.theme)
+      .filter((theme) => theme && theme !== 'Core')
+  )
+];
+
+const networkEdges = [];
+
+networkNodes.forEach((source) => {
+  (source.connections ?? []).forEach((targetId) => {
+    const target =
+      targetId === 'phd'
+        ? phdNode
+        : networkNodes.find((node) => node.id === targetId);
+
+    if (target) {
+      networkEdges.push({ source, target });
+    }
+  });
+});
+
+const edgePath = (source, target, bend = 6) => {
+  const midX = (source.x + target.x) / 2;
+  return `M${source.x} ${source.y} C ${midX} ${source.y - bend}, ${midX} ${target.y - bend}, ${target.x} ${target.y}`;
+};
 ---
+
 <section class="section network-section reveal" id="research-network">
   <div class="container">
     <div class="section-heading center">
-      <span class="eyebrow">Interactive research map</span>
-      <h2>Navigate the work as a statistical network.</h2>
+      <span class="eyebrow">Research map</span>
+      <h2>Bayesian methods and adaptive trials.</h2>
       <p>
-        This lightweight first version gives you the network-meta-analysis feel without adding extra packages.
-        Later, this section can become a true 3D force graph.
+        A focused interactive map of the main research areas currently shaping my PhD work.
+        Use the controls to zoom, drag the map to pan, and click a node to explore the connection.
       </p>
     </div>
 
-    <div class="network-shell">
-      <div class="network-canvas" aria-label="Interactive research network">
-        <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-          <path class="network-edge" d="M50 28 L25 47 L42 67 L79 72 L70 48 L50 28" />
-          <path class="network-edge muted" d="M25 47 L70 48 M19 76 L42 67 M19 76 L25 47 M79 72 L50 28" />
-        </svg>
-        {networkNodes.map((node) => (
-          <button
-            class:list={['network-node', node.type, node.id === first.id && 'active']}
-            type="button"
-            style={`--x:${node.x}; --y:${node.y};`}
-            data-id={node.id}
-            data-label={node.label}
-            data-summary={node.summary}
-            data-links={node.links.join('|')}
+    <div class="network-shell focused-network-shell" data-network-map>
+      <div class="network-canvas focused-network-canvas" data-network-canvas aria-label="Interactive research network">
+        <div class="network-theme-legend" aria-label="Filter research map by theme">
+  <button class="theme-pill active" type="button" data-theme-filter="all">
+    All
+  </button>
+
+  {themes.map((theme) => (
+    <button
+      class={`theme-pill ${themeClass(theme)}`}
+      type="button"
+      data-theme-filter={theme}
+    >
+      {theme}
+    </button>
+  ))}
+</div>
+
+        <div class="network-controls" aria-label="Research map controls">
+          <button class="network-control-button" type="button" data-zoom-out aria-label="Zoom out">−</button>
+          <span class="network-zoom-label" data-map-zoom-label>100%</span>
+          <button class="network-control-button" type="button" data-zoom-in aria-label="Zoom in">+</button>
+          <button class="network-control-reset" type="button" data-zoom-reset>Reset</button>
+        </div>
+
+        <div class="network-pan-hint" aria-hidden="true">Drag to pan</div>
+
+        <div class="network-viewport" data-network-viewport>
+          <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+            {networkEdges.map((edge) => (
+              <path
+                class="network-edge focused-edge muted"
+                d={edgePath(edge.source, edge.target, -18)}
+                data-edge-source={edge.source.id}
+                data-edge-target={edge.target.id}
+                data-edge-source-theme={edge.source.theme}
+                data-edge-target-theme={edge.target.theme}
+              />
+            ))}
+          </svg>
+
+          <div
+            class="network-core"
+            style={`--x:${phdNode.x}; --y:${phdNode.y};`}
+            aria-hidden="true"
           >
-            <span>{node.label}</span>
-          </button>
-        ))}
+            <span>PhD</span>
+          </div>
+
+          {networkNodes.map((node) => (
+            <button
+              class:list={[
+                'network-node',
+                'focused-network-node',
+                node.type,
+                themeClass(node.theme),
+                node.id === first.id && 'active'
+              ]}
+              type="button"
+              style={`--x:${node.x}; --y:${node.y};`}
+              data-id={node.id}
+              data-label={node.label}
+              data-theme={node.theme}
+              data-bridge-for={(node.bridgeFor ?? []).join('|')}
+              data-summary={node.summary}
+              data-links={node.links.join('|')}
+            >
+              <span>{node.label}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
-      <article class="network-card" data-network-card>
-        <span class="tag">Selected node</span>
+      <article class="network-card focused-network-card" data-network-card>
+        <span class="tag" data-network-theme>{first.theme}</span>
         <h3 data-network-title>{first.label}</h3>
         <p data-network-summary>{first.summary}</p>
         <div class="mini-tags" data-network-links>
@@ -46,29 +139,181 @@ const first = networkNodes[0];
   </div>
 
   <script is:inline>
-    const nodes = document.querySelectorAll('[data-id]');
-    const title = document.querySelector('[data-network-title]');
-    const summary = document.querySelector('[data-network-summary]');
-    const links = document.querySelector('[data-network-links]');
-    const card = document.querySelector('[data-network-card]');
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
-    nodes.forEach((node) => {
-      node.addEventListener('click', () => {
-        nodes.forEach((n) => n.classList.remove('active'));
-        node.classList.add('active');
-        if (!title || !summary || !links || !card) return;
-        card.classList.remove('flip-in');
-        void card.offsetWidth;
-        card.classList.add('flip-in');
-        title.textContent = node.dataset.label;
-        summary.textContent = node.dataset.summary;
-        links.innerHTML = '';
-        (node.dataset.links || '').split('|').forEach((item) => {
-          const span = document.createElement('span');
-          span.textContent = item;
-          links.appendChild(span);
+    document.querySelectorAll('[data-network-map]').forEach((map) => {
+      const canvas = map.querySelector('[data-network-canvas]');
+      const viewport = map.querySelector('[data-network-viewport]');
+      const zoomLabel = map.querySelector('[data-map-zoom-label]');
+
+      const nodes = map.querySelectorAll('[data-id]');
+      const themeButtons = map.querySelectorAll('[data-theme-filter]');
+      const edges = map.querySelectorAll('[data-edge-source]');
+      const title = map.querySelector('[data-network-title]');
+      const theme = map.querySelector('[data-network-theme]');
+      const summary = map.querySelector('[data-network-summary]');
+      const links = map.querySelector('[data-network-links]');
+      const card = map.querySelector('[data-network-card]');
+
+
+      const zoomIn = map.querySelector('[data-zoom-in]');
+      const zoomOut = map.querySelector('[data-zoom-out]');
+      const zoomReset = map.querySelector('[data-zoom-reset]');
+
+      let scale = 1;
+      let panX = 0;
+      let panY = 0;
+
+      let isPanning = false;
+      let startX = 0;
+      let startY = 0;
+      let originX = 0;
+      let originY = 0;
+
+      themeButtons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+          event.stopPropagation();
+
+          const selectedTheme = button.getAttribute('data-theme-filter') || 'all';
+
+          themeButtons.forEach((btn) => btn.classList.remove('active'));
+          button.classList.add('active');
+
+          map.setAttribute('data-active-theme', selectedTheme);
+
+          nodes.forEach((node) => {
+            const nodeTheme = node.getAttribute('data-theme') || '';
+            const bridgeFor = (node.getAttribute('data-bridge-for') || '')
+              .split('|')
+              .filter(Boolean);
+
+            if (
+              selectedTheme === 'all' ||
+              nodeTheme === selectedTheme ||
+              bridgeFor.includes(selectedTheme)
+            ) {
+              node.classList.remove('is-dimmed');
+            } else {
+              node.classList.add('is-dimmed');
+            }
+          });
+
+          edges.forEach((edge) => {
+            const sourceTheme = edge.getAttribute('data-edge-source-theme') || '';
+            const targetTheme = edge.getAttribute('data-edge-target-theme') || '';
+
+            if (
+              selectedTheme === 'all' ||
+              sourceTheme === selectedTheme ||
+              targetTheme === selectedTheme
+            ) {
+              edge.classList.remove('is-dimmed');
+            } else {
+              edge.classList.add('is-dimmed');
+            }
+          });
         });
       });
+
+      const applyTransform = () => {
+        if (!viewport) return;
+
+        viewport.style.transform = `translate3d(${panX}px, ${panY}px, 0) scale(${scale})`;
+
+        if (zoomLabel) {
+          zoomLabel.textContent = `${Math.round(scale * 100)}%`;
+        }
+      };
+
+      zoomIn?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        scale = clamp(scale + 0.15, 0.5, 2);
+        applyTransform();
+      });
+
+      zoomOut?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        scale = clamp(scale - 0.15, 0.5, 2);
+
+        if (scale <= 0.5) {
+          panX = 0;
+          panY = 0;
+        }
+
+        applyTransform();
+      });
+
+      zoomReset?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        scale = 1;
+        panX = 0;
+        panY = 0;
+        applyTransform();
+      });
+
+      canvas?.addEventListener('pointerdown', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+
+        if (target.closest('button, a, [data-id]')) return;
+
+        isPanning = true;
+        startX = event.clientX;
+        startY = event.clientY;
+        originX = panX;
+        originY = panY;
+
+        canvas.classList.add('is-panning');
+        canvas.setPointerCapture(event.pointerId);
+      });
+
+      canvas?.addEventListener('pointermove', (event) => {
+        if (!isPanning) return;
+
+        const dx = event.clientX - startX;
+        const dy = event.clientY - startY;
+
+        panX = clamp(originX + dx, -260, 260);
+        panY = clamp(originY + dy, -220, 220);
+
+        applyTransform();
+      });
+
+      const stopPanning = () => {
+        isPanning = false;
+        canvas?.classList.remove('is-panning');
+      };
+
+      canvas?.addEventListener('pointerup', stopPanning);
+      canvas?.addEventListener('pointercancel', stopPanning);
+      canvas?.addEventListener('pointerleave', stopPanning);
+
+      nodes.forEach((node) => {
+        node.addEventListener('click', () => {
+          nodes.forEach((n) => n.classList.remove('active'));
+          node.classList.add('active');
+
+          if (!title || !theme || !summary || !links || !card) return;
+
+          card.classList.remove('flip-in');
+          void card.offsetWidth;
+          card.classList.add('flip-in');
+
+          title.textContent = node.dataset.label || '';
+          theme.textContent = node.dataset.theme || 'Selected node';
+          summary.textContent = node.dataset.summary || '';
+
+          links.innerHTML = '';
+          (node.dataset.links || '').split('|').forEach((item) => {
+            if (!item) return;
+            const span = document.createElement('span');
+            span.textContent = item;
+            links.appendChild(span);
+          });
+        });
+      });
+
+      applyTransform();
     });
   </script>
 </section>
