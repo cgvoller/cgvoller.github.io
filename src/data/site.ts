@@ -100,9 +100,9 @@ export const publications = [
     question:
       'How can expert beliefs about treatment efficacy be formally captured for medical therapies in perianal fistulizing Crohn’s disease?',
     method:
-      'Bayesian prior elicitation using clinical expert judgement.',
+      'Prior distributions were elicited from expert clinicians through meetings with statisticians using an Rshiny app for visualisation.',
     contribution:
-      'Makes prior assumptions explicit and supports transparent Bayesian modelling in a complex clinical area with limited or uncertain evidence.'
+      'First Bayesian prior elicitation exercise in inflammatory bowel disease. The priors can be used to enhance future trials in an area with limited or uncertain evidence. '
   }
 },
 ];
@@ -158,6 +158,15 @@ export const teachingArchive = [
     title: 'International Society for Clinical Biostatistics - Freiburg, Germany',
     summary: 'Optimising Response-adaptive Randomisation in Group Sequential Trials: a Bayesian theory approach.'
   },
+  ,
+  {
+    type: 'Workshops / demos',
+    year: '2025',
+    context: 'Oral presentation',
+    title: 'Workshop on Improving The Efficiency of Clinical Trials - from Methods to Practice - Bath, UK',
+    summary: 'Gave a short (lightning) talk on research of response-adaptive randomisation using slides animated with Manim.',
+    slides: 'https://cgvoller.github.io/2025-05-27-slides/'
+  },
   {
     type: 'Workshops / demos',
     year: '2024',
@@ -206,7 +215,7 @@ export const experienceTimeline = [
       'Supporting accreditation assessments for the RSS which accredits honours and masters degrees in statistics and related disciplines, awarding the status of RSS Accredited University.',
     bullets: [
       'Reviewing evidence  to ensure that teaching, learning and assessment within a programme/course/module is of high quality.',
-      'Prepared clear written reports summarising application, risks and recommendations.'
+      'Prepare clear written reports summarising application, risks and recommendations.'
     ],
     tags: ['Statistics', 'Professional accreditation', 'Reviewer']
   },

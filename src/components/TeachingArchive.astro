@@ -26,6 +26,16 @@ const groups = ['Teaching', 'Conference talks', 'Workshops / demos'];
                   </div>
                   <h3>{item.title}</h3>
                   <p>{item.summary}</p>
+                   {item.slides && (
+                    <a
+                      class="text-link archive-link"
+                      href={item.slides}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Slides →
+                    </a>
+                  )}
                 </article>
               ))}
             </div>
