@@ -5,7 +5,6 @@ export const site = {
     'Statistician and PhD researcher working on Bayesian adaptive clinical trial designs, medical statistics, R, simulation and interactive visualisation.',
   url: 'https://cgvoller.github.io',
   email: 'cv365 [at] bath [dot] ac [dot] uk',
-  cv: '/CV.pdf',
   links: {
     github: 'https://github.com/cgvoller',
     linkedin: 'https://www.linkedin.com/in/corey-v-027bb0198',
@@ -184,7 +183,7 @@ export const experienceTimeline = [
     organisation: 'Legion Software',
     type: 'Company / software',
     description:
-      'Building automated reporting software for healthcare and research workflows, with an initial client using the software to automate blood reporting.',
+      'Building automated reporting software for healthcare and research workflows, with clients using the software to automate blood reporting.',
     bullets: [
       'C# WPF desktop application for automated report generation.',
       'Designing reporting workflows around real client blood-reporting requirements.',

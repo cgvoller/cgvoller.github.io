@@ -3,9 +3,6 @@ import { site } from '../data/site';
 const { compact = false } = Astro.props;
 ---
 <div class:list={['social-buttons', compact && 'compact']}>
-  <a href={site.cv} class="button button-primary">
-    <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
-    <span>CV</span>
   </a>
   <a href={site.links.github} class="button button-secondary" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
     <i class="fa-brands fa-github" aria-hidden="true"></i>
