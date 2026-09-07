@@ -65,25 +65,6 @@ export const posts = [
 
 export const publications = [
   {
-    title:
-      'Comparative efficacy, quality of life, safety, and tolerability of atogepant and rimegepant in migraine prevention: A matching-adjusted indirect comparison analysis',
-    venue: 'Cephalalgia',
-    year: '2024',
-    details: '44(2)',
-    doi: '10.1177/03331024241235156',
-    tags: ['MAIC', 'Indirect comparison', 'HEOR', 'Migraine'],
-    summary:
-      'A matching-adjusted indirect comparison analysis comparing migraine prevention treatments using published evidence.',
-      back: {
-  question:
-    'How does atogepant compare with rimegepant for migraine prevention when direct head-to-head evidence is unavailable?',
-  method:
-    'Matching-adjusted indirect comparison using published evidence.',
-  contribution:
-    'Applies evidence-synthesis methods to compare efficacy, quality of life, safety and tolerability outcomes across migraine prevention treatments.'
-}
-  },
-  {
   title: 'Bayesian prior elicitation on the efficacy of medical therapies in perianal fistulizing Crohn’s disease',
   authors:
     'Noor NM, Zheng H, Cao Z, Caruso G, Voller C, Cooney R, Din S, Gordon H, Kok KB, Lindsay JO, Moran GW, Patel KV, Sebastian S, Raine T, Subramanian S, Hart AL, Robertson DS, Parkes M',
@@ -104,6 +85,25 @@ export const publications = [
       'First Bayesian prior elicitation exercise in inflammatory bowel disease. The priors can be used to enhance future trials in an area with limited or uncertain evidence. '
   }
 },
+{
+    title:
+      'Comparative efficacy, quality of life, safety, and tolerability of atogepant and rimegepant in migraine prevention: A matching-adjusted indirect comparison analysis',
+    venue: 'Cephalalgia',
+    year: '2024',
+    details: '44(2)',
+    doi: '10.1177/03331024241235156',
+    tags: ['MAIC', 'Indirect comparison', 'HEOR', 'Migraine'],
+    summary:
+      'A matching-adjusted indirect comparison analysis comparing migraine prevention treatments using published evidence.',
+      back: {
+  question:
+    'How does atogepant compare with rimegepant for migraine prevention when direct head-to-head evidence is unavailable?',
+  method:
+    'Matching-adjusted indirect comparison using published evidence.',
+  contribution:
+    'Applies evidence-synthesis methods to compare efficacy, quality of life, safety and tolerability outcomes across migraine prevention treatments.'
+}
+  },
 ];
 
 export const teaching = [
