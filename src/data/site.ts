@@ -131,17 +131,26 @@ export const teaching = [
 export const teachingArchive = [
   {
     type: 'Teaching',
+    year: 'Semester 1 · 2025 and 2026',
+    context: 'Tutoring / university support',
+    title: 'MA12002: Programming for Mathematics',
+    summary: 'Provided support to first year students studying Python in lab sessions.'
+  },
+  {
+    type: 'Teaching',
     year: 'Semester 1 · 2025',
     context: 'Tutoring / university support',
     title: 'MA12005: Statistics & Data Science',
     summary: 'Provided support to first year students studying Python in lab sessions.'
   },
-  {
-    type: 'Teaching',
-    year: 'Semester 1 · 2025 and 2026',
-    context: 'Tutoring / university support',
-    title: 'MA12002: Programming for Mathematics',
-    summary: 'Provided support to first year students studying Python in lab sessions.'
+    {
+    type: 'Conference talks',
+    year: '2026',
+    context: 'Conference oral presentation',
+    title: 'International Society for Clinical Biostatistics - Freiburg, Germany',
+    summary: 'Optimising Response-adaptive Randomisation in Group Sequential Trials: a Bayesian theory approach.',
+    slides: 'https://cgvoller.github.io/2026-09-30-slides/'
+
   },
   {
     type: 'Conference talks',
@@ -150,14 +159,6 @@ export const teachingArchive = [
     title: 'RSC - Glasgow, Scotland',
     summary: 'Leveraging Posterior Uncertainty of Treatment Effects in Bayesian Response Adapative Group Sequential Designs.'
   },
-  {
-    type: 'Conference talks',
-    year: 'Upcoming · 2026',
-    context: 'Conference oral presentation',
-    title: 'International Society for Clinical Biostatistics - Freiburg, Germany',
-    summary: 'Optimising Response-adaptive Randomisation in Group Sequential Trials: a Bayesian theory approach.'
-  },
-  ,
   {
     type: 'Workshops / demos',
     year: '2025',
