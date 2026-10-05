@@ -187,8 +187,8 @@ export const experienceTimeline = [
       'Building automated reporting software for healthcare and research workflows, with clients using the software to automate blood reporting.',
     bullets: [
       'C# WPF desktop application for automated report generation.',
-      'Designing reporting workflows around real client blood-reporting requirements.',
-      'Focusing on repeatability, reduced manual effort and clearer reporting outputs.'
+      'Designing reporting workflows around client blood-reporting requirements.',
+      'Developed automated reports for various blood panels, improved report outputs, including longitudinal tracking.'
     ],
     tags: ['C#', 'WPF', 'Automation', 'Reporting']
   },
